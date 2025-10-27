@@ -3,10 +3,11 @@ import { Circle } from "lucide-react";
 interface MetricBadgeProps {
   label: string;
   value: string;
+  target?: string;
   status: "good" | "warning" | "critical";
 }
 
-export default function MetricBadge({ label, value, status }: MetricBadgeProps) {
+export default function MetricBadge({ label, value, target, status }: MetricBadgeProps) {
   const statusColors = {
     good: "text-success",
     warning: "text-warning",
@@ -14,12 +15,12 @@ export default function MetricBadge({ label, value, status }: MetricBadgeProps) 
   };
 
   return (
-    <div className="flex items-center gap-3 px-4 py-2 bg-card border border-border rounded-lg">
-      <Circle className={`w-2 h-2 fill-current ${statusColors[status]}`} />
-      <div className="flex items-baseline gap-2">
-        <span className="text-sm text-muted-foreground">{label}:</span>
-        <span className="text-sm font-semibold text-foreground">{value}</span>
-      </div>
+    <div className="bg-card border border-border rounded-lg p-4 shadow-sm">
+      <p className="text-xs text-muted-foreground mb-1">{label}</p>
+      <p className={`text-2xl font-bold ${statusColors[status]}`}>
+        {value}
+      </p>
+      {target && <p className="text-xs text-muted-foreground mt-1">Target: {target}</p>}
     </div>
   );
 }

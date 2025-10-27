@@ -7,6 +7,10 @@ import Navbar from "./components/Navbar";
 import Home from "./pages/Home";
 import Dashboard from "./pages/Dashboard";
 import Copilot from "./pages/Copilot";
+import Profitability from "./pages/Profitability";
+import Utilization from "./pages/Utilization";
+import Outsourcing from "./pages/Outsourcing";
+import Projects from "./pages/Projects";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -22,12 +26,10 @@ const App = () => (
           <Route path="/" element={<Home />} />
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/copilot" element={<Copilot />} />
-          {/* Placeholder routes for other modules */}
-          <Route path="/profitability" element={<Dashboard />} />
-          <Route path="/outsourcing" element={<Dashboard />} />
-          <Route path="/utilization" element={<Dashboard />} />
-          <Route path="/projects" element={<Dashboard />} />
-          {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
+          <Route path="/profitability" element={<Profitability />} />
+          <Route path="/utilization" element={<Utilization />} />
+          <Route path="/outsourcing" element={<Outsourcing />} />
+          <Route path="/projects" element={<Projects />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
