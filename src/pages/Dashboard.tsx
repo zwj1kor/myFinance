@@ -6,7 +6,8 @@ import { ArrowRight, TrendingUp } from "lucide-react";
 
 export default function Dashboard() {
   return (
-    <div className="p-6 space-y-6">
+    <div className="min-h-screen bg-background">
+      <div className="max-w-7xl mx-auto p-6 space-y-6">
       {/* Top KPI Summary Bar */}
       <div className="flex items-center gap-3 overflow-x-auto pb-2">
         <MetricBadge label="Revenue" value="₹110Cr" status="warning" />
@@ -220,6 +221,7 @@ export default function Dashboard() {
             </Button>
           </div>
         </Card>
+      </div>
       </div>
     </div>
   );

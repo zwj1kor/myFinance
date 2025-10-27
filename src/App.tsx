@@ -3,7 +3,8 @@ import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Layout from "./components/Layout";
+import Navbar from "./components/Navbar";
+import Home from "./pages/Home";
 import Dashboard from "./pages/Dashboard";
 import Copilot from "./pages/Copilot";
 import NotFound from "./pages/NotFound";
@@ -16,17 +17,16 @@ const App = () => (
       <Toaster />
       <Sonner />
       <BrowserRouter>
+        <Navbar />
         <Routes>
-          <Route path="/" element={<Layout><Dashboard /></Layout>} />
-          <Route path="/copilot" element={<Layout><Copilot /></Layout>} />
+          <Route path="/" element={<Home />} />
+          <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/copilot" element={<Copilot />} />
           {/* Placeholder routes for other modules */}
-          <Route path="/revenue-cost" element={<Layout><Dashboard /></Layout>} />
-          <Route path="/profitability" element={<Layout><Dashboard /></Layout>} />
-          <Route path="/receivables" element={<Layout><Dashboard /></Layout>} />
-          <Route path="/outsourcing" element={<Layout><Dashboard /></Layout>} />
-          <Route path="/utilization" element={<Layout><Dashboard /></Layout>} />
-          <Route path="/projects" element={<Layout><Dashboard /></Layout>} />
-          <Route path="/forecasting" element={<Layout><Dashboard /></Layout>} />
+          <Route path="/profitability" element={<Dashboard />} />
+          <Route path="/outsourcing" element={<Dashboard />} />
+          <Route path="/utilization" element={<Dashboard />} />
+          <Route path="/projects" element={<Dashboard />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
