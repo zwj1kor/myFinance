@@ -10,12 +10,12 @@ export default function Home() {
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
-      <section className="relative bg-gradient-to-br from-primary/10 via-background to-accent/5 py-20 px-4 sm:px-6 lg:px-8">
+      <section className="relative bg-gradient-to-br from-secondary/10 via-background to-accent/5 py-20 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
           <div className="text-center space-y-6">
-            <div className="inline-flex items-center px-4 py-2 bg-primary/10 rounded-full">
-              <Sparkles className="w-4 h-4 text-primary mr-2" />
-              <span className="text-sm font-medium text-primary">AI-Powered Finance Intelligence</span>
+            <div className="inline-flex items-center px-4 py-2 bg-accent/10 rounded-full">
+              <Sparkles className="w-4 h-4 text-accent mr-2" />
+              <span className="text-sm font-medium text-accent">AI-Powered Finance Intelligence</span>
             </div>
             
             <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-foreground">
@@ -27,9 +27,12 @@ export default function Home() {
               Intelligent finance workspace for Bosch teams. Real-time insights on revenue, costs, 
               profitability, OCI, and utilization with AI-driven recommendations.
             </p>
+            <p className="text-sm text-muted-foreground">
+              Viewing: {persona === "cfo" ? "CFO View" : persona === "controller" ? "Controller" : "Delivery"}
+            </p>
 
             <div className="flex flex-col sm:flex-row gap-4 justify-center pt-4">
-              <Button asChild size="lg" className="text-lg px-8">
+              <Button asChild size="lg" variant="secondary" className="text-lg px-8">
                 <Link to="/dashboard">
                   View Dashboard
                   <ArrowRight className="w-5 h-5 ml-2" />
@@ -162,7 +165,7 @@ export default function Home() {
                 </div>
               </div>
 
-              <Button asChild size="lg">
+              <Button asChild size="lg" variant="secondary">
                 <Link to="/copilot">
                   Explore AI Copilot
                   <Sparkles className="w-5 h-5 ml-2" />
@@ -217,7 +220,7 @@ export default function Home() {
             Get started with myFinance.AI today and unlock intelligent insights for better decision-making.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center pt-4">
-            <Button asChild size="lg" className="text-lg px-8">
+            <Button asChild size="lg" variant="secondary" className="text-lg px-8">
               <Link to="/dashboard">
                 Get Started
                 <ArrowRight className="w-5 h-5 ml-2" />

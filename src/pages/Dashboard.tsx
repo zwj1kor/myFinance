@@ -176,7 +176,7 @@ export default function Dashboard() {
               </div>
             </div>
 
-            <Button className="w-full" variant="default">
+            <Button className="w-full" variant="secondary">
               Simulate Impact
               <ArrowRight className="w-4 h-4 ml-2" />
             </Button>

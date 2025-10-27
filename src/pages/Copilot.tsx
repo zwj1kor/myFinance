@@ -123,7 +123,7 @@ export default function Copilot() {
               onKeyPress={(e) => e.key === "Enter" && handleSend()}
               className="flex-1"
             />
-            <Button onClick={handleSend} size="icon">
+            <Button onClick={handleSend} size="icon" variant="secondary">
               <Send className="w-4 h-4" />
             </Button>
           </div>

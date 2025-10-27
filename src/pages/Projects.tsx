@@ -270,7 +270,7 @@ export default function Projects() {
                           Details
                         </Button>
                         {project.status !== "good" && (
-                          <Button size="sm" variant="default">
+                          <Button size="sm" variant="secondary">
                             Fix
                           </Button>
                         )}
