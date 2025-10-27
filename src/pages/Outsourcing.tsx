@@ -6,6 +6,7 @@ import { Badge } from "@/components/ui/badge";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { TrendingUp, TrendingDown, AlertTriangle, Lightbulb, DollarSign } from "lucide-react";
 import { LineChart, Line, BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, PieChart, Pie, Cell } from "recharts";
+import { usePersona } from "@/contexts/PersonaContext";
 
 const ociTrendData = [
   { month: "Jan", oci: 98, baseline: 100 },
@@ -30,14 +31,25 @@ const mixData = [
 ];
 
 export default function Outsourcing() {
+  const { persona } = usePersona();
+
   return (
     <div className="min-h-screen bg-background">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        {/* Header with Persona Context */}
+        <div className="bg-card border border-border rounded-lg p-4 mb-6">
+          <h1 className="text-2xl font-bold text-foreground">Outsourcing & OCI</h1>
+          <p className="text-sm text-muted-foreground mt-1">
+            {persona === "cfo" && "Strategic outsourcing efficiency and cost index management"}
+            {persona === "controller" && "Vendor performance, rate variance, and SLA adherence"}
+            {persona === "delivery" && "Operational vendor management and cost optimization"}
+          </p>
+        </div>
+
         {/* Header */}
         <div className="flex items-center justify-between mb-6">
           <div>
-            <h1 className="text-3xl font-bold text-foreground">Outsourcing & OCI</h1>
-            <p className="text-muted-foreground mt-1">Outsourcing Cost Index, vendor efficiency & optimization</p>
+            <h2 className="text-xl font-semibold text-foreground">Outsourcing Cost Index, vendor efficiency & optimization</h2>
           </div>
           <Select defaultValue="ytd">
             <SelectTrigger className="w-40">

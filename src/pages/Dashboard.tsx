@@ -3,11 +3,32 @@ import MetricBadge from "@/components/MetricBadge";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, TrendingUp } from "lucide-react";
+import { usePersona } from "@/contexts/PersonaContext";
 
 export default function Dashboard() {
+  const { persona } = usePersona();
+
+  const getPersonaLabel = () => {
+    switch (persona) {
+      case "cfo": return "CFO / Strategic View";
+      case "controller": return "Controller / Tactical View";
+      case "delivery": return "Delivery / Operational View";
+      default: return "Dashboard";
+    }
+  };
+
   return (
     <div className="min-h-screen bg-background">
       <div className="max-w-7xl mx-auto p-6 space-y-6">
+      {/* Persona Header */}
+      <div className="bg-card border border-border rounded-lg p-4">
+        <h1 className="text-2xl font-bold text-foreground">{getPersonaLabel()}</h1>
+        <p className="text-sm text-muted-foreground mt-1">
+          {persona === "cfo" && "Profitability, OCI, cash flow, risk, and forecast scenarios"}
+          {persona === "controller" && "Variance analysis, utilization, margin drivers, and forecasts"}
+          {persona === "delivery" && "Project-level profitability, billing utilization, and outsourcing mix"}
+        </p>
+      </div>
       {/* Top KPI Summary Bar */}
       <div className="flex items-center gap-3 overflow-x-auto pb-2">
         <MetricBadge label="Revenue" value="₹110Cr" status="warning" />

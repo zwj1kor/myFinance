@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Bell, User, Menu, X } from "lucide-react";
 import ThemeToggle from "./ThemeToggle";
+import { usePersona } from "@/contexts/PersonaContext";
 
 const navLinks = [
   { label: "Home", path: "/" },
@@ -16,7 +17,7 @@ const navLinks = [
 ];
 
 export default function Navbar() {
-  const [persona, setPersona] = useState("cfo");
+  const { persona, setPersona } = usePersona();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   return (

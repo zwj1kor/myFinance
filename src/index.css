@@ -8,7 +8,7 @@ All colors MUST be HSL.
 
 @layer base {
   :root {
-    /* Red, Light Blue, Sky Blue Theme */
+    /* Light Orange and Sky Blue Theme */
     --background: 200 40% 96%;
     --foreground: 200 15% 15%;
 
@@ -18,16 +18,16 @@ All colors MUST be HSL.
     --popover: 0 0% 100%;
     --popover-foreground: 200 15% 15%;
 
-    /* Vibrant Red Primary */
+    /* Red Primary (for MF button only) */
     --primary: 0 85% 55%;
     --primary-foreground: 0 0% 100%;
     --primary-hover: 0 85% 48%;
 
-    /* Sky Blue Secondary */
-    --secondary: 200 90% 60%;
+    /* Light Orange Secondary */
+    --secondary: 25 95% 65%;
     --secondary-foreground: 0 0% 100%;
 
-    /* Light Blue Muted */
+    /* Sky Blue Muted */
     --muted: 200 40% 95%;
     --muted-foreground: 200 20% 45%;
 
@@ -45,29 +45,27 @@ All colors MUST be HSL.
 
     --border: 200 25% 88%;
     --input: 200 25% 90%;
-    --ring: 0 85% 55%;
-
-    --radius: 0.5rem;
+    --ring: 25 95% 65%;
 
     /* Sidebar - Sky Blue theme */
     --sidebar-background: 200 50% 25%;
     --sidebar-foreground: 0 0% 98%;
-    --sidebar-primary: 0 85% 55%;
+    --sidebar-primary: 25 95% 65%;
     --sidebar-primary-foreground: 0 0% 100%;
     --sidebar-accent: 200 45% 30%;
     --sidebar-accent-foreground: 0 0% 100%;
     --sidebar-border: 200 40% 30%;
-    --sidebar-ring: 0 85% 55%;
+    --sidebar-ring: 25 95% 65%;
 
-    /* Chart colors - Red and Blue spectrum */
-    --chart-1: 0 85% 55%;
+    /* Chart colors - Orange and Blue spectrum */
+    --chart-1: 25 95% 65%;
     --chart-2: 200 90% 60%;
     --chart-3: 195 85% 65%;
-    --chart-4: 40 95% 50%;
+    --chart-4: 30 100% 60%;
     --chart-5: 180 70% 50%;
 
     /* Gradients */
-    --gradient-primary: linear-gradient(135deg, hsl(0 85% 55%), hsl(0 85% 48%));
+    --gradient-primary: linear-gradient(135deg, hsl(25 95% 65%), hsl(25 95% 58%));
     --gradient-sky: linear-gradient(135deg, hsl(200 90% 60%), hsl(195 85% 65%));
     --gradient-success: linear-gradient(135deg, hsl(145 70% 45%), hsl(145 70% 40%));
     
@@ -94,7 +92,7 @@ All colors MUST be HSL.
     --primary-foreground: 0 0% 100%;
     --primary-hover: 0 90% 65%;
 
-    --secondary: 200 85% 55%;
+    --secondary: 25 90% 60%;
     --secondary-foreground: 0 0% 100%;
 
     --muted: 200 25% 15%;
@@ -112,16 +110,16 @@ All colors MUST be HSL.
 
     --border: 200 25% 20%;
     --input: 200 25% 20%;
-    --ring: 0 90% 60%;
+    --ring: 25 90% 60%;
 
     --sidebar-background: 200 40% 12%;
     --sidebar-foreground: 0 0% 95%;
-    --sidebar-primary: 0 90% 60%;
+    --sidebar-primary: 25 90% 60%;
     --sidebar-primary-foreground: 0 0% 100%;
     --sidebar-accent: 200 35% 18%;
     --sidebar-accent-foreground: 0 0% 100%;
     --sidebar-border: 200 30% 18%;
-    --sidebar-ring: 0 90% 60%;
+    --sidebar-ring: 25 90% 60%;
   }
 }
 

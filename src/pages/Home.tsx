@@ -2,8 +2,11 @@ import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { ArrowRight, TrendingUp, Target, DollarSign, BarChart3, Sparkles, Users } from "lucide-react";
 import { Link } from "react-router-dom";
+import { usePersona } from "@/contexts/PersonaContext";
 
 export default function Home() {
+  const { persona } = usePersona();
+
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
