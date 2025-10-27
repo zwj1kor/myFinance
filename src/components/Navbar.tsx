@@ -3,6 +3,7 @@ import { NavLink } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Bell, User, Menu, X } from "lucide-react";
+import ThemeToggle from "./ThemeToggle";
 
 const navLinks = [
   { label: "Home", path: "/" },
@@ -61,6 +62,8 @@ export default function Navbar() {
                 <SelectItem value="delivery">Delivery</SelectItem>
               </SelectContent>
             </Select>
+
+            <ThemeToggle />
 
             <Button variant="ghost" size="icon" className="hidden sm:flex">
               <Bell className="w-5 h-5" />
