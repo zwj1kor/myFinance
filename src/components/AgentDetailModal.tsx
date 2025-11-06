@@ -1,4 +1,4 @@
-import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { TrendingUp, TrendingDown, AlertCircle, CheckCircle, Sparkles } from "lucide-react";
@@ -111,6 +111,9 @@ export default function AgentDetailModal({ isOpen, onClose, agent }: AgentDetail
             <span className="text-4xl">{agent.icon}</span>
             <span className="text-gradient-neon">{agent.name} Agent</span>
           </DialogTitle>
+          <DialogDescription className="text-muted-foreground">
+            View detailed insights, metrics, and AI-powered recommendations for the {agent.name} agent.
+          </DialogDescription>
         </DialogHeader>
 
         <div className="space-y-6 mt-4">
