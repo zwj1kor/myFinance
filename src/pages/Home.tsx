@@ -8,7 +8,7 @@ export default function Home() {
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
-      <section className="relative bg-gradient-hero py-24 px-4 sm:px-6 lg:px-8 overflow-hidden">
+      <section className="relative bg-gradient-hero py-24 px-4 sm:px-6 lg:px-8 overflow-hidden mb-0">
         <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxnIGZpbGw9IiNmZmYiIGZpbGwtb3BhY2l0eT0iMC4wNSI+PHBhdGggZD0iTTM2IDE2YzAgMy4zLTIuNyA2LTYgNnMtNi0yLjctNi02IDIuNy02IDYtNiA2IDIuNyA2IDZ6Ii8+PC9nPjwvZz48L3N2Zz4=')] opacity-30"></div>
         
         <div className="max-w-7xl mx-auto relative z-10">
@@ -54,7 +54,7 @@ export default function Home() {
       </section>
 
       {/* Key Metrics Overview */}
-      <section className="py-20 px-4 sm:px-6 lg:px-8 bg-background">
+      <section className="py-20 px-4 sm:px-6 lg:px-8 bg-background relative z-10">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16 animate-fade-up">
             <h2 className="text-4xl font-bold mb-4">
@@ -118,7 +118,7 @@ export default function Home() {
       </section>
 
       {/* Features Section */}
-      <section className="py-20 px-4 sm:px-6 lg:px-8 bg-muted/30">
+      <section className="py-20 px-4 sm:px-6 lg:px-8 bg-muted/30 relative z-10">
         <div className="max-w-7xl mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
             <div className="space-y-8 animate-fade-in">
@@ -226,7 +226,7 @@ export default function Home() {
       </section>
 
       {/* CTA Section */}
-      <section className="relative py-24 px-4 sm:px-6 lg:px-8 bg-gradient-primary overflow-hidden">
+      <section className="relative py-24 px-4 sm:px-6 lg:px-8 bg-gradient-primary overflow-hidden mt-0">
         <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxnIGZpbGw9IiNmZmYiIGZpbGwtb3BhY2l0eT0iMC4wNSI+PHBhdGggZD0iTTM2IDE2YzAgMy4zLTIuNyA2LTYgNnMtNi0yLjctNi02IDIuNy02IDYtNiA2IDIuNyA2IDZ6Ii8+PC9nPjwvZz48L3N2Zz4=')] opacity-20"></div>
         
         <div className="max-w-4xl mx-auto text-center space-y-8 relative z-10">

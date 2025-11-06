@@ -33,6 +33,26 @@ export default function AgentDetailModal({ isOpen, onClose, agent }: AgentDetail
         "Improve lead qualification to boost conversion from 18% to target 25%",
       ],
     },
+    "Growth and Revenue Intelligence": {
+      status: "Active Monitoring",
+      summary: "Tracking Q4 pipeline with focus on high-value deals and revenue growth opportunities",
+      metrics: [
+        { label: "Current Revenue", value: "₹110Cr", trend: "down", change: "-8.3%" },
+        { label: "Pipeline Value", value: "₹45Cr", trend: "up", change: "+12%" },
+        { label: "Conversion Rate", value: "18%", trend: "down", change: "-7pp" },
+        { label: "Growth Rate", value: "15%", trend: "up", change: "+3pp" },
+      ],
+      insights: [
+        "3 high-value deals (₹15Cr total) in final closure phase - expected close within 2 weeks",
+        "Identified 5 cross-sell opportunities worth ₹8Cr in existing accounts",
+        "European region showing strong momentum with 23% growth YoY",
+      ],
+      recommendations: [
+        "Accelerate closure on pending deals valued at ₹15Cr",
+        "Focus on cross-selling data analytics services to top 10 accounts",
+        "Expand sales team in high-growth European market",
+      ],
+    },
     "Cost & EBIT": {
       status: "Optimization in Progress",
       summary: "Vendor renegotiation initiative underway to reduce OCI",
@@ -51,6 +71,86 @@ export default function AgentDetailModal({ isOpen, onClose, agent }: AgentDetail
         "Complete vendor renegotiation by month-end to realize ₹2Cr savings",
         "Optimize onshore-offshore pyramid to restore 65:35 ratio",
         "Implement zero-based budgeting for non-critical G&A spend",
+      ],
+    },
+    "Spend and Cost Control": {
+      status: "Optimization in Progress",
+      summary: "Vendor renegotiation initiative underway to reduce spend and improve margins",
+      metrics: [
+        { label: "Total Spend", value: "₹85Cr", trend: "up", change: "+3.6%" },
+        { label: "Cost Savings", value: "₹2Cr", trend: "up", change: "Annual" },
+        { label: "Vendor Count", value: "45", trend: "down", change: "-5" },
+        { label: "Cost Variance", value: "+₹3Cr", trend: "down", change: "+3.6%" },
+      ],
+      insights: [
+        "Vendor renegotiation with 3 key suppliers projected to save ₹2Cr annually",
+        "Identified ₹1.5Cr in software license optimization opportunities",
+        "Cloud infrastructure costs up 15% due to increased usage",
+      ],
+      recommendations: [
+        "Complete vendor renegotiation by month-end to realize ₹2Cr savings",
+        "Consolidate software licenses to reduce overlap and waste",
+        "Implement cloud cost optimization to reduce spend by 12%",
+      ],
+    },
+    "Margin and Profitability Analyst": {
+      status: "Analysis in Progress",
+      summary: "Analyzing margin trends and identifying profitability improvement opportunities",
+      metrics: [
+        { label: "Gross Margin", value: "22%", trend: "down", change: "-4pp" },
+        { label: "Project Margin", value: "14%", trend: "down", change: "-4pp" },
+        { label: "Best Performer", value: "GB3", trend: "up", change: "26%" },
+        { label: "Improvement Target", value: "₹5Cr", trend: "up", change: "Annual" },
+      ],
+      insights: [
+        "Top 3 projects contributing 45% of total margin with 28%+ margins",
+        "Bottom quartile projects have <10% margins - need intervention",
+        "Product mix shift towards lower margin services impacting overall profitability",
+      ],
+      recommendations: [
+        "Replicate high-margin project models across other accounts",
+        "Review pricing strategy on low-margin projects",
+        "Optimize resource pyramid on underperforming projects",
+      ],
+    },
+    "Liquidity and Cashflow Guardian": {
+      status: "Monitoring Active",
+      summary: "Tracking cash flow patterns and ensuring adequate liquidity for operations",
+      metrics: [
+        { label: "Cash Balance", value: "₹45Cr", trend: "up", change: "+8%" },
+        { label: "DSO Days", value: "62", trend: "down", change: "+5 days" },
+        { label: "Operating Cash", value: "₹38Cr", trend: "up", change: "+12%" },
+        { label: "Burn Rate", value: "₹8Cr/mo", trend: "down", change: "Stable" },
+      ],
+      insights: [
+        "Cash position strong with 5.6 months of runway at current burn rate",
+        "DSO increased to 62 days from 57 days - focus needed on collections",
+        "3 large clients delayed payments worth ₹12Cr - expected in 2 weeks",
+      ],
+      recommendations: [
+        "Accelerate collections on aged receivables (>60 days)",
+        "Implement milestone-based billing for large projects",
+        "Set up payment reminders 1 week before due dates",
+      ],
+    },
+    "Scenario and Risk Navigator": {
+      status: "Scenario Planning Active",
+      summary: "Modeling various financial scenarios and assessing strategic risks",
+      metrics: [
+        { label: "Risk Score", value: "Medium", trend: "down", change: "Stable" },
+        { label: "Scenarios Modeled", value: "12", trend: "up", change: "+4" },
+        { label: "Best Case Impact", value: "+₹15Cr", trend: "up", change: "EBIT" },
+        { label: "Worst Case Impact", value: "-₹8Cr", trend: "down", change: "EBIT" },
+      ],
+      insights: [
+        "Best case scenario: Win 3 large deals + improve utilization = +₹15Cr EBIT",
+        "Worst case: Major client churn + market slowdown = -₹8Cr EBIT",
+        "Most likely scenario: Steady growth with gradual margin improvement = +₹5Cr",
+      ],
+      recommendations: [
+        "Diversify client portfolio to reduce concentration risk",
+        "Build contingency reserves of ₹10Cr for downside scenarios",
+        "Focus on winning high-probability deals in pipeline",
       ],
     },
     "Capacity": {

@@ -47,9 +47,9 @@ export default function Utilization() {
     <div className="min-h-screen bg-background">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         {/* Header */}
-        <div className="bg-card border border-border rounded-lg p-4 mb-6">
-          <h1 className="text-2xl font-bold text-foreground">Billing Utilization</h1>
-          <p className="text-sm text-muted-foreground mt-1">
+        <div className="text-center mb-8 animate-fade-in">
+          <h1 className="text-5xl font-display font-bold text-gradient-neon mb-2">Billing Utilization</h1>
+          <p className="text-muted-foreground text-lg">
             Strategic utilization overview and forecast impact
           </p>
         </div>
@@ -83,7 +83,7 @@ export default function Utilization() {
         {/* Main Content Grid */}
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-6">
           {/* Utilization Trend */}
-          <Card className="lg:col-span-2">
+          <Card className="lg:col-span-2 glass-card border-primary/20 hover-lift animate-fade-in">
             <CardHeader>
               <CardTitle>Utilization Trend vs Target</CardTitle>
               <CardDescription>6-month trajectory with bench %</CardDescription>
@@ -105,7 +105,7 @@ export default function Utilization() {
           </Card>
 
           {/* AI Recommendations */}
-          <Card>
+          <Card className="glass-card border-primary/20 hover-lift animate-fade-in" style={{ animationDelay: '0.1s' }}>
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
                 <Lightbulb className="w-5 h-5 text-warning" />
@@ -147,7 +147,7 @@ export default function Utilization() {
 
         {/* Heatmap & Leakage */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
-          <Card>
+          <Card className="glass-card border-primary/20 hover-lift animate-fade-in" style={{ animationDelay: '0.2s' }}>
             <CardHeader>
               <CardTitle>Utilization Heatmap by Org</CardTitle>
               <CardDescription>Color-coded by gap severity</CardDescription>
@@ -181,7 +181,7 @@ export default function Utilization() {
             </CardContent>
           </Card>
 
-          <Card>
+          <Card className="glass-card border-primary/20 hover-lift animate-fade-in" style={{ animationDelay: '0.3s' }}>
             <CardHeader>
               <CardTitle>Leakage Breakdown</CardTitle>
               <CardDescription>Non-billable hours analysis</CardDescription>
@@ -201,7 +201,7 @@ export default function Utilization() {
         </div>
 
         {/* Utilization Simulator */}
-        <Card>
+        <Card className="glass-card border-primary/20 hover-lift animate-fade-in" style={{ animationDelay: '0.4s' }}>
           <CardHeader>
             <CardTitle>What-If Simulator</CardTitle>
             <CardDescription>Adjust levers to see real-time margin impact</CardDescription>
