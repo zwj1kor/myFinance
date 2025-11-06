@@ -10,7 +10,7 @@ const navLinks = [
   { label: "AI Copilot", path: "/copilot" },
   { label: "Profitability", path: "/profitability" },
   { label: "Utilization", path: "/utilization" },
-  { label: "Outsourcing & OCI", path: "/outsourcing" },
+  { label: "AI Agents", path: "/ai-agents" },
   { label: "Projects", path: "/projects" },
 ];
 
@@ -36,7 +36,7 @@ export default function Navbar() {
                 key={link.path}
                 to={link.path}
                 className={({ isActive }) =>
-                  `px-4 py-2 rounded-md text-sm font-medium transition-colors ${
+                  `px-4 py-2 rounded-full text-sm font-medium transition-colors ${
                     isActive
                       ? "bg-primary text-primary-foreground"
                       : "text-foreground hover:bg-muted"
@@ -83,7 +83,7 @@ export default function Navbar() {
                 to={link.path}
                 onClick={() => setMobileMenuOpen(false)}
                 className={({ isActive }) =>
-                  `block px-3 py-2 rounded-md text-base font-medium ${
+                  `block px-3 py-2 rounded-full text-base font-medium ${
                     isActive
                       ? "bg-primary text-primary-foreground"
                       : "text-foreground hover:bg-muted"
