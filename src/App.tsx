@@ -12,6 +12,7 @@ import Profitability from "./pages/Profitability";
 import Utilization from "./pages/Utilization";
 import Outsourcing from "./pages/Outsourcing";
 import Projects from "./pages/Projects";
+import AIAgents from "./pages/AIAgents";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -32,6 +33,7 @@ const App = () => (
             <Route path="/utilization" element={<Utilization />} />
             <Route path="/outsourcing" element={<Outsourcing />} />
             <Route path="/projects" element={<Projects />} />
+            <Route path="/ai-agents" element={<AIAgents />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </BrowserRouter>
