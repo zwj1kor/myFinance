@@ -18,28 +18,28 @@ export default function Navbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   return (
-    <nav className="bg-card border-b border-border sticky top-0 z-50">
+    <nav className="bg-card border-b border-border sticky top-0 z-50 backdrop-blur-lg bg-card/95 shadow-sm">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
-          <NavLink to="/" className="flex items-center gap-2">
-            <div className="w-10 h-10 bg-primary rounded-lg flex items-center justify-center">
-              <span className="text-primary-foreground font-bold text-sm">mF</span>
+          <NavLink to="/" className="flex items-center gap-3 group">
+            <div className="w-11 h-11 bg-gradient-primary rounded-2xl flex items-center justify-center shadow-lg group-hover:shadow-xl transition-all group-hover:scale-105">
+              <span className="text-white font-bold text-base">mF</span>
             </div>
-            <span className="text-foreground font-semibold text-xl hidden sm:block">myFinance.AI</span>
+            <span className="text-foreground font-bold text-2xl hidden sm:block bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">myFinance.AI</span>
           </NavLink>
 
           {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center gap-1">
+          <div className="hidden md:flex items-center gap-2">
             {navLinks.map((link) => (
               <NavLink
                 key={link.path}
                 to={link.path}
                 className={({ isActive }) =>
-                  `px-4 py-2 rounded-full text-sm font-medium transition-colors ${
+                  `px-5 py-2.5 rounded-full text-sm font-semibold transition-all ${
                     isActive
-                      ? "bg-primary text-primary-foreground"
-                      : "text-foreground hover:bg-muted"
+                      ? "bg-gradient-primary text-white shadow-lg scale-105"
+                      : "text-foreground hover:bg-muted hover:scale-105"
                   }`
                 }
               >
@@ -52,11 +52,11 @@ export default function Navbar() {
           <div className="flex items-center gap-3">
             <ThemeToggle />
 
-            <Button variant="ghost" size="icon" className="hidden sm:flex">
+            <Button variant="ghost" size="icon" className="hidden sm:flex hover:bg-muted transition-all hover:scale-110">
               <Bell className="w-5 h-5" />
             </Button>
 
-            <Button variant="ghost" size="icon" className="hidden sm:flex">
+            <Button variant="ghost" size="icon" className="hidden sm:flex hover:bg-muted transition-all hover:scale-110">
               <User className="w-5 h-5" />
             </Button>
 
@@ -64,7 +64,7 @@ export default function Navbar() {
             <Button
               variant="ghost"
               size="icon"
-              className="md:hidden"
+              className="md:hidden hover:bg-muted transition-all"
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
             >
               {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
@@ -75,17 +75,17 @@ export default function Navbar() {
 
       {/* Mobile Navigation */}
       {mobileMenuOpen && (
-        <div className="md:hidden border-t border-border">
-          <div className="px-2 pt-2 pb-3 space-y-1">
+        <div className="md:hidden border-t border-border bg-card/95 backdrop-blur-lg animate-fade-in">
+          <div className="px-4 pt-3 pb-4 space-y-2">
             {navLinks.map((link) => (
               <NavLink
                 key={link.path}
                 to={link.path}
                 onClick={() => setMobileMenuOpen(false)}
                 className={({ isActive }) =>
-                  `block px-3 py-2 rounded-full text-base font-medium ${
+                  `block px-4 py-3 rounded-full text-base font-semibold transition-all ${
                     isActive
-                      ? "bg-primary text-primary-foreground"
+                      ? "bg-gradient-primary text-white shadow-md"
                       : "text-foreground hover:bg-muted"
                   }`
                 }

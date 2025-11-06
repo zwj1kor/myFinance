@@ -108,50 +108,55 @@ export default function Dashboard() {
     <div className="min-h-screen bg-background">
       <div className="max-w-7xl mx-auto p-6 space-y-8">
         {/* Header */}
-        <div className="space-y-2">
-          <h1 className="text-4xl font-bold text-foreground">CFO Dashboard</h1>
-          <p className="text-muted-foreground">Strategic financial metrics and AI-powered insights</p>
+        <div className="space-y-3 animate-fade-up">
+          <h1 className="text-5xl font-bold">
+            <span className="text-gradient">CFO Dashboard</span>
+          </h1>
+          <p className="text-lg text-muted-foreground">Strategic financial metrics and AI-powered insights</p>
         </div>
 
         {/* Metrics Grid */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          {metrics.map((metric) => (
+          {metrics.map((metric, index) => (
             <Card
               key={metric.name}
-              className="p-6 cursor-pointer hover:shadow-2xl transition-all duration-300 hover:scale-105 active:scale-100 bg-gradient-to-br from-card to-card/50 border-2 hover:border-primary"
+              className="p-8 cursor-pointer hover-lift bg-gradient-to-br from-card via-card to-card/80 border-2 hover:border-primary shadow-lg hover:shadow-xl group animate-fade-in"
+              style={{ animationDelay: `${index * 0.1}s` }}
               onClick={() => setSelectedMetric(metric.name)}
             >
-              <div className="space-y-4">
+              <div className="space-y-5">
                 <div className="flex items-center justify-between">
-                  <div className="flex items-center gap-3">
-                    <span className="text-4xl">{metric.icon}</span>
+                  <div className="flex items-center gap-4">
+                    <div className="text-5xl group-hover:scale-110 transition-transform">{metric.icon}</div>
                     <div>
-                      <h3 className="text-lg font-semibold text-foreground">{metric.name}</h3>
+                      <h3 className="text-xl font-bold text-foreground">{metric.name}</h3>
                       <p className="text-xs text-muted-foreground">Click for details</p>
                     </div>
                   </div>
-                  {metric.trend === "up" ? (
-                    <TrendingUp className="w-6 h-6 text-success" />
-                  ) : (
-                    <TrendingDown className="w-6 h-6 text-destructive" />
-                  )}
+                  <div className={`p-3 rounded-full ${metric.trend === "up" ? 'bg-success/10' : 'bg-destructive/10'}`}>
+                    {metric.trend === "up" ? (
+                      <TrendingUp className="w-6 h-6 text-success" />
+                    ) : (
+                      <TrendingDown className="w-6 h-6 text-destructive" />
+                    )}
+                  </div>
                 </div>
 
-                <div className="space-y-2">
+                <div className="space-y-3">
                   <div className="flex items-baseline gap-2">
-                    <span className="text-4xl font-bold text-foreground">{metric.value}</span>
+                    <span className="text-5xl font-bold text-foreground">{metric.value}</span>
                   </div>
                   <div className="flex items-center justify-between text-sm">
-                    <span className="text-muted-foreground">Target: {metric.target}</span>
-                    <span className={`font-semibold ${metric.variance >= 0 ? 'text-success' : 'text-destructive'}`}>
+                    <span className="text-muted-foreground font-medium">Target: {metric.target}</span>
+                    <span className={`font-bold text-lg px-3 py-1 rounded-full ${metric.variance >= 0 ? 'bg-success/10 text-success' : 'bg-destructive/10 text-destructive'}`}>
                       {metric.variance >= 0 ? '+' : ''}{metric.variance.toFixed(1)}%
                     </span>
                   </div>
                 </div>
 
-                <div className="h-2 bg-muted rounded-full overflow-hidden">
+                <div className="h-3 bg-muted rounded-full overflow-hidden shadow-inner">
                   <div
-                    className={`h-full rounded-full ${metric.variance >= 0 ? 'bg-success' : 'bg-destructive'}`}
+                    className={`h-full rounded-full transition-all ${metric.variance >= 0 ? 'bg-gradient-success' : 'bg-gradient-warning'}`}
                     style={{ width: `${Math.min(Math.abs(metric.variance) * 10, 100)}%` }}
                   />
                 </div>
@@ -161,21 +166,23 @@ export default function Dashboard() {
         </div>
 
         {/* AI Agents Section */}
-        <Card className="p-6 bg-gradient-to-br from-primary/10 to-accent/10 border-primary/30">
-          <div className="flex items-center gap-3 mb-6">
-            <Sparkles className="w-6 h-6 text-primary" />
-            <h2 className="text-2xl font-bold text-foreground">AI Agents</h2>
+        <Card className="p-8 bg-gradient-to-br from-primary/10 via-accent/5 to-secondary/10 border-primary/30 shadow-xl hover-lift animate-fade-in">
+          <div className="flex items-center gap-4 mb-8">
+            <div className="p-3 bg-gradient-primary rounded-2xl shadow-lg">
+              <Sparkles className="w-7 h-7 text-white animate-pulse" />
+            </div>
+            <h2 className="text-3xl font-bold text-foreground">AI Agents</h2>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-            {aiAgents.map((agent) => (
-              <Card key={agent.name} className="p-4 hover:shadow-lg transition-all hover:scale-105">
-                <div className="flex items-center gap-3">
-                  <span className="text-3xl">{agent.emoji}</span>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+            {aiAgents.map((agent, index) => (
+              <Card key={agent.name} className="p-6 hover-lift group bg-gradient-to-br from-card to-card/80 shadow-md animate-scale-in" style={{ animationDelay: `${index * 0.1}s` }}>
+                <div className="flex items-center gap-4">
+                  <span className="text-4xl group-hover:scale-110 transition-transform">{agent.emoji}</span>
                   <div className="flex-1">
-                    <p className="text-sm font-semibold text-foreground">{agent.name}</p>
-                    <div className="flex items-center gap-2 mt-1">
-                      <div className="w-2 h-2 bg-success rounded-full animate-pulse" />
-                      <span className="text-xs text-muted-foreground">Active</span>
+                    <p className="text-sm font-bold text-foreground mb-2">{agent.name}</p>
+                    <div className="flex items-center gap-2">
+                      <div className="w-2.5 h-2.5 bg-success rounded-full animate-pulse shadow-glow" />
+                      <span className="text-xs text-muted-foreground font-medium">Active</span>
                     </div>
                   </div>
                 </div>
@@ -185,22 +192,22 @@ export default function Dashboard() {
         </Card>
 
         {/* Summary Stats */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-          <Card className="p-4">
-            <p className="text-xs text-muted-foreground mb-1">Cost</p>
-            <p className="text-2xl font-bold text-foreground">₹85Cr</p>
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-5 animate-fade-in">
+          <Card className="p-6 hover-lift bg-gradient-to-br from-primary/5 to-primary/10 border-primary/20 group">
+            <p className="text-sm text-muted-foreground mb-2 font-medium">Cost</p>
+            <p className="text-4xl font-bold text-foreground">₹85Cr</p>
           </Card>
-          <Card className="p-4">
-            <p className="text-xs text-muted-foreground mb-1">Margin</p>
-            <p className="text-2xl font-bold text-foreground">22%</p>
+          <Card className="p-6 hover-lift bg-gradient-to-br from-success/5 to-success/10 border-success/20 group">
+            <p className="text-sm text-muted-foreground mb-2 font-medium">Margin</p>
+            <p className="text-4xl font-bold text-foreground">22%</p>
           </Card>
-          <Card className="p-4">
-            <p className="text-xs text-muted-foreground mb-1">OCI</p>
-            <p className="text-2xl font-bold text-foreground">108</p>
+          <Card className="p-6 hover-lift bg-gradient-to-br from-accent/5 to-accent/10 border-accent/20 group">
+            <p className="text-sm text-muted-foreground mb-2 font-medium">OCI</p>
+            <p className="text-4xl font-bold text-foreground">108</p>
           </Card>
-          <Card className="p-4">
-            <p className="text-xs text-muted-foreground mb-1">DSO</p>
-            <p className="text-2xl font-bold text-foreground">58d</p>
+          <Card className="p-6 hover-lift bg-gradient-to-br from-secondary/5 to-secondary/10 border-secondary/20 group">
+            <p className="text-sm text-muted-foreground mb-2 font-medium">DSO</p>
+            <p className="text-4xl font-bold text-foreground">58d</p>
           </Card>
         </div>
       </div>
