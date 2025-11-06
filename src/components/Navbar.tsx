@@ -1,10 +1,8 @@
 import { useState } from "react";
 import { NavLink } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Bell, User, Menu, X } from "lucide-react";
 import ThemeToggle from "./ThemeToggle";
-import { usePersona } from "@/contexts/PersonaContext";
 
 const navLinks = [
   { label: "Home", path: "/" },
@@ -17,7 +15,6 @@ const navLinks = [
 ];
 
 export default function Navbar() {
-  const { persona, setPersona } = usePersona();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   return (
@@ -53,17 +50,6 @@ export default function Navbar() {
 
           {/* Right Side Actions */}
           <div className="flex items-center gap-3">
-            <Select value={persona} onValueChange={setPersona}>
-              <SelectTrigger className="w-36 hidden lg:flex">
-                <SelectValue />
-              </SelectTrigger>
-              <SelectContent>
-                <SelectItem value="cfo">CFO View</SelectItem>
-                <SelectItem value="controller">Controller</SelectItem>
-                <SelectItem value="delivery">Delivery</SelectItem>
-              </SelectContent>
-            </Select>
-
             <ThemeToggle />
 
             <Button variant="ghost" size="icon" className="hidden sm:flex">

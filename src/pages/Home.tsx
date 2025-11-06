@@ -2,10 +2,8 @@ import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { ArrowRight, TrendingUp, Target, DollarSign, BarChart3, Sparkles, Users } from "lucide-react";
 import { Link } from "react-router-dom";
-import { usePersona } from "@/contexts/PersonaContext";
 
 export default function Home() {
-  const { persona } = usePersona();
 
   return (
     <div className="min-h-screen">
@@ -24,11 +22,8 @@ export default function Home() {
             </h1>
             
             <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-              Intelligent finance workspace for Bosch teams. Real-time insights on revenue, costs, 
+              Intelligent finance workspace for CFO teams. Real-time insights on revenue, costs, 
               profitability, OCI, and utilization with AI-driven recommendations.
-            </p>
-            <p className="text-sm text-muted-foreground">
-              Viewing: {persona === "cfo" ? "CFO View" : persona === "controller" ? "Controller" : "Delivery"}
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4 justify-center pt-4">
@@ -188,9 +183,9 @@ export default function Home() {
                 <div className="flex items-center gap-3 p-4 bg-card rounded-lg border border-border">
                   <Target className="w-8 h-8 text-success" />
                   <div>
-                    <div className="font-semibold">Multi-Persona Views</div>
+                    <div className="font-semibold">CFO-Focused View</div>
                     <div className="text-sm text-muted-foreground">
-                      CFO, Controller, and Delivery perspectives
+                      Strategic insights tailored for CFO decision-making
                     </div>
                   </div>
                 </div>

@@ -5,7 +5,6 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { AlertTriangle, TrendingDown, TrendingUp, Clock, DollarSign, Lightbulb } from "lucide-react";
-import { usePersona } from "@/contexts/PersonaContext";
 
 const projectsData = [
   {
@@ -63,18 +62,14 @@ const projectsData = [
 ];
 
 export default function Projects() {
-  const { persona } = usePersona();
-
   return (
     <div className="min-h-screen bg-background">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        {/* Header with Persona Context */}
+        {/* Header */}
         <div className="bg-card border border-border rounded-lg p-4 mb-6">
           <h1 className="text-2xl font-bold text-foreground">Project Financials</h1>
           <p className="text-sm text-muted-foreground mt-1">
-            {persona === "cfo" && "Portfolio-level project profitability and risk assessment"}
-            {persona === "controller" && "Project financial performance and variance tracking"}
-            {persona === "delivery" && "Detailed project margins, utilization, and early warnings"}
+            Portfolio-level project profitability and risk assessment
           </p>
         </div>
 

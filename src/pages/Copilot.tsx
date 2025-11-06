@@ -4,7 +4,6 @@ import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { ScrollArea } from "@/components/ui/scroll-area";
-import { usePersona } from "@/contexts/PersonaContext";
 
 const suggestedPrompts = [
   "Show me GB-wise target vs actual profitability and OCI trends",
@@ -21,7 +20,6 @@ interface Message {
 }
 
 export default function Copilot() {
-  const { persona } = usePersona();
   const [messages, setMessages] = useState<Message[]>([
     {
       role: "assistant",

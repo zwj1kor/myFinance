@@ -5,7 +5,6 @@ import MetricBadge from "@/components/MetricBadge";
 import { Button } from "@/components/ui/button";
 import { TrendingDown, TrendingUp, AlertTriangle, Lightbulb, Download } from "lucide-react";
 import { BarChart, Bar, LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, ComposedChart, Area } from "recharts";
-import { usePersona } from "@/contexts/PersonaContext";
 
 const waterfallData = [
   { name: "Plan Revenue", value: 120, fill: "hsl(var(--chart-2))" },
@@ -35,18 +34,14 @@ const gbProfitabilityData = [
 ];
 
 export default function Profitability() {
-  const { persona } = usePersona();
-
   return (
     <div className="min-h-screen bg-background">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        {/* Header with Persona Context */}
+        {/* Header */}
         <div className="bg-card border border-border rounded-lg p-4 mb-6">
           <h1 className="text-2xl font-bold text-foreground">Profitability Analysis</h1>
           <p className="text-sm text-muted-foreground mt-1">
-            {persona === "cfo" && "Strategic profitability overview with OCI and margin trends"}
-            {persona === "controller" && "Detailed variance and margin driver analysis"}
-            {persona === "delivery" && "Project-level profitability and contribution margins"}
+            Strategic profitability overview with OCI and margin trends
           </p>
         </div>
 

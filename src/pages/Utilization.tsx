@@ -6,7 +6,6 @@ import { Slider } from "@/components/ui/slider";
 import { TrendingUp, Users, AlertCircle, Target, Lightbulb } from "lucide-react";
 import { LineChart, Line, BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from "recharts";
 import { useState } from "react";
-import { usePersona } from "@/contexts/PersonaContext";
 
 const utilizationTrendData = [
   { month: "Jan", actual: 92, target: 95, bench: 8 },
@@ -32,7 +31,6 @@ const leakageData = [
 ];
 
 export default function Utilization() {
-  const { persona } = usePersona();
   const [utilization, setUtilization] = useState([85]);
   const [bench, setBench] = useState([10]);
   const [leakage, setLeakage] = useState([8]);
@@ -48,13 +46,11 @@ export default function Utilization() {
   return (
     <div className="min-h-screen bg-background">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        {/* Header with Persona Context */}
+        {/* Header */}
         <div className="bg-card border border-border rounded-lg p-4 mb-6">
           <h1 className="text-2xl font-bold text-foreground">Billing Utilization</h1>
           <p className="text-sm text-muted-foreground mt-1">
-            {persona === "cfo" && "Strategic utilization overview and forecast impact"}
-            {persona === "controller" && "Utilization trends, leakage, and variance analysis"}
-            {persona === "delivery" && "Operational utilization coaching and resource optimization"}
+            Strategic utilization overview and forecast impact
           </p>
         </div>
 
