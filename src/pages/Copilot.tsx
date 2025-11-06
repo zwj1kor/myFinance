@@ -48,7 +48,18 @@ export default function Copilot() {
   };
 
   const handlePromptClick = (prompt: string) => {
-    setInput(prompt);
+    setMessages([...messages, { role: "user", content: prompt }]);
+    
+    // Simulate AI response
+    setTimeout(() => {
+      setMessages((prev) => [
+        ...prev,
+        {
+          role: "assistant",
+          content: `I've analyzed your query: "${prompt}". Based on current data, here are the key insights:\n\n• Revenue vs Plan: -8.3% (₹10Cr shortfall)\n• Cost variance: +3.6% (₹3Cr overrun)\n• OCI at 108 (8 points above baseline)\n• Utilization at 85% (10pp below target)\n\nWould you like me to drill deeper into any specific area?`,
+        },
+      ]);
+    }, 1000);
   };
 
   return (
