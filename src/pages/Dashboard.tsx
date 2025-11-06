@@ -1,9 +1,9 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Sparkles, ArrowRight } from "lucide-react";
 import KPICardWithHover from "@/components/KPICardWithHover";
-import DeepDivePanel from "@/components/DeepDivePanel";
 import FloatingChatDock from "@/components/FloatingChatDock";
 import AgentDetailModal from "@/components/AgentDetailModal";
 
@@ -17,8 +17,21 @@ interface MetricCardData {
 }
 
 export default function Dashboard() {
-  const [selectedMetric, setSelectedMetric] = useState<string | null>(null);
+  const navigate = useNavigate();
   const [selectedAgent, setSelectedAgent] = useState<any>(null);
+
+  const handleKPIClick = (kpiName: string) => {
+    const routeMap: Record<string, string> = {
+      "Revenue": "/dashboard",
+      "Cost/EBIT": "/profitability",
+      "Capacity": "/projects",
+      "Billing Utilization": "/utilization",
+    };
+    const route = routeMap[kpiName];
+    if (route) {
+      navigate(route);
+    }
+  };
 
   const kpiCards = [
     { 
@@ -58,81 +71,6 @@ export default function Dashboard() {
       insight: "Utilization gap of 10pp represents ₹12Cr opportunity. Focus on shadow staffing and accelerating project ramp-ups."
     },
   ];
-
-  const getMetricDetails = (metricName: string) => {
-    const details: Record<string, any> = {
-      Revenue: {
-        current: "₹110Cr",
-        target: "₹120Cr",
-        variance: -8.3,
-        trend: "down" as const,
-        breakdown: [
-          { label: "Q1 Revenue", value: "₹28Cr" },
-          { label: "Q2 Revenue", value: "₹27Cr" },
-          { label: "Q3 Revenue", value: "₹26Cr" },
-          { label: "Q4 Forecast", value: "₹29Cr" },
-          { label: "Year-over-Year Growth", value: "-5.2%" },
-        ],
-        insights: [
-          {
-            agent: "Growth and Revenue Intelligence",
-            insight: "Revenue decline driven by 3 delayed project starts and 15% reduction in new client acquisitions. Recommend accelerating sales pipeline and focusing on high-margin verticals like BFSI and Healthcare.",
-          },
-          {
-            agent: "Scenario and Risk Navigator",
-            insight: "Current trajectory suggests Q4 may miss targets by additional 12%. Immediate action needed on pipeline conversion (currently 18% vs target 25%).",
-          },
-        ],
-      },
-      EBIT: {
-        current: "₹25Cr",
-        target: "₹31Cr",
-        variance: -19.4,
-        trend: "down" as const,
-        breakdown: [
-          { label: "Gross Profit", value: "₹25Cr" },
-          { label: "Operating Expenses", value: "₹85Cr" },
-          { label: "EBIT Margin", value: "22.7%" },
-          { label: "Target EBIT Margin", value: "25.8%" },
-          { label: "Margin Gap", value: "-3.1pp" },
-        ],
-        insights: [
-          {
-            agent: "Margin and Profitability Analyst",
-            insight: "EBIT margin compression caused by cost overruns (₹3Cr) and revenue shortfall. Primary drivers: offshore mix decreased from 65% to 58%, increasing blended cost by 8%.",
-          },
-          {
-            agent: "Spend and Cost Control",
-            insight: "Outsourcing Cost Index increased to 108 vs baseline 100. Recommend renegotiating 3 key vendor contracts and optimizing onshore-offshore pyramid to restore target margins.",
-          },
-        ],
-      },
-      Utilization: {
-        current: "85%",
-        target: "95%",
-        variance: -10.5,
-        trend: "down" as const,
-        breakdown: [
-          { label: "Billable Utilization", value: "85%" },
-          { label: "Bench Percentage", value: "10%" },
-          { label: "Training & Transition", value: "5%" },
-          { label: "Average Utilization (Last 6M)", value: "88%" },
-          { label: "Industry Benchmark", value: "92%" },
-        ],
-        insights: [
-          {
-            agent: "Growth and Revenue Intelligence",
-            insight: "Utilization gap of 10pp represents ₹12Cr opportunity cost. Root cause: 3 project delays and slower-than-expected ramp-up on 2 new accounts. Focus on shadow staffing and quick-win opportunities.",
-          },
-          {
-            agent: "Liquidity and Cashflow Guardian",
-            insight: "Low utilization directly impacts DSO (currently 58 days vs target 45). Higher bench costs are straining operating cash. Prioritize receivables collection and accelerate resource deployment.",
-          },
-        ],
-      },
-    };
-    return details[metricName];
-  };
 
   const aiAgents = [
     { 
@@ -182,21 +120,12 @@ export default function Dashboard() {
                   trend={kpi.trend}
                   icon={kpi.icon}
                   insight={kpi.insight}
-                  onClick={() => setSelectedMetric(kpi.name)}
+                  onClick={() => handleKPIClick(kpi.name)}
                 />
               </div>
             ))}
           </div>
 
-          {/* Deep Dive Panel */}
-          {selectedMetric && (
-            <div className="animate-fade-up">
-              <DeepDivePanel 
-                metricName={selectedMetric} 
-                data={getMetricDetails(selectedMetric)}
-              />
-            </div>
-          )}
 
           {/* Quick Stats */}
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4 animate-fade-up">
