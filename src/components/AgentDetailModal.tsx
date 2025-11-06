@@ -1,19 +1,7 @@
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { Card } from "@/components/ui/card";
-import { TrendingUp, TrendingDown, Activity, AlertCircle } from "lucide-react";
-
-interface AgentData {
-  name: string;
-  icon: any;
-  metrics: {
-    label: string;
-    value: string;
-    trend: "up" | "down" | "neutral";
-    change: string;
-  }[];
-  insights: string[];
-  recommendations: string[];
-}
+import { Badge } from "@/components/ui/badge";
+import { TrendingUp, TrendingDown, AlertCircle, CheckCircle, Sparkles } from "lucide-react";
 
 interface AgentDetailModalProps {
   isOpen: boolean;
@@ -21,159 +9,147 @@ interface AgentDetailModalProps {
   agent: { name: string; icon: any } | null;
 }
 
-const agentDummyData: Record<string, AgentData> = {
-  "Growth and Revenue Intelligence": {
-    name: "Growth and Revenue Intelligence",
-    icon: TrendingUp,
-    metrics: [
-      { label: "Total Revenue", value: "$2.4M", trend: "up", change: "+12.5%" },
-      { label: "MRR Growth", value: "$180K", trend: "up", change: "+8.3%" },
-      { label: "Customer Acquisition", value: "245", trend: "up", change: "+15.2%" },
-      { label: "Revenue per Customer", value: "$9.8K", trend: "up", change: "+5.7%" },
-    ],
-    insights: [
-      "Q4 revenue projected to exceed targets by 18%",
-      "Enterprise segment showing strongest growth at 22%",
-      "Upsell opportunities identified in 34 accounts worth $420K",
-      "New market segment showing 3x faster adoption rate",
-    ],
-    recommendations: [
-      "Focus sales efforts on enterprise segment for maximum ROI",
-      "Implement targeted upsell campaign for identified accounts",
-      "Allocate additional resources to new high-growth market",
-      "Consider premium pricing tier for enterprise features",
-    ],
-  },
-  "Spend and Cost Control": {
-    name: "Spend and Cost Control",
-    icon: TrendingDown,
-    metrics: [
-      { label: "Total Spend", value: "$1.8M", trend: "down", change: "-7.2%" },
-      { label: "Cost per Acquisition", value: "$420", trend: "down", change: "-12.5%" },
-      { label: "Operational Costs", value: "$890K", trend: "down", change: "-5.8%" },
-      { label: "Budget Utilization", value: "87%", trend: "neutral", change: "On track" },
-    ],
-    insights: [
-      "Cloud infrastructure costs reduced by $45K/month through optimization",
-      "Vendor consolidation saving $120K annually",
-      "Identified $280K in unused software licenses",
-      "Marketing efficiency improved by 18% while reducing spend",
-    ],
-    recommendations: [
-      "Terminate 12 unused SaaS subscriptions immediately",
-      "Renegotiate cloud contracts for better pricing tiers",
-      "Implement automated spend alerts for budget thresholds",
-      "Consider alternative vendors for 3 major expense categories",
-    ],
-  },
-  "Margin and Profitability Analyst": {
-    name: "Margin and Profitability Analyst",
-    icon: Activity,
-    metrics: [
-      { label: "Gross Margin", value: "68%", trend: "up", change: "+3.2%" },
-      { label: "Net Profit Margin", value: "22%", trend: "up", change: "+5.1%" },
-      { label: "EBITDA", value: "$520K", trend: "up", change: "+14.8%" },
-      { label: "Operating Margin", value: "31%", trend: "up", change: "+2.7%" },
-    ],
-    insights: [
-      "Product line A contributing 45% of total profit with 35% margin",
-      "Service margins improved 8% after pricing adjustment",
-      "Low-margin clients identified - potential 12% margin improvement",
-      "Operational efficiency gains translating to bottom line",
-    ],
-    recommendations: [
-      "Phase out or reprice products with margins below 15%",
-      "Implement value-based pricing for high-performing services",
-      "Review and optimize cost structure for low-margin accounts",
-      "Expand high-margin product lines with additional investment",
-    ],
-  },
-  "Liquidity and Cashflow Guardian": {
-    name: "Liquidity and Cashflow Guardian",
-    icon: Activity,
-    metrics: [
-      { label: "Cash on Hand", value: "$1.2M", trend: "up", change: "+18.5%" },
-      { label: "Operating Cash Flow", value: "$340K", trend: "up", change: "+22.3%" },
-      { label: "Cash Runway", value: "18 months", trend: "up", change: "+3 months" },
-      { label: "Days Sales Outstanding", value: "32 days", trend: "down", change: "-5 days" },
-    ],
-    insights: [
-      "Strong cash position with healthy runway for growth",
-      "Collections improved significantly - AR aging optimized",
-      "Seasonal cash flow patterns identified for better planning",
-      "No liquidity concerns forecasted for next 18 months",
-    ],
-    recommendations: [
-      "Consider strategic investments with excess cash reserves",
-      "Maintain current collection procedures - working well",
-      "Set up seasonal credit line for peak periods",
-      "Implement automated cash flow forecasting dashboard",
-    ],
-  },
-  "Scenario and Risk Navigator": {
-    name: "Scenario and Risk Navigator",
-    icon: AlertCircle,
-    metrics: [
-      { label: "Risk Score", value: "Low", trend: "neutral", change: "Stable" },
-      { label: "Market Volatility", value: "Medium", trend: "neutral", change: "Monitoring" },
-      { label: "Scenario Simulations", value: "127", trend: "up", change: "This month" },
-      { label: "Risk Mitigation Rate", value: "94%", trend: "up", change: "+6%" },
-    ],
-    insights: [
-      "Best case scenario: 35% growth with current market conditions",
-      "Worst case scenario: 8% growth with economic downturn",
-      "Supplier concentration risk identified in 2 categories",
-      "Customer concentration risk reduced to acceptable levels",
-    ],
-    recommendations: [
-      "Diversify supplier base for critical components",
-      "Build contingency fund for economic downturn scenario",
-      "Implement hedging strategy for currency exposure",
-      "Develop backup plans for top 3 identified risks",
-    ],
-  },
-};
-
 export default function AgentDetailModal({ isOpen, onClose, agent }: AgentDetailModalProps) {
   if (!agent) return null;
 
-  const agentData = agentDummyData[agent.name];
-  if (!agentData) return null;
+  const agentData: Record<string, any> = {
+    "Revenue": {
+      status: "Active Monitoring",
+      summary: "Tracking Q4 pipeline with focus on high-value deals",
+      metrics: [
+        { label: "Current Revenue", value: "₹110Cr", trend: "down", change: "-8.3%" },
+        { label: "Pipeline Value", value: "₹45Cr", trend: "up", change: "+12%" },
+        { label: "Conversion Rate", value: "18%", trend: "down", change: "-7pp" },
+        { label: "Avg Deal Size", value: "₹2.3Cr", trend: "up", change: "+15%" },
+      ],
+      insights: [
+        "3 high-value deals (₹15Cr total) in final closure phase - expected close within 2 weeks",
+        "European region showing strong momentum with 23% growth YoY",
+        "BFSI sector accounts for 45% of pipeline, recommend diversification",
+      ],
+      recommendations: [
+        "Accelerate closure on pending deals valued at ₹15Cr",
+        "Focus on Healthcare and Manufacturing verticals for Q1",
+        "Improve lead qualification to boost conversion from 18% to target 25%",
+      ],
+    },
+    "Cost & EBIT": {
+      status: "Optimization in Progress",
+      summary: "Vendor renegotiation initiative underway to reduce OCI",
+      metrics: [
+        { label: "Current EBIT", value: "₹25Cr", trend: "down", change: "-19.4%" },
+        { label: "EBIT Margin", value: "22.7%", trend: "down", change: "-3.1pp" },
+        { label: "OCI Index", value: "108", trend: "up", change: "+8 pts" },
+        { label: "Cost Variance", value: "+₹3Cr", trend: "down", change: "+3.6%" },
+      ],
+      insights: [
+        "Vendor renegotiation with 3 key suppliers projected to save ₹2Cr annually",
+        "Offshore mix decreased from 65% to 58%, increasing blended cost by 8%",
+        "G&A expenses up 12% due to expansion initiatives",
+      ],
+      recommendations: [
+        "Complete vendor renegotiation by month-end to realize ₹2Cr savings",
+        "Optimize onshore-offshore pyramid to restore 65:35 ratio",
+        "Implement zero-based budgeting for non-critical G&A spend",
+      ],
+    },
+    "Capacity": {
+      status: "Planning & Optimization",
+      summary: "150 resources on bench ready for deployment",
+      metrics: [
+        { label: "Total Capacity", value: "1,250", trend: "up", change: "+5%" },
+        { label: "Bench Strength", value: "150", trend: "up", change: "+20%" },
+        { label: "Capacity Utilization", value: "89%", trend: "down", change: "-4pp" },
+        { label: "Attrition Rate", value: "12%", trend: "down", change: "-2pp" },
+      ],
+      insights: [
+        "150 skilled resources available across Java, Python, and Cloud technologies",
+        "Attrition trending down to 12% from 14% last quarter",
+        "Strong campus hiring pipeline with 200 offers for Q1 joiners",
+      ],
+      recommendations: [
+        "Deploy bench resources to 2 upcoming project opportunities worth ₹8Cr",
+        "Leverage campus hires to reduce blended cost by 6%",
+        "Focus retention programs on critical skills (Cloud, AI/ML)",
+      ],
+    },
+    "Utilization": {
+      status: "Below Target - Action Required",
+      summary: "Current at 85%, targeting 95% through shadow staffing",
+      metrics: [
+        { label: "Billing Utilization", value: "85%", trend: "down", change: "-10pp" },
+        { label: "Opportunity Cost", value: "₹12Cr", trend: "down", change: "Annual" },
+        { label: "Avg Ramp-up Time", value: "6 weeks", trend: "up", change: "+2 weeks" },
+        { label: "Shadow Staff Pool", value: "45", trend: "up", change: "+15" },
+      ],
+      insights: [
+        "Utilization gap of 10pp represents ₹12Cr annual opportunity cost",
+        "3 projects delayed causing temporary spike in bench",
+        "Ramp-up time increased to 6 weeks from 4 weeks due to complex onboarding",
+      ],
+      recommendations: [
+        "Implement shadow staffing on 5 key accounts to improve readiness",
+        "Accelerate onboarding process to reduce ramp-up time to 3-4 weeks",
+        "Proactive account mining to identify quick-win opportunities",
+      ],
+    },
+  };
 
-  const IconComponent = agentData.icon;
+  const data = agentData[agent.name] || {
+    status: "Active",
+    summary: "No detailed data available",
+    metrics: [],
+    insights: [],
+    recommendations: [],
+  };
 
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
-      <DialogContent className="max-w-4xl max-h-[90vh] overflow-y-auto">
+      <DialogContent className="max-w-4xl max-h-[90vh] overflow-y-auto glass-card border-neon">
         <DialogHeader>
-          <DialogTitle className="flex items-center gap-3 text-2xl">
-            <div className="p-3 bg-gradient-primary rounded-xl">
-              <IconComponent className="w-6 h-6 text-white" />
-            </div>
-            {agentData.name}
+          <DialogTitle className="flex items-center gap-3 text-2xl font-display">
+            <span className="text-4xl">{agent.icon}</span>
+            <span className="text-gradient-neon">{agent.name} Agent</span>
           </DialogTitle>
         </DialogHeader>
 
         <div className="space-y-6 mt-4">
-          {/* Metrics Grid */}
+          {/* Status Banner */}
+          <Card className="p-4 glass-card border-primary/40">
+            <div className="flex items-center justify-between">
+              <div>
+                <p className="text-sm text-muted-foreground mb-1">Status</p>
+                <p className="text-lg font-display font-semibold text-foreground">{data.status}</p>
+              </div>
+              <Badge className="bg-success/20 text-success border-success/30">
+                <CheckCircle className="w-3 h-3 mr-1" />
+                Active
+              </Badge>
+            </div>
+            <p className="text-sm text-muted-foreground mt-3">{data.summary}</p>
+          </Card>
+
+          {/* Key Metrics */}
           <div>
-            <h3 className="text-lg font-semibold mb-4">Key Metrics</h3>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              {agentData.metrics.map((metric, index) => (
-                <Card key={index} className="p-4 hover-lift">
-                  <div className="flex items-start justify-between">
-                    <div>
-                      <p className="text-sm text-muted-foreground mb-1">{metric.label}</p>
-                      <p className="text-2xl font-bold">{metric.value}</p>
-                    </div>
-                    <div className={`flex items-center gap-1 text-sm ${
-                      metric.trend === "up" ? "text-success" : 
-                      metric.trend === "down" ? "text-destructive" : 
-                      "text-muted-foreground"
-                    }`}>
-                      {metric.trend === "up" && <TrendingUp className="w-4 h-4" />}
-                      {metric.trend === "down" && <TrendingDown className="w-4 h-4" />}
-                      <span className="font-medium">{metric.change}</span>
+            <h3 className="text-lg font-display font-bold mb-3 flex items-center gap-2">
+              <Sparkles className="w-5 h-5 text-primary" />
+              Key Metrics
+            </h3>
+            <div className="grid grid-cols-2 gap-4">
+              {data.metrics.map((metric: any, index: number) => (
+                <Card key={index} className="p-4 glass-card border-border/50 hover-neon">
+                  <p className="text-xs text-muted-foreground mb-1">{metric.label}</p>
+                  <div className="flex items-end justify-between">
+                    <p className="text-2xl font-display font-bold text-foreground">{metric.value}</p>
+                    <div className="flex items-center gap-1">
+                      {metric.trend === "up" ? (
+                        <TrendingUp className="w-4 h-4 text-success" />
+                      ) : (
+                        <TrendingDown className="w-4 h-4 text-destructive" />
+                      )}
+                      <span className={`text-sm font-semibold ${metric.trend === "up" ? "text-success" : "text-destructive"}`}>
+                        {metric.change}
+                      </span>
                     </div>
                   </div>
                 </Card>
@@ -183,13 +159,16 @@ export default function AgentDetailModal({ isOpen, onClose, agent }: AgentDetail
 
           {/* AI Insights */}
           <div>
-            <h3 className="text-lg font-semibold mb-4">AI-Generated Insights</h3>
+            <h3 className="text-lg font-display font-bold mb-3 flex items-center gap-2">
+              <AlertCircle className="w-5 h-5 text-primary" />
+              AI Insights
+            </h3>
             <div className="space-y-3">
-              {agentData.insights.map((insight, index) => (
-                <Card key={index} className="p-4 bg-gradient-to-r from-primary/5 to-transparent border-l-4 border-primary">
-                  <div className="flex items-start gap-3">
-                    <Activity className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
-                    <p className="text-sm">{insight}</p>
+              {data.insights.map((insight: string, index: number) => (
+                <Card key={index} className="p-4 glass-card border-border/50">
+                  <div className="flex gap-3">
+                    <div className="w-2 h-2 bg-primary rounded-full mt-2 shadow-glow animate-pulse" />
+                    <p className="text-sm text-muted-foreground leading-relaxed flex-1">{insight}</p>
                   </div>
                 </Card>
               ))}
@@ -198,13 +177,18 @@ export default function AgentDetailModal({ isOpen, onClose, agent }: AgentDetail
 
           {/* Recommendations */}
           <div>
-            <h3 className="text-lg font-semibold mb-4">Recommended Actions</h3>
+            <h3 className="text-lg font-display font-bold mb-3 flex items-center gap-2">
+              <CheckCircle className="w-5 h-5 text-success" />
+              Recommendations
+            </h3>
             <div className="space-y-3">
-              {agentData.recommendations.map((recommendation, index) => (
-                <Card key={index} className="p-4 bg-gradient-to-r from-accent/5 to-transparent border-l-4 border-accent">
-                  <div className="flex items-start gap-3">
-                    <AlertCircle className="w-5 h-5 text-accent flex-shrink-0 mt-0.5" />
-                    <p className="text-sm">{recommendation}</p>
+              {data.recommendations.map((rec: string, index: number) => (
+                <Card key={index} className="p-4 glass-card border-success/30 hover-neon">
+                  <div className="flex gap-3">
+                    <div className="w-6 h-6 bg-success/20 rounded-full flex items-center justify-center flex-shrink-0">
+                      <span className="text-xs font-bold text-success">{index + 1}</span>
+                    </div>
+                    <p className="text-sm text-foreground leading-relaxed flex-1">{rec}</p>
                   </div>
                 </Card>
               ))}

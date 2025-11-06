@@ -159,7 +159,10 @@ All colors MUST be HSL.
   }
   
   .text-gradient-primary {
-    @apply bg-gradient-to-r from-primary to-primary-glow bg-clip-text text-transparent;
+    background: linear-gradient(to right, hsl(var(--primary)), hsl(250 80% 70%));
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
   }
   
   .text-gradient-neon {

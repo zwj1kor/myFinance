@@ -5,6 +5,7 @@ import { Sparkles, ArrowRight } from "lucide-react";
 import KPICardWithHover from "@/components/KPICardWithHover";
 import DeepDivePanel from "@/components/DeepDivePanel";
 import FloatingChatDock from "@/components/FloatingChatDock";
+import AgentDetailModal from "@/components/AgentDetailModal";
 
 interface MetricCardData {
   name: string;
@@ -17,6 +18,7 @@ interface MetricCardData {
 
 export default function Dashboard() {
   const [selectedMetric, setSelectedMetric] = useState<string | null>(null);
+  const [selectedAgent, setSelectedAgent] = useState<any>(null);
 
   const kpiCards = [
     { 
@@ -237,6 +239,7 @@ export default function Dashboard() {
                   key={agent.name} 
                   className="p-4 glass-card border-border/50 hover-neon group cursor-pointer animate-scale-in"
                   style={{ animationDelay: `${index * 0.1}s` }}
+                  onClick={() => setSelectedAgent({ name: agent.name, icon: agent.emoji })}
                 >
                   <div className="space-y-3">
                     <div className="flex items-center gap-3">
@@ -267,6 +270,14 @@ export default function Dashboard() {
       </div>
 
       <FloatingChatDock />
+      
+      {selectedAgent && (
+        <AgentDetailModal
+          isOpen={!!selectedAgent}
+          onClose={() => setSelectedAgent(null)}
+          agent={selectedAgent}
+        />
+      )}
     </div>
   );
 }
