@@ -22,13 +22,13 @@ export default function Dashboard() {
 
   const handleKPIClick = (kpiName: string) => {
     const routeMap: Record<string, string> = {
-      "Revenue": "/dashboard",
+      "Revenue": "/",
       "Cost/EBIT": "/profitability",
       "Capacity": "/projects",
       "Billing Utilization": "/utilization",
     };
     const route = routeMap[kpiName];
-    if (route) {
+    if (route && route !== "/") {
       navigate(route);
     }
   };
@@ -106,6 +106,15 @@ export default function Dashboard() {
   return (
     <div className="min-h-screen bg-background overflow-hidden">
       <div className="p-6 relative">
+        {/* Welcome Message */}
+        <div className="text-center mb-8 animate-fade-in">
+          <h1 className="text-5xl font-display font-bold text-gradient-neon mb-2">
+            Welcome to myFinance.AI
+          </h1>
+          <p className="text-muted-foreground text-lg">
+            Your intelligent finance command center
+          </p>
+        </div>
           {/* Central AI Mind */}
         <div className="flex items-center justify-center min-h-[600px] relative">
           {/* Central Core */}

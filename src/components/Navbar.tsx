@@ -6,13 +6,8 @@ import { Bell, User, Menu, X, Search } from "lucide-react";
 import ThemeToggle from "./ThemeToggle";
 
 const navLinks = [
-  { label: "Home", path: "/" },
-  { label: "Dashboard", path: "/dashboard" },
   { label: "AI Copilot", path: "/copilot" },
-  { label: "Profitability", path: "/profitability" },
-  { label: "Utilization", path: "/utilization" },
   { label: "AI Agents", path: "/ai-agents" },
-  { label: "Projects", path: "/projects" },
 ];
 
 export default function Navbar() {
