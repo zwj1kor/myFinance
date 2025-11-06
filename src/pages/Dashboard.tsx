@@ -106,7 +106,7 @@ export default function Dashboard() {
   return (
     <div className="min-h-screen bg-background overflow-hidden">
       <div className="p-6 relative">
-        {/* Central AI Mind */}
+          {/* Central AI Mind */}
         <div className="flex items-center justify-center min-h-[600px] relative">
           {/* Central Core */}
           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-20">
@@ -120,13 +120,13 @@ export default function Dashboard() {
               </div>
               
               {/* Central brain/mind */}
-              <Card className="w-40 h-40 glass-card border-neon relative overflow-hidden cursor-pointer hover-scale group">
-                <div className="absolute inset-0 bg-gradient-neon opacity-10 group-hover:opacity-20 transition-opacity" />
+              <Card className="w-48 h-48 glass-card border-2 border-neon relative overflow-hidden cursor-pointer hover-scale group rounded-full shadow-2xl shadow-primary/40">
+                <div className="absolute inset-0 bg-gradient-neon opacity-10 group-hover:opacity-30 transition-opacity" />
                 <div className="absolute inset-0 flex items-center justify-center">
-                  <Sparkles className="w-20 h-20 text-primary animate-float" />
+                  <Sparkles className="w-24 h-24 text-primary animate-float group-hover:scale-110 transition-transform duration-500" />
                 </div>
-                <div className="absolute bottom-4 left-0 right-0 text-center">
-                  <p className="text-xs font-display font-bold text-gradient-neon">myFinance.AI</p>
+                <div className="absolute bottom-8 left-0 right-0 text-center">
+                  <p className="text-sm font-display font-bold text-gradient-neon">myFinance.AI</p>
                 </div>
               </Card>
               
@@ -220,54 +220,54 @@ export default function Dashboard() {
 
         {/* Quick Stats Below */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-8 animate-fade-up" style={{ animationDelay: '0.8s' }}>
-          <Card className="p-5 glass-card border-primary/30 hover-neon group">
+          <Card className="p-6 glass-card border-2 border-primary/30 hover-neon group rounded-3xl hover:scale-105 transition-all duration-300">
             <p className="text-xs text-muted-foreground mb-1 font-medium">DSO (Days)</p>
-            <p className="text-3xl font-display font-bold text-gradient-primary">58</p>
+            <p className="text-4xl font-display font-bold text-gradient-primary">58</p>
             <p className="text-xs text-destructive mt-1">+13 vs target</p>
           </Card>
-          <Card className="p-5 glass-card border-accent/30 hover-neon group">
+          <Card className="p-6 glass-card border-2 border-accent/30 hover-neon group rounded-3xl hover:scale-105 transition-all duration-300">
             <p className="text-xs text-muted-foreground mb-1 font-medium">Margin %</p>
-            <p className="text-3xl font-display font-bold text-gradient-neon">22.7</p>
+            <p className="text-4xl font-display font-bold text-gradient-neon">22.7</p>
             <p className="text-xs text-success mt-1">+2.1pp QoQ</p>
           </Card>
-          <Card className="p-5 glass-card border-secondary/30 hover-neon group">
+          <Card className="p-6 glass-card border-2 border-secondary/30 hover-neon group rounded-3xl hover:scale-105 transition-all duration-300">
             <p className="text-xs text-muted-foreground mb-1 font-medium">OCI Index</p>
-            <p className="text-3xl font-display font-bold text-gradient-primary">108</p>
+            <p className="text-4xl font-display font-bold text-gradient-primary">108</p>
             <p className="text-xs text-destructive mt-1">8 above baseline</p>
           </Card>
-          <Card className="p-5 glass-card border-primary/30 hover-neon group">
+          <Card className="p-6 glass-card border-2 border-primary/30 hover-neon group rounded-3xl hover:scale-105 transition-all duration-300">
             <p className="text-xs text-muted-foreground mb-1 font-medium">Active Projects</p>
-            <p className="text-3xl font-display font-bold text-gradient-neon">47</p>
+            <p className="text-4xl font-display font-bold text-gradient-neon">47</p>
             <p className="text-xs text-success mt-1">+3 this month</p>
           </Card>
         </div>
 
         {/* AI Agents Bottom Section */}
         <div className="mt-8 animate-fade-in" style={{ animationDelay: '1s' }}>
-          <Card className="p-6 glass-card border-neon relative overflow-hidden">
+          <Card className="p-8 glass-card border-2 border-neon relative overflow-hidden rounded-3xl shadow-2xl shadow-primary/20">
             <div className="absolute inset-0 bg-gradient-primary opacity-5" />
             <div className="flex items-center gap-3 mb-6 relative z-10">
-              <div className="p-2 bg-gradient-neon rounded-lg shadow-neon">
-                <Sparkles className="w-6 h-6 text-white animate-pulse" />
+              <div className="p-3 bg-gradient-neon rounded-2xl shadow-neon">
+                <Sparkles className="w-7 h-7 text-white animate-pulse" />
               </div>
-              <h2 className="text-xl font-display font-bold text-gradient-neon">AI Agents</h2>
+              <h2 className="text-2xl font-display font-bold text-gradient-neon">AI Agents</h2>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 relative z-10">
               {aiAgents.map((agent, index) => (
                 <Card 
                   key={agent.name} 
-                  className="p-4 glass-card border-border/50 hover-neon group cursor-pointer animate-scale-in"
+                  className="p-5 glass-card border-2 border-border/50 hover-neon group cursor-pointer animate-scale-in rounded-2xl hover:scale-105 transition-all duration-300 hover:shadow-xl hover:shadow-primary/20"
                   style={{ animationDelay: `${1 + index * 0.1}s` }}
                   onClick={() => setSelectedAgent({ name: agent.name, icon: agent.emoji })}
                 >
                   <div className="space-y-3">
                     <div className="flex items-center gap-3">
-                      <span className="text-3xl group-hover:scale-110 transition-transform">{agent.emoji}</span>
+                      <span className="text-4xl group-hover:scale-125 group-hover:rotate-12 transition-all duration-300">{agent.emoji}</span>
                       <div className="flex-1">
                         <p className="text-sm font-display font-bold text-foreground">{agent.name}</p>
                         <div className="flex items-center gap-2 mt-1">
                           <div className="w-2 h-2 bg-success rounded-full animate-neon-pulse shadow-glow" />
-                          <span className="text-xs text-muted-foreground">{agent.status}</span>
+                          <span className="text-xs text-muted-foreground">Active</span>
                         </div>
                       </div>
                     </div>
@@ -275,7 +275,7 @@ export default function Dashboard() {
                     <Button 
                       variant="ghost" 
                       size="sm" 
-                      className="w-full text-primary hover:bg-primary/20 border border-primary/30 hover:border-primary/60 transition-all"
+                      className="w-full text-primary hover:bg-primary/20 border-2 border-primary/30 hover:border-primary/60 transition-all rounded-xl"
                     >
                       {agent.action}
                       <ArrowRight className="w-3 h-3 ml-2" />
