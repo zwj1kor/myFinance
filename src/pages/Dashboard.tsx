@@ -227,30 +227,6 @@ export default function Dashboard() {
           </div>
         </div>
 
-        {/* Quick Stats Below */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-8 animate-fade-up" style={{ animationDelay: '0.8s' }}>
-          <Card className="p-6 glass-card border-2 border-primary/30 hover-neon group rounded-3xl hover:scale-105 transition-all duration-300">
-            <p className="text-xs text-muted-foreground mb-1 font-medium">DSO (Days)</p>
-            <p className="text-4xl font-display font-bold text-gradient-primary">58</p>
-            <p className="text-xs text-destructive mt-1">+13 vs target</p>
-          </Card>
-          <Card className="p-6 glass-card border-2 border-accent/30 hover-neon group rounded-3xl hover:scale-105 transition-all duration-300">
-            <p className="text-xs text-muted-foreground mb-1 font-medium">Margin %</p>
-            <p className="text-4xl font-display font-bold text-gradient-neon">22.7</p>
-            <p className="text-xs text-success mt-1">+2.1pp QoQ</p>
-          </Card>
-          <Card className="p-6 glass-card border-2 border-secondary/30 hover-neon group rounded-3xl hover:scale-105 transition-all duration-300">
-            <p className="text-xs text-muted-foreground mb-1 font-medium">OCI Index</p>
-            <p className="text-4xl font-display font-bold text-gradient-primary">108</p>
-            <p className="text-xs text-destructive mt-1">8 above baseline</p>
-          </Card>
-          <Card className="p-6 glass-card border-2 border-primary/30 hover-neon group rounded-3xl hover:scale-105 transition-all duration-300">
-            <p className="text-xs text-muted-foreground mb-1 font-medium">Active Projects</p>
-            <p className="text-4xl font-display font-bold text-gradient-neon">47</p>
-            <p className="text-xs text-success mt-1">+3 this month</p>
-          </Card>
-        </div>
-
         {/* AI Agents Bottom Section */}
         <div className="mt-8 animate-fade-in" style={{ animationDelay: '1s' }}>
           <Card className="p-8 glass-card border-2 border-neon relative overflow-hidden rounded-3xl shadow-2xl shadow-primary/20">
