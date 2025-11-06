@@ -19,25 +19,27 @@ export default function Navbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   return (
-    <nav className="bg-card border-b border-border sticky top-0 z-50 backdrop-blur-lg bg-card/95 shadow-sm">
+    <nav className="bg-card/50 border-b border-primary/20 sticky top-0 z-50 backdrop-blur-xl shadow-glow">
       <div className="max-w-[1920px] mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center gap-4 h-16">
           {/* Logo */}
           <NavLink to="/" className="flex items-center gap-3 group flex-shrink-0">
-            <div className="w-11 h-11 bg-gradient-primary rounded-2xl flex items-center justify-center shadow-lg group-hover:shadow-xl transition-all group-hover:scale-105">
-              <span className="text-white font-bold text-base">mF</span>
+            <div className="w-11 h-11 bg-gradient-primary rounded-2xl flex items-center justify-center shadow-neon group-hover:shadow-glow transition-all group-hover:scale-105 border border-primary/50">
+              <span className="text-white font-display font-bold text-base">mF</span>
             </div>
-            <span className="text-foreground font-bold text-2xl hidden lg:block bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">myFinance.AI</span>
+            <span className="text-foreground font-display font-bold text-2xl hidden lg:block text-gradient-neon">
+              myFinance.AI
+            </span>
           </NavLink>
 
           {/* Search Bar */}
           <div className="flex-1 max-w-2xl hidden lg:block">
             <div className="relative">
-              <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
+              <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-primary/70" />
               <Input
                 type="text"
                 placeholder="Ask about revenue trend, cost forecast, or utilization insights…"
-                className="pl-10 pr-4 py-2 bg-background/50 border-border/50 focus:border-primary text-sm"
+                className="pl-10 pr-4 py-2 glass-card border-primary/30 focus:border-primary text-sm hover:border-primary/50 transition-all"
               />
             </div>
           </div>
@@ -49,10 +51,10 @@ export default function Navbar() {
                 key={link.path}
                 to={link.path}
                 className={({ isActive }) =>
-                  `px-4 py-2 rounded-full text-sm font-semibold transition-all ${
+                  `px-4 py-2 rounded-full text-sm font-display font-semibold transition-all ${
                     isActive
-                      ? "bg-gradient-primary text-white shadow-lg scale-105"
-                      : "text-foreground hover:bg-muted hover:scale-105"
+                      ? "bg-gradient-primary text-white shadow-glow scale-105 border border-primary/50"
+                      : "text-foreground hover:bg-muted/50 hover:scale-105"
                   }`
                 }
               >
@@ -65,11 +67,11 @@ export default function Navbar() {
           <div className="flex items-center gap-3">
             <ThemeToggle />
 
-            <Button variant="ghost" size="icon" className="hidden sm:flex hover:bg-muted transition-all hover:scale-110">
+            <Button variant="ghost" size="icon" className="hidden sm:flex hover:bg-muted/50 transition-all hover:scale-110 hover:shadow-glow">
               <Bell className="w-5 h-5" />
             </Button>
 
-            <Button variant="ghost" size="icon" className="hidden sm:flex hover:bg-muted transition-all hover:scale-110">
+            <Button variant="ghost" size="icon" className="hidden sm:flex hover:bg-muted/50 transition-all hover:scale-110 hover:shadow-glow">
               <User className="w-5 h-5" />
             </Button>
 

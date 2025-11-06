@@ -44,7 +44,7 @@ export default function FloatingChatDock() {
     return (
       <Button
         onClick={() => setIsOpen(true)}
-        className="fixed bottom-6 right-6 w-16 h-16 rounded-full bg-gradient-primary text-white shadow-2xl hover:shadow-glow animate-bounce-in z-50"
+        className="fixed bottom-6 right-6 w-16 h-16 rounded-full bg-gradient-neon text-white shadow-neon animate-neon-pulse z-50 border-2 border-primary/50"
         size="icon"
       >
         <MessageCircle className="w-7 h-7" />
@@ -55,16 +55,16 @@ export default function FloatingChatDock() {
   if (isMinimized) {
     return (
       <Card 
-        className="fixed bottom-6 right-6 p-4 w-80 cursor-pointer hover-lift animate-scale-in shadow-2xl z-50"
+        className="fixed bottom-6 right-6 p-4 w-80 cursor-pointer hover-neon animate-scale-in glass-card border-primary/40 shadow-glow z-50"
         onClick={() => setIsMinimized(false)}
       >
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-3">
-            <div className="w-10 h-10 bg-gradient-primary rounded-full flex items-center justify-center">
+            <div className="w-10 h-10 bg-gradient-primary rounded-full flex items-center justify-center shadow-glow">
               <MessageCircle className="w-5 h-5 text-white" />
             </div>
             <div>
-              <p className="font-semibold text-sm">CFO Copilot</p>
+              <p className="font-display font-semibold text-sm text-gradient-neon">CFO Copilot</p>
               <p className="text-xs text-muted-foreground">Click to expand</p>
             </div>
           </div>
@@ -75,6 +75,7 @@ export default function FloatingChatDock() {
               e.stopPropagation();
               setIsOpen(false);
             }}
+            className="hover:bg-destructive/20"
           >
             <X className="w-4 h-4" />
           </Button>
@@ -84,19 +85,20 @@ export default function FloatingChatDock() {
   }
 
   return (
-    <Card className="fixed bottom-6 right-6 w-96 h-[500px] flex flex-col shadow-2xl animate-scale-in z-50">
+    <Card className="fixed bottom-6 right-6 w-96 h-[500px] flex flex-col glass-card border-neon shadow-neon animate-scale-in z-50 overflow-hidden">
       {/* Header */}
-      <div className="flex items-center justify-between p-4 border-b border-border bg-gradient-primary text-white rounded-t-lg">
-        <div className="flex items-center gap-3">
-          <div className="w-10 h-10 bg-white/20 rounded-full flex items-center justify-center">
+      <div className="flex items-center justify-between p-4 border-b border-border/50 bg-gradient-primary text-white rounded-t-lg relative overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-r from-primary/50 to-secondary/50 animate-shimmer" style={{ backgroundSize: '200% 100%' }} />
+        <div className="flex items-center gap-3 relative z-10">
+          <div className="w-10 h-10 bg-white/20 rounded-full flex items-center justify-center backdrop-blur-sm border border-white/30">
             <MessageCircle className="w-5 h-5" />
           </div>
           <div>
-            <p className="font-semibold">CFO Copilot</p>
+            <p className="font-display font-semibold">CFO Copilot</p>
             <p className="text-xs text-white/80">Your AI Finance Assistant</p>
           </div>
         </div>
-        <div className="flex gap-1">
+        <div className="flex gap-1 relative z-10">
           <Button
             variant="ghost"
             size="icon"
@@ -117,18 +119,19 @@ export default function FloatingChatDock() {
       </div>
 
       {/* Messages */}
-      <ScrollArea className="flex-1 p-4">
+      <ScrollArea className="flex-1 p-4 bg-background/50">
         <div className="space-y-4">
           {messages.map((message, index) => (
             <div
               key={index}
-              className={`flex ${message.role === "user" ? "justify-end" : "justify-start"}`}
+              className={`flex ${message.role === "user" ? "justify-end" : "justify-start"} animate-fade-in`}
+              style={{ animationDelay: `${index * 0.1}s` }}
             >
               <div
-                className={`max-w-[80%] p-3 rounded-lg ${
+                className={`max-w-[80%] p-3 rounded-lg border ${
                   message.role === "user"
-                    ? "bg-primary text-primary-foreground"
-                    : "bg-muted text-foreground"
+                    ? "bg-gradient-primary text-white border-primary/50 shadow-glow"
+                    : "glass-card border-border/50"
                 }`}
               >
                 <p className="text-sm">{message.content}</p>
@@ -139,16 +142,16 @@ export default function FloatingChatDock() {
       </ScrollArea>
 
       {/* Input */}
-      <div className="p-4 border-t border-border">
+      <div className="p-4 border-t border-border/50 bg-card/50 backdrop-blur-sm">
         <div className="flex gap-2">
           <Input
             placeholder="Ask me anything..."
             value={input}
             onChange={(e) => setInput(e.target.value)}
             onKeyPress={(e) => e.key === "Enter" && handleSend()}
-            className="flex-1"
+            className="flex-1 glass-card border-primary/30 focus:border-primary"
           />
-          <Button onClick={handleSend} size="icon" className="bg-gradient-primary">
+          <Button onClick={handleSend} size="icon" className="bg-gradient-primary hover:shadow-glow border border-primary/50">
             <Send className="w-4 h-4" />
           </Button>
         </div>
