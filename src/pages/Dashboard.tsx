@@ -104,56 +104,146 @@ export default function Dashboard() {
   ];
 
   return (
-    <div className="min-h-screen bg-background">
-      <div className="flex gap-6 p-6">
-        {/* Main Content */}
-        <div className="flex-1 space-y-6">
-          {/* KPI Cards */}
-          <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6">
-            {kpiCards.map((kpi, index) => (
-              <div key={kpi.name} className="animate-fade-up" style={{ animationDelay: `${index * 0.1}s` }}>
-                <KPICardWithHover
-                  title={kpi.name}
-                  value={kpi.value}
-                  target={kpi.target}
-                  variance={kpi.variance}
-                  trend={kpi.trend}
-                  icon={kpi.icon}
-                  insight={kpi.insight}
-                  onClick={() => handleKPIClick(kpi.name)}
-                />
+    <div className="min-h-screen bg-background overflow-hidden">
+      <div className="p-6 relative">
+        {/* Central AI Mind */}
+        <div className="flex items-center justify-center min-h-[600px] relative">
+          {/* Central Core */}
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-20">
+            <div className="relative">
+              {/* Outer glow rings */}
+              <div className="absolute inset-0 animate-ping opacity-20">
+                <div className="w-48 h-48 rounded-full bg-gradient-neon blur-2xl"></div>
               </div>
-            ))}
+              <div className="absolute inset-0 animate-pulse">
+                <div className="w-48 h-48 rounded-full bg-gradient-primary blur-xl opacity-40"></div>
+              </div>
+              
+              {/* Central brain/mind */}
+              <Card className="w-40 h-40 glass-card border-neon relative overflow-hidden cursor-pointer hover-scale group">
+                <div className="absolute inset-0 bg-gradient-neon opacity-10 group-hover:opacity-20 transition-opacity" />
+                <div className="absolute inset-0 flex items-center justify-center">
+                  <Sparkles className="w-20 h-20 text-primary animate-float" />
+                </div>
+                <div className="absolute bottom-4 left-0 right-0 text-center">
+                  <p className="text-xs font-display font-bold text-gradient-neon">myFinance.AI</p>
+                </div>
+              </Card>
+              
+              {/* Connecting lines to KPIs */}
+              <svg className="absolute inset-0 w-[800px] h-[800px] -translate-x-[330px] -translate-y-[330px] pointer-events-none" style={{ zIndex: -1 }}>
+                <line x1="400" y1="400" x2="200" y2="200" stroke="url(#gradient1)" strokeWidth="2" opacity="0.3" className="animate-pulse" />
+                <line x1="400" y1="400" x2="600" y2="200" stroke="url(#gradient2)" strokeWidth="2" opacity="0.3" className="animate-pulse" style={{ animationDelay: '0.5s' }} />
+                <line x1="400" y1="400" x2="200" y2="600" stroke="url(#gradient3)" strokeWidth="2" opacity="0.3" className="animate-pulse" style={{ animationDelay: '1s' }} />
+                <line x1="400" y1="400" x2="600" y2="600" stroke="url(#gradient4)" strokeWidth="2" opacity="0.3" className="animate-pulse" style={{ animationDelay: '1.5s' }} />
+                <defs>
+                  <linearGradient id="gradient1" x1="0%" y1="0%" x2="100%" y2="0%">
+                    <stop offset="0%" stopColor="hsl(var(--primary))" stopOpacity="0" />
+                    <stop offset="100%" stopColor="hsl(var(--primary))" stopOpacity="0.5" />
+                  </linearGradient>
+                  <linearGradient id="gradient2" x1="0%" y1="0%" x2="100%" y2="0%">
+                    <stop offset="0%" stopColor="hsl(var(--neon))" stopOpacity="0" />
+                    <stop offset="100%" stopColor="hsl(var(--neon))" stopOpacity="0.5" />
+                  </linearGradient>
+                  <linearGradient id="gradient3" x1="0%" y1="0%" x2="100%" y2="0%">
+                    <stop offset="0%" stopColor="hsl(var(--accent))" stopOpacity="0" />
+                    <stop offset="100%" stopColor="hsl(var(--accent))" stopOpacity="0.5" />
+                  </linearGradient>
+                  <linearGradient id="gradient4" x1="0%" y1="0%" x2="100%" y2="0%">
+                    <stop offset="0%" stopColor="hsl(var(--secondary))" stopOpacity="0" />
+                    <stop offset="100%" stopColor="hsl(var(--secondary))" stopOpacity="0.5" />
+                  </linearGradient>
+                </defs>
+              </svg>
+            </div>
           </div>
 
+          {/* KPI Cards positioned radially */}
+          <div className="absolute top-0 left-0 w-full h-full">
+            {/* Top Left - Revenue */}
+            <div className="absolute top-8 left-8 w-72 animate-fade-up" style={{ animationDelay: '0s' }}>
+              <KPICardWithHover
+                title={kpiCards[0].name}
+                value={kpiCards[0].value}
+                target={kpiCards[0].target}
+                variance={kpiCards[0].variance}
+                trend={kpiCards[0].trend}
+                icon={kpiCards[0].icon}
+                insight={kpiCards[0].insight}
+                onClick={() => handleKPIClick(kpiCards[0].name)}
+              />
+            </div>
 
-          {/* Quick Stats */}
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 animate-fade-up">
-            <Card className="p-5 glass-card border-primary/30 hover-neon group">
-              <p className="text-xs text-muted-foreground mb-1 font-medium">DSO (Days)</p>
-              <p className="text-3xl font-display font-bold text-gradient-primary">58</p>
-              <p className="text-xs text-destructive mt-1">+13 vs target</p>
-            </Card>
-            <Card className="p-5 glass-card border-accent/30 hover-neon group">
-              <p className="text-xs text-muted-foreground mb-1 font-medium">Margin %</p>
-              <p className="text-3xl font-display font-bold text-gradient-neon">22.7</p>
-              <p className="text-xs text-success mt-1">+2.1pp QoQ</p>
-            </Card>
-            <Card className="p-5 glass-card border-secondary/30 hover-neon group">
-              <p className="text-xs text-muted-foreground mb-1 font-medium">OCI Index</p>
-              <p className="text-3xl font-display font-bold text-gradient-primary">108</p>
-              <p className="text-xs text-destructive mt-1">8 above baseline</p>
-            </Card>
-            <Card className="p-5 glass-card border-primary/30 hover-neon group">
-              <p className="text-xs text-muted-foreground mb-1 font-medium">Active Projects</p>
-              <p className="text-3xl font-display font-bold text-gradient-neon">47</p>
-              <p className="text-xs text-success mt-1">+3 this month</p>
-            </Card>
+            {/* Top Right - Cost/EBIT */}
+            <div className="absolute top-8 right-8 w-72 animate-fade-up" style={{ animationDelay: '0.2s' }}>
+              <KPICardWithHover
+                title={kpiCards[1].name}
+                value={kpiCards[1].value}
+                target={kpiCards[1].target}
+                variance={kpiCards[1].variance}
+                trend={kpiCards[1].trend}
+                icon={kpiCards[1].icon}
+                insight={kpiCards[1].insight}
+                onClick={() => handleKPIClick(kpiCards[1].name)}
+              />
+            </div>
+
+            {/* Bottom Left - Capacity */}
+            <div className="absolute bottom-8 left-8 w-72 animate-fade-up" style={{ animationDelay: '0.4s' }}>
+              <KPICardWithHover
+                title={kpiCards[2].name}
+                value={kpiCards[2].value}
+                target={kpiCards[2].target}
+                variance={kpiCards[2].variance}
+                trend={kpiCards[2].trend}
+                icon={kpiCards[2].icon}
+                insight={kpiCards[2].insight}
+                onClick={() => handleKPIClick(kpiCards[2].name)}
+              />
+            </div>
+
+            {/* Bottom Right - Billing Utilization */}
+            <div className="absolute bottom-8 right-8 w-72 animate-fade-up" style={{ animationDelay: '0.6s' }}>
+              <KPICardWithHover
+                title={kpiCards[3].name}
+                value={kpiCards[3].value}
+                target={kpiCards[3].target}
+                variance={kpiCards[3].variance}
+                trend={kpiCards[3].trend}
+                icon={kpiCards[3].icon}
+                insight={kpiCards[3].insight}
+                onClick={() => handleKPIClick(kpiCards[3].name)}
+              />
+            </div>
           </div>
         </div>
 
-        {/* Right Sidebar - AI Agents */}
-        <div className="w-80 space-y-6 animate-fade-in hidden lg:block">
+        {/* Quick Stats Below */}
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-8 animate-fade-up" style={{ animationDelay: '0.8s' }}>
+          <Card className="p-5 glass-card border-primary/30 hover-neon group">
+            <p className="text-xs text-muted-foreground mb-1 font-medium">DSO (Days)</p>
+            <p className="text-3xl font-display font-bold text-gradient-primary">58</p>
+            <p className="text-xs text-destructive mt-1">+13 vs target</p>
+          </Card>
+          <Card className="p-5 glass-card border-accent/30 hover-neon group">
+            <p className="text-xs text-muted-foreground mb-1 font-medium">Margin %</p>
+            <p className="text-3xl font-display font-bold text-gradient-neon">22.7</p>
+            <p className="text-xs text-success mt-1">+2.1pp QoQ</p>
+          </Card>
+          <Card className="p-5 glass-card border-secondary/30 hover-neon group">
+            <p className="text-xs text-muted-foreground mb-1 font-medium">OCI Index</p>
+            <p className="text-3xl font-display font-bold text-gradient-primary">108</p>
+            <p className="text-xs text-destructive mt-1">8 above baseline</p>
+          </Card>
+          <Card className="p-5 glass-card border-primary/30 hover-neon group">
+            <p className="text-xs text-muted-foreground mb-1 font-medium">Active Projects</p>
+            <p className="text-3xl font-display font-bold text-gradient-neon">47</p>
+            <p className="text-xs text-success mt-1">+3 this month</p>
+          </Card>
+        </div>
+
+        {/* AI Agents Bottom Section */}
+        <div className="mt-8 animate-fade-in" style={{ animationDelay: '1s' }}>
           <Card className="p-6 glass-card border-neon relative overflow-hidden">
             <div className="absolute inset-0 bg-gradient-primary opacity-5" />
             <div className="flex items-center gap-3 mb-6 relative z-10">
@@ -162,12 +252,12 @@ export default function Dashboard() {
               </div>
               <h2 className="text-xl font-display font-bold text-gradient-neon">AI Agents</h2>
             </div>
-            <div className="space-y-4 relative z-10">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 relative z-10">
               {aiAgents.map((agent, index) => (
                 <Card 
                   key={agent.name} 
                   className="p-4 glass-card border-border/50 hover-neon group cursor-pointer animate-scale-in"
-                  style={{ animationDelay: `${index * 0.1}s` }}
+                  style={{ animationDelay: `${1 + index * 0.1}s` }}
                   onClick={() => setSelectedAgent({ name: agent.name, icon: agent.emoji })}
                 >
                   <div className="space-y-3">
