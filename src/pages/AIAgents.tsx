@@ -1,5 +1,7 @@
+import { useState } from "react";
 import { Card } from "@/components/ui/card";
 import { Sparkles, TrendingUp, DollarSign, PieChart, Droplets, Navigation } from "lucide-react";
+import AgentDetailModal from "@/components/AgentDetailModal";
 
 const agents = [
   {
@@ -40,6 +42,14 @@ const agents = [
 ];
 
 export default function AIAgents() {
+  const [selectedAgent, setSelectedAgent] = useState<typeof agents[0] | null>(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const handleAgentClick = (agent: typeof agents[0]) => {
+    setSelectedAgent(agent);
+    setIsModalOpen(true);
+  };
+
   return (
     <div className="min-h-screen bg-background">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
@@ -65,6 +75,7 @@ export default function AIAgents() {
                 key={agent.name} 
                 className={`p-8 bg-gradient-to-br ${agent.color} hover-lift shadow-xl cursor-pointer group animate-fade-in border-2`}
                 style={{ animationDelay: `${index * 0.1}s` }}
+                onClick={() => handleAgentClick(agent)}
               >
                 <div className="flex items-start gap-5 mb-6">
                   <div className="p-4 rounded-2xl bg-card/80 backdrop-blur-sm shadow-lg group-hover:shadow-xl transition-all">
@@ -118,6 +129,13 @@ export default function AIAgents() {
             <p className="text-5xl font-bold text-accent">247</p>
           </Card>
         </div>
+
+        {/* Agent Detail Modal */}
+        <AgentDetailModal 
+          isOpen={isModalOpen}
+          onClose={() => setIsModalOpen(false)}
+          agent={selectedAgent}
+        />
       </div>
     </div>
   );
