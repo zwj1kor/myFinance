@@ -12,10 +12,12 @@ interface AgentDetailModalProps {
 export default function AgentDetailModal({ isOpen, onClose, agent }: AgentDetailModalProps) {
   if (!agent) return null;
 
+  const IconComponent = agent.icon;
+
   const agentData: Record<string, any> = {
-    "Revenue": {
+    "Growth and Revenue Intelligence": {
       status: "Active Monitoring",
-      summary: "Tracking Q4 pipeline with focus on high-value deals",
+      summary: "Monitoring revenue streams and identifying growth opportunities",
       metrics: [
         { label: "Current Revenue", value: "₹110Cr", trend: "down", change: "-8.3%" },
         { label: "Pipeline Value", value: "₹45Cr", trend: "up", change: "+12%" },
@@ -33,9 +35,9 @@ export default function AgentDetailModal({ isOpen, onClose, agent }: AgentDetail
         "Improve lead qualification to boost conversion from 18% to target 25%",
       ],
     },
-    "Cost & EBIT": {
+    "Spend and Cost Control": {
       status: "Optimization in Progress",
-      summary: "Vendor renegotiation initiative underway to reduce OCI",
+      summary: "Tracking expenditures and identifying cost-saving opportunities",
       metrics: [
         { label: "Current EBIT", value: "₹25Cr", trend: "down", change: "-19.4%" },
         { label: "EBIT Margin", value: "22.7%", trend: "down", change: "-3.1pp" },
@@ -53,44 +55,64 @@ export default function AgentDetailModal({ isOpen, onClose, agent }: AgentDetail
         "Implement zero-based budgeting for non-critical G&A spend",
       ],
     },
-    "Capacity": {
-      status: "Planning & Optimization",
-      summary: "150 resources on bench ready for deployment",
+    "Margin and Profitability Analyst": {
+      status: "Under Review",
+      summary: "Analyzing profit margins and evaluating product/service profitability",
       metrics: [
-        { label: "Total Capacity", value: "1,250", trend: "up", change: "+5%" },
-        { label: "Bench Strength", value: "150", trend: "up", change: "+20%" },
-        { label: "Capacity Utilization", value: "89%", trend: "down", change: "-4pp" },
-        { label: "Attrition Rate", value: "12%", trend: "down", change: "-2pp" },
+        { label: "Current EBIT", value: "₹25Cr", trend: "down", change: "-19.4%" },
+        { label: "EBIT Margin", value: "22.7%", trend: "down", change: "-3.1pp" },
+        { label: "Gross Margin", value: "45.2%", trend: "up", change: "+2.1pp" },
+        { label: "Product Mix", value: "65:35", trend: "up", change: "+5pp" },
       ],
       insights: [
-        "150 skilled resources available across Java, Python, and Cloud technologies",
-        "Attrition trending down to 12% from 14% last quarter",
-        "Strong campus hiring pipeline with 200 offers for Q1 joiners",
+        "High-margin products growing at 18% but still only 35% of revenue mix",
+        "Service delivery efficiency improvements contributing to margin gains",
+        "Fixed cost base increased 8% due to infrastructure investments",
       ],
       recommendations: [
-        "Deploy bench resources to 2 upcoming project opportunities worth ₹8Cr",
-        "Leverage campus hires to reduce blended cost by 6%",
-        "Focus retention programs on critical skills (Cloud, AI/ML)",
+        "Shift product mix to 50:50 ratio favoring high-margin offerings",
+        "Focus on premium services with 40%+ margins",
+        "Automate low-margin processes to improve profitability",
       ],
     },
-    "Utilization": {
-      status: "Below Target - Action Required",
-      summary: "Current at 85%, targeting 95% through shadow staffing",
+    "Liquidity and Cashflow Guardian": {
+      status: "Healthy - Monitoring",
+      summary: "Monitoring cash flow patterns and predicting liquidity needs",
       metrics: [
-        { label: "Billing Utilization", value: "85%", trend: "down", change: "-10pp" },
-        { label: "Opportunity Cost", value: "₹12Cr", trend: "down", change: "Annual" },
-        { label: "Avg Ramp-up Time", value: "6 weeks", trend: "up", change: "+2 weeks" },
-        { label: "Shadow Staff Pool", value: "45", trend: "up", change: "+15" },
+        { label: "Cash Balance", value: "₹32Cr", trend: "up", change: "+8.5%" },
+        { label: "DSO", value: "65 days", trend: "down", change: "-5 days" },
+        { label: "Operating Cash", value: "₹18Cr", trend: "up", change: "+12%" },
+        { label: "Working Capital", value: "₹45Cr", trend: "up", change: "+6%" },
       ],
       insights: [
-        "Utilization gap of 10pp represents ₹12Cr annual opportunity cost",
-        "3 projects delayed causing temporary spike in bench",
-        "Ramp-up time increased to 6 weeks from 4 weeks due to complex onboarding",
+        "Strong collections in Q4 improved cash position significantly",
+        "3 major client payments (₹8Cr) expected in next 15 days",
+        "Seasonal patterns indicate potential cash crunch in Q2",
       ],
       recommendations: [
-        "Implement shadow staffing on 5 key accounts to improve readiness",
-        "Accelerate onboarding process to reduce ramp-up time to 3-4 weeks",
-        "Proactive account mining to identify quick-win opportunities",
+        "Maintain minimum cash buffer of ₹25Cr for operational needs",
+        "Implement early payment discounts to improve DSO to 60 days",
+        "Set up credit facility as contingency for Q2 seasonal dip",
+      ],
+    },
+    "Scenario and Risk Navigator": {
+      status: "Strategic Planning",
+      summary: "Modeling financial scenarios and assessing strategic risks",
+      metrics: [
+        { label: "Risk Score", value: "65/100", trend: "down", change: "-5 pts" },
+        { label: "Scenarios Modeled", value: "12", trend: "up", change: "+3" },
+        { label: "Best Case ROI", value: "+32%", trend: "up", change: "+4pp" },
+        { label: "Worst Case Loss", value: "-8%", trend: "down", change: "-2pp" },
+      ],
+      insights: [
+        "Economic downturn scenario shows 15% revenue impact but manageable",
+        "Geographic expansion to APAC shows 25% upside with moderate risk",
+        "Technology stack modernization has 2-year payback period",
+      ],
+      recommendations: [
+        "Hedge against economic downturn by diversifying client base",
+        "Prioritize APAC expansion for Q2 2024 launch",
+        "Phase technology investments over 18 months to manage cash flow",
       ],
     },
   };
@@ -108,7 +130,9 @@ export default function AgentDetailModal({ isOpen, onClose, agent }: AgentDetail
       <DialogContent className="max-w-4xl max-h-[90vh] overflow-y-auto glass-card border-neon">
         <DialogHeader>
           <DialogTitle className="flex items-center gap-3 text-2xl font-display">
-            <span className="text-4xl">{agent.icon}</span>
+            <div className="p-3 bg-gradient-primary rounded-xl">
+              <IconComponent className="w-8 h-8 text-white" />
+            </div>
             <span className="text-gradient-neon">{agent.name} Agent</span>
           </DialogTitle>
           <DialogDescription className="text-muted-foreground">
