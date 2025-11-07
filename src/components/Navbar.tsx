@@ -1,8 +1,7 @@
-import { useState } from "react";
 import { NavLink } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Bell, User, Menu, X, Search } from "lucide-react";
+import { Bell, User, Search } from "lucide-react";
 import ThemeToggle from "./ThemeToggle";
 
 const navLinks = [
@@ -11,8 +10,6 @@ const navLinks = [
 ];
 
 export default function Navbar() {
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-
   return (
     <nav className="bg-card/50 border-b border-primary/20 sticky top-0 z-50 backdrop-blur-xl shadow-glow">
       <div className="max-w-[1920px] mx-auto px-4 sm:px-6 lg:px-8">
@@ -39,8 +36,8 @@ export default function Navbar() {
             </div>
           </div>
 
-          {/* Desktop Navigation */}
-          <div className="hidden xl:flex items-center gap-2">
+          {/* Navigation */}
+          <div className="flex items-center gap-2">
             {navLinks.map((link) => (
               <NavLink
                 key={link.path}
@@ -69,52 +66,9 @@ export default function Navbar() {
             <Button variant="ghost" size="icon" className="hidden sm:flex hover:bg-muted/50 transition-all hover:scale-110 hover:shadow-glow">
               <User className="w-5 h-5" />
             </Button>
-
-            {/* Mobile menu button */}
-            <Button
-              variant="ghost"
-              size="icon"
-              className="xl:hidden hover:bg-muted transition-all"
-              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            >
-              {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
-            </Button>
           </div>
         </div>
       </div>
-
-      {/* Mobile Navigation */}
-      {mobileMenuOpen && (
-        <div className="xl:hidden border-t border-border bg-card/95 backdrop-blur-lg animate-fade-in">
-          <div className="px-4 pt-3 pb-4 space-y-2">
-            {/* Mobile Search */}
-            <div className="relative mb-3 lg:hidden">
-              <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
-              <Input
-                type="text"
-                placeholder="Search insights..."
-                className="pl-10 pr-4 py-2 bg-background/50 text-sm"
-              />
-            </div>
-            {navLinks.map((link) => (
-              <NavLink
-                key={link.path}
-                to={link.path}
-                onClick={() => setMobileMenuOpen(false)}
-                className={({ isActive }) =>
-                  `block px-4 py-3 rounded-full text-base font-semibold transition-all ${
-                    isActive
-                      ? "bg-gradient-primary text-white shadow-md"
-                      : "text-foreground hover:bg-muted"
-                  }`
-                }
-              >
-                {link.label}
-              </NavLink>
-            ))}
-          </div>
-        </div>
-      )}
     </nav>
   );
 }
