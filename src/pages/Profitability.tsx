@@ -38,9 +38,9 @@ export default function Profitability() {
     <div className="min-h-screen bg-background">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         {/* Header */}
-        <div className="text-center mb-8 animate-fade-in">
-          <h1 className="text-5xl font-display font-bold text-gradient-neon mb-2">Profitability Analysis</h1>
-          <p className="text-muted-foreground text-lg">
+        <div className="bg-card border border-border rounded-lg p-4 mb-6">
+          <h1 className="text-2xl font-bold text-foreground">Profitability Analysis</h1>
+          <p className="text-sm text-muted-foreground mt-1">
             Strategic profitability overview with OCI and margin trends
           </p>
         </div>
@@ -79,7 +79,7 @@ export default function Profitability() {
         {/* Main Content Grid */}
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-6">
           {/* Waterfall Bridge */}
-          <Card className="lg:col-span-2 glass-card border-primary/20 hover-lift animate-fade-in">
+          <Card className="lg:col-span-2">
             <CardHeader>
               <CardTitle>Profitability Waterfall Bridge</CardTitle>
               <CardDescription>Plan vs Actual breakdown</CardDescription>
@@ -98,7 +98,7 @@ export default function Profitability() {
           </Card>
 
           {/* AI Insights */}
-          <Card className="glass-card border-primary/20 hover-lift animate-fade-in" style={{ animationDelay: '0.1s' }}>
+          <Card>
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
                 <Lightbulb className="w-5 h-5 text-warning" />
@@ -124,7 +124,7 @@ export default function Profitability() {
 
         {/* Margin Trends */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
-          <Card className="glass-card border-primary/20 hover-lift animate-fade-in" style={{ animationDelay: '0.2s' }}>
+          <Card>
             <CardHeader>
               <CardTitle>Margin Trend Analysis</CardTitle>
               <CardDescription>6-month margin evolution</CardDescription>
@@ -145,7 +145,7 @@ export default function Profitability() {
             </CardContent>
           </Card>
 
-          <Card className="glass-card border-primary/20 hover-lift animate-fade-in" style={{ animationDelay: '0.3s' }}>
+          <Card>
             <CardHeader>
               <CardTitle>GB-wise Profitability</CardTitle>
               <CardDescription>Plan vs Actual by Global Business</CardDescription>
@@ -167,7 +167,7 @@ export default function Profitability() {
         </div>
 
         {/* Attribution Metrics */}
-        <Card className="glass-card border-primary/20 hover-lift animate-fade-in" style={{ animationDelay: '0.4s' }}>
+        <Card>
           <CardHeader>
             <CardTitle>Variance Attribution Analysis</CardTitle>
             <CardDescription>Drill-down into margin gap drivers</CardDescription>
