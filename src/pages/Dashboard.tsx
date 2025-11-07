@@ -105,37 +105,37 @@ export default function Dashboard() {
 
   return (
     <div className="min-h-screen bg-background overflow-hidden">
-      <div className="p-6 relative">
+      <div className="p-4 sm:p-6 relative">
         {/* Welcome Message */}
-        <div className="text-center mb-8 animate-fade-in">
-          <h1 className="text-5xl font-display font-bold text-gradient-neon mb-2">
+        <div className="text-center mb-6 sm:mb-8 animate-fade-in">
+          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-display font-bold text-gradient-neon mb-2">
             Welcome to myFinance.AI
           </h1>
-          <p className="text-muted-foreground text-lg">
+          <p className="text-muted-foreground text-base sm:text-lg">
             Your intelligent finance command center
           </p>
         </div>
-          {/* Central AI Mind */}
-        <div className="flex items-center justify-center min-h-[600px] relative">
+        {/* Central AI Mind */}
+        <div className="flex items-center justify-center min-h-[400px] sm:min-h-[500px] lg:min-h-[600px] relative px-4 sm:px-6">
           {/* Central Core */}
           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-20">
             <div className="relative">
               {/* Outer glow rings */}
               <div className="absolute inset-0 animate-ping opacity-20">
-                <div className="w-48 h-48 rounded-full bg-gradient-neon blur-2xl"></div>
+                <div className="w-32 h-32 sm:w-40 sm:h-40 lg:w-48 lg:h-48 rounded-full bg-gradient-neon blur-2xl"></div>
               </div>
               <div className="absolute inset-0 animate-pulse">
-                <div className="w-48 h-48 rounded-full bg-gradient-primary blur-xl opacity-40"></div>
+                <div className="w-32 h-32 sm:w-40 sm:h-40 lg:w-48 lg:h-48 rounded-full bg-gradient-primary blur-xl opacity-40"></div>
               </div>
               
               {/* Central brain/mind */}
-              <Card className="w-48 h-48 glass-card border-2 border-neon relative overflow-hidden cursor-pointer hover-scale group rounded-full shadow-2xl shadow-primary/40">
+              <Card className="w-32 h-32 sm:w-40 sm:h-40 lg:w-48 lg:h-48 glass-card border-2 border-neon relative overflow-hidden cursor-pointer hover-scale group rounded-full shadow-2xl shadow-primary/40">
                 <div className="absolute inset-0 bg-gradient-neon opacity-10 group-hover:opacity-30 transition-opacity" />
                 <div className="absolute inset-0 flex items-center justify-center">
-                  <Sparkles className="w-24 h-24 text-primary animate-float group-hover:scale-110 transition-transform duration-500" />
+                  <Sparkles className="w-16 h-16 sm:w-20 sm:h-20 lg:w-24 lg:h-24 text-primary animate-float group-hover:scale-110 transition-transform duration-500" />
                 </div>
-                <div className="absolute bottom-8 left-0 right-0 text-center">
-                  <p className="text-sm font-display font-bold text-gradient-neon">myFinance.AI</p>
+                <div className="absolute bottom-4 sm:bottom-6 lg:bottom-8 left-0 right-0 text-center">
+                  <p className="text-xs sm:text-sm font-display font-bold text-gradient-neon">myFinance.AI</p>
                 </div>
               </Card>
               
@@ -271,8 +271,8 @@ export default function Dashboard() {
         </div>
 
         {/* AI Agents Bottom Section */}
-        <div className="mt-8 animate-fade-in" style={{ animationDelay: '1s' }}>
-          <Card className="p-8 glass-card border-2 border-neon relative overflow-hidden rounded-3xl shadow-2xl shadow-primary/20">
+        <div className="mt-6 sm:mt-8 animate-fade-in" style={{ animationDelay: '1s' }}>
+          <Card className="p-4 sm:p-6 lg:p-8 glass-card border-2 border-neon relative overflow-hidden rounded-2xl sm:rounded-3xl shadow-2xl shadow-primary/20">
             <div className="absolute inset-0 bg-gradient-primary opacity-5" />
             <div className="flex items-center gap-3 mb-6 relative z-10">
               <div className="p-3 bg-gradient-neon rounded-2xl shadow-neon">
