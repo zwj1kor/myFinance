@@ -12,8 +12,9 @@ interface AgentDetailModalProps {
 export default function AgentDetailModal({ isOpen, onClose, agent }: AgentDetailModalProps) {
   if (!agent) return null;
 
-  // Handle icon as a React component
-  const IconComponent = agent.icon;
+  // Handle icon as either a string (emoji) or a React component
+  const isEmoji = typeof agent.icon === 'string';
+  const IconComponent = isEmoji ? null : agent.icon;
 
   const agentData: Record<string, any> = {
     "Growth and Revenue Intelligence": {
@@ -132,7 +133,11 @@ export default function AgentDetailModal({ isOpen, onClose, agent }: AgentDetail
         <DialogHeader>
           <DialogTitle className="flex items-center gap-3 text-2xl font-display">
             <div className="p-3 bg-gradient-primary rounded-xl flex items-center justify-center">
-              <IconComponent className="w-8 h-8 text-white" />
+              {isEmoji ? (
+                <span className="text-4xl">{agent.icon}</span>
+              ) : (
+                IconComponent && <IconComponent className="w-8 h-8 text-white" />
+              )}
             </div>
             <span className="text-gradient-neon">{agent.name} Agent</span>
           </DialogTitle>
