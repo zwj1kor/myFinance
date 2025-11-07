@@ -12,7 +12,8 @@ interface AgentDetailModalProps {
 export default function AgentDetailModal({ isOpen, onClose, agent }: AgentDetailModalProps) {
   if (!agent) return null;
 
-  const IconComponent = agent.icon;
+  // Handle icon as emoji string, not as component
+  const iconEmoji = agent.icon;
 
   const agentData: Record<string, any> = {
     "Growth and Revenue Intelligence": {
@@ -130,8 +131,8 @@ export default function AgentDetailModal({ isOpen, onClose, agent }: AgentDetail
       <DialogContent className="max-w-4xl max-h-[90vh] overflow-y-auto glass-card border-neon">
         <DialogHeader>
           <DialogTitle className="flex items-center gap-3 text-2xl font-display">
-            <div className="p-3 bg-gradient-primary rounded-xl">
-              <IconComponent className="w-8 h-8 text-white" />
+            <div className="p-3 bg-gradient-primary rounded-xl flex items-center justify-center">
+              <span className="text-4xl">{iconEmoji}</span>
             </div>
             <span className="text-gradient-neon">{agent.name} Agent</span>
           </DialogTitle>
