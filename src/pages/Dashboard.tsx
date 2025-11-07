@@ -168,7 +168,7 @@ export default function Dashboard() {
           </div>
 
           {/* KPI Cards positioned radially */}
-          <div className="absolute top-0 left-0 w-full h-full">
+          <div className="absolute top-0 left-0 w-full h-full hidden lg:block">
             {/* Top Left - Revenue */}
             <div className="absolute top-8 left-4 md:left-8 w-52 sm:w-60 md:w-64 lg:w-72 animate-fade-up" style={{ animationDelay: '0s' }}>
               <KPICardWithHover
@@ -224,6 +224,49 @@ export default function Dashboard() {
                 onClick={() => handleKPIClick(kpiCards[3].name)}
               />
             </div>
+          </div>
+          {/* Mobile/Tablet layout - stacked grid to avoid overlap */}
+          <div className="mt-6 grid grid-cols-1 sm:grid-cols-2 gap-4 lg:hidden">
+            <KPICardWithHover
+              title={kpiCards[0].name}
+              value={kpiCards[0].value}
+              target={kpiCards[0].target}
+              variance={kpiCards[0].variance}
+              trend={kpiCards[0].trend}
+              icon={kpiCards[0].icon}
+              insight={kpiCards[0].insight}
+              onClick={() => handleKPIClick(kpiCards[0].name)}
+            />
+            <KPICardWithHover
+              title={kpiCards[1].name}
+              value={kpiCards[1].value}
+              target={kpiCards[1].target}
+              variance={kpiCards[1].variance}
+              trend={kpiCards[1].trend}
+              icon={kpiCards[1].icon}
+              insight={kpiCards[1].insight}
+              onClick={() => handleKPIClick(kpiCards[1].name)}
+            />
+            <KPICardWithHover
+              title={kpiCards[2].name}
+              value={kpiCards[2].value}
+              target={kpiCards[2].target}
+              variance={kpiCards[2].variance}
+              trend={kpiCards[2].trend}
+              icon={kpiCards[2].icon}
+              insight={kpiCards[2].insight}
+              onClick={() => handleKPIClick(kpiCards[2].name)}
+            />
+            <KPICardWithHover
+              title={kpiCards[3].name}
+              value={kpiCards[3].value}
+              target={kpiCards[3].target}
+              variance={kpiCards[3].variance}
+              trend={kpiCards[3].trend}
+              icon={kpiCards[3].icon}
+              insight={kpiCards[3].insight}
+              onClick={() => handleKPIClick(kpiCards[3].name)}
+            />
           </div>
         </div>
 
