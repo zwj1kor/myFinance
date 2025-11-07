@@ -170,7 +170,7 @@ export default function Dashboard() {
           {/* KPI Cards positioned radially */}
           <div className="absolute top-0 left-0 w-full h-full">
             {/* Top Left - Revenue */}
-            <div className="absolute top-8 left-8 w-72 animate-fade-up" style={{ animationDelay: '0s' }}>
+            <div className="absolute top-8 left-4 md:left-8 w-52 sm:w-60 md:w-64 lg:w-72 animate-fade-up" style={{ animationDelay: '0s' }}>
               <KPICardWithHover
                 title={kpiCards[0].name}
                 value={kpiCards[0].value}
@@ -184,7 +184,7 @@ export default function Dashboard() {
             </div>
 
             {/* Top Right - Cost/EBIT */}
-            <div className="absolute top-8 right-8 w-72 animate-fade-up" style={{ animationDelay: '0.2s' }}>
+            <div className="absolute top-8 right-4 md:right-8 w-52 sm:w-60 md:w-64 lg:w-72 animate-fade-up" style={{ animationDelay: '0.2s' }}>
               <KPICardWithHover
                 title={kpiCards[1].name}
                 value={kpiCards[1].value}
@@ -198,7 +198,7 @@ export default function Dashboard() {
             </div>
 
             {/* Bottom Left - Capacity */}
-            <div className="absolute bottom-8 left-8 w-72 animate-fade-up" style={{ animationDelay: '0.4s' }}>
+            <div className="absolute bottom-8 left-4 md:left-8 w-52 sm:w-60 md:w-64 lg:w-72 animate-fade-up" style={{ animationDelay: '0.4s' }}>
               <KPICardWithHover
                 title={kpiCards[2].name}
                 value={kpiCards[2].value}
@@ -212,7 +212,7 @@ export default function Dashboard() {
             </div>
 
             {/* Bottom Right - Billing Utilization */}
-            <div className="absolute bottom-8 right-8 w-72 animate-fade-up" style={{ animationDelay: '0.6s' }}>
+            <div className="absolute bottom-8 right-4 md:right-8 w-52 sm:w-60 md:w-64 lg:w-72 animate-fade-up" style={{ animationDelay: '0.6s' }}>
               <KPICardWithHover
                 title={kpiCards[3].name}
                 value={kpiCards[3].value}
