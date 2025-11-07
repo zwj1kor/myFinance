@@ -4,7 +4,7 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { ThemeProvider } from "next-themes";
-import Navbar from "./components/Navbar";
+import Layout from "./components/Layout";
 import Home from "./pages/Home";
 import Dashboard from "./pages/Dashboard";
 import Copilot from "./pages/Copilot";
@@ -24,15 +24,14 @@ const App = () => (
         <Toaster />
         <Sonner />
         <BrowserRouter>
-          <Navbar />
           <Routes>
             <Route path="/" element={<Dashboard />} />
-            <Route path="/copilot" element={<Copilot />} />
-            <Route path="/profitability" element={<Profitability />} />
-            <Route path="/utilization" element={<Utilization />} />
-            <Route path="/outsourcing" element={<Outsourcing />} />
-            <Route path="/projects" element={<Projects />} />
-            <Route path="/ai-agents" element={<AIAgents />} />
+            <Route path="/copilot" element={<Layout><Copilot /></Layout>} />
+            <Route path="/ai-agents" element={<Layout><AIAgents /></Layout>} />
+            <Route path="/profitability" element={<Layout><Profitability /></Layout>} />
+            <Route path="/utilization" element={<Layout><Utilization /></Layout>} />
+            <Route path="/outsourcing" element={<Layout><Outsourcing /></Layout>} />
+            <Route path="/projects" element={<Layout><Projects /></Layout>} />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </BrowserRouter>

@@ -6,6 +6,7 @@ import { Sparkles, ArrowRight } from "lucide-react";
 import KPICardWithHover from "@/components/KPICardWithHover";
 import FloatingChatDock from "@/components/FloatingChatDock";
 import AgentDetailModal from "@/components/AgentDetailModal";
+import ThemeToggle from "@/components/ThemeToggle";
 
 interface MetricCardData {
   name: string;
@@ -105,6 +106,11 @@ export default function Dashboard() {
 
   return (
     <div className="min-h-screen bg-background overflow-hidden">
+      {/* Theme Toggle - Fixed Position */}
+      <div className="fixed top-4 right-4 z-50">
+        <ThemeToggle />
+      </div>
+
       <div className="p-6 relative">
         {/* Welcome Message */}
         <div className="text-center mb-8 animate-fade-in">

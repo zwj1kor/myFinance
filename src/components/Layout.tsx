@@ -4,6 +4,7 @@ import { NavLink } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import ThemeToggle from "@/components/ThemeToggle";
 
 const navItems = [
   { icon: LayoutDashboard, label: "Dashboard", path: "/" },
@@ -80,6 +81,8 @@ export default function Layout({ children }: { children: React.ReactNode }) {
                 <SelectItem value="delivery">Delivery / Operational</SelectItem>
               </SelectContent>
             </Select>
+
+            <ThemeToggle />
 
             <Button variant="ghost" size="icon">
               <Bell className="w-5 h-5" />
