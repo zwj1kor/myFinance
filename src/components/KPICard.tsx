@@ -15,7 +15,7 @@ export default function KPICard({ title, plan, actual, variance, trend, format =
   const statusColor = Math.abs(variance) < 5 ? "success" : Math.abs(variance) < 10 ? "warning" : "destructive";
 
   return (
-    <Card className="p-6 hover:shadow-md transition-shadow">
+    <Card className="p-6 hover:shadow-md transition-smooth rounded-2xl">
       <div className="space-y-3">
         <div className="flex items-center justify-between">
           <h3 className="text-sm font-medium text-muted-foreground">{title}</h3>
@@ -33,7 +33,7 @@ export default function KPICard({ title, plan, actual, variance, trend, format =
 
         <div className="flex items-center gap-2">
           <div
-            className={`inline-flex items-center px-2 py-1 rounded-md text-xs font-medium ${
+            className={`inline-flex items-center px-2 py-1 rounded-full text-xs font-medium ${
               statusColor === "success"
                 ? "bg-success/10 text-success"
                 : statusColor === "warning"

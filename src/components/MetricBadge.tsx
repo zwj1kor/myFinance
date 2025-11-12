@@ -15,7 +15,7 @@ export default function MetricBadge({ label, value, target, status }: MetricBadg
   };
 
   return (
-    <div className="bg-card border border-border rounded-lg p-4 shadow-sm">
+    <div className="bg-card border border-border rounded-2xl p-4 shadow-sm">
       <p className="text-xs text-muted-foreground mb-1">{label}</p>
       <p className={`text-2xl font-bold ${statusColors[status]}`}>
         {value}

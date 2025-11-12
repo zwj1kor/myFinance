@@ -31,7 +31,7 @@ export default function Navbar() {
               <Input
                 type="text"
                 placeholder="Ask about revenue trend, cost forecast, or utilization insights…"
-                className="pl-10 pr-4 py-2 glass-card border-primary/30 focus:border-primary text-sm hover:border-primary/50 transition-all"
+                className="pl-10 pr-4 py-2 glass-card border-primary/30 focus:border-primary text-sm hover:border-primary/50 transition-all rounded-2xl"
               />
             </div>
           </div>
