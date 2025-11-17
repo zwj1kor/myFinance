@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Sparkles, ArrowRight } from "lucide-react";
@@ -16,6 +17,7 @@ interface MetricCardData {
 }
 
 export default function Dashboard() {
+  const navigate = useNavigate();
   const [selectedAgent, setSelectedAgent] = useState<any>(null);
 
   const kpiCards = [
@@ -114,7 +116,10 @@ export default function Dashboard() {
               </div>
               
               {/* Central brain/mind */}
-              <Card className="w-32 h-32 sm:w-40 sm:h-40 lg:w-48 lg:h-48 glass-card border-2 border-neon relative overflow-hidden cursor-pointer hover-scale group rounded-full shadow-2xl shadow-primary/40">
+              <Card 
+                className="w-32 h-32 sm:w-40 sm:h-40 lg:w-48 lg:h-48 glass-card border-2 border-neon relative overflow-hidden cursor-pointer hover-scale group rounded-full shadow-2xl shadow-primary/40"
+                onClick={() => navigate("/ai-overview")}
+              >
                 <div className="absolute inset-0 bg-gradient-neon opacity-10 group-hover:opacity-30 transition-opacity" />
                 <div className="absolute inset-0 flex items-center justify-center">
                   <Sparkles className="w-16 h-16 sm:w-20 sm:h-20 lg:w-24 lg:h-24 text-primary animate-float group-hover:scale-110 transition-transform duration-500" />
@@ -155,7 +160,11 @@ export default function Dashboard() {
           {/* KPI Cards positioned radially */}
           <div className="absolute top-0 left-0 w-full h-full hidden lg:block pointer-events-none">
             {/* Top Left - Revenue */}
-            <div className="absolute top-4 left-4 xl:left-8 w-64 xl:w-72 animate-fade-up pointer-events-auto" style={{ animationDelay: '0s' }}>
+            <div 
+              className="absolute top-4 left-4 xl:left-8 w-64 xl:w-72 animate-fade-up pointer-events-auto cursor-pointer" 
+              style={{ animationDelay: '0s' }}
+              onClick={() => navigate("/revenue")}
+            >
               <KPICardWithHover
                 title={kpiCards[0].name}
                 value={kpiCards[0].value}
@@ -168,7 +177,11 @@ export default function Dashboard() {
             </div>
 
             {/* Top Right - Cost/EBIT */}
-            <div className="absolute top-4 right-4 xl:right-8 w-64 xl:w-72 animate-fade-up pointer-events-auto" style={{ animationDelay: '0.2s' }}>
+            <div 
+              className="absolute top-4 right-4 xl:right-8 w-64 xl:w-72 animate-fade-up pointer-events-auto cursor-pointer" 
+              style={{ animationDelay: '0.2s' }}
+              onClick={() => navigate("/cost-ebit")}
+            >
               <KPICardWithHover
                 title={kpiCards[1].name}
                 value={kpiCards[1].value}
@@ -181,7 +194,11 @@ export default function Dashboard() {
             </div>
 
             {/* Bottom Left - Capacity */}
-            <div className="absolute bottom-4 left-4 xl:left-8 w-64 xl:w-72 animate-fade-up pointer-events-auto" style={{ animationDelay: '0.4s' }}>
+            <div 
+              className="absolute bottom-4 left-4 xl:left-8 w-64 xl:w-72 animate-fade-up pointer-events-auto cursor-pointer" 
+              style={{ animationDelay: '0.4s' }}
+              onClick={() => navigate("/capacity")}
+            >
               <KPICardWithHover
                 title={kpiCards[2].name}
                 value={kpiCards[2].value}
@@ -194,7 +211,11 @@ export default function Dashboard() {
             </div>
 
             {/* Bottom Right - Billing Utilization */}
-            <div className="absolute bottom-4 right-4 xl:right-8 w-64 xl:w-72 animate-fade-up pointer-events-auto" style={{ animationDelay: '0.6s' }}>
+            <div 
+              className="absolute bottom-4 right-4 xl:right-8 w-64 xl:w-72 animate-fade-up pointer-events-auto cursor-pointer" 
+              style={{ animationDelay: '0.6s' }}
+              onClick={() => navigate("/utilization")}
+            >
               <KPICardWithHover
                 title={kpiCards[3].name}
                 value={kpiCards[3].value}
@@ -208,42 +229,50 @@ export default function Dashboard() {
           </div>
           {/* Mobile/Tablet layout - stacked grid to avoid overlap */}
           <div className="w-full grid grid-cols-1 sm:grid-cols-2 gap-4 lg:hidden mt-8 px-2">
-            <KPICardWithHover
-              title={kpiCards[0].name}
-              value={kpiCards[0].value}
-              target={kpiCards[0].target}
-              variance={kpiCards[0].variance}
-              trend={kpiCards[0].trend}
-              icon={kpiCards[0].icon}
-              insight={kpiCards[0].insight}
-            />
-            <KPICardWithHover
-              title={kpiCards[1].name}
-              value={kpiCards[1].value}
-              target={kpiCards[1].target}
-              variance={kpiCards[1].variance}
-              trend={kpiCards[1].trend}
-              icon={kpiCards[1].icon}
-              insight={kpiCards[1].insight}
-            />
-            <KPICardWithHover
-              title={kpiCards[2].name}
-              value={kpiCards[2].value}
-              target={kpiCards[2].target}
-              variance={kpiCards[2].variance}
-              trend={kpiCards[2].trend}
-              icon={kpiCards[2].icon}
-              insight={kpiCards[2].insight}
-            />
-            <KPICardWithHover
-              title={kpiCards[3].name}
-              value={kpiCards[3].value}
-              target={kpiCards[3].target}
-              variance={kpiCards[3].variance}
-              trend={kpiCards[3].trend}
-              icon={kpiCards[3].icon}
-              insight={kpiCards[3].insight}
-            />
+            <div onClick={() => navigate("/revenue")} className="cursor-pointer">
+              <KPICardWithHover
+                title={kpiCards[0].name}
+                value={kpiCards[0].value}
+                target={kpiCards[0].target}
+                variance={kpiCards[0].variance}
+                trend={kpiCards[0].trend}
+                icon={kpiCards[0].icon}
+                insight={kpiCards[0].insight}
+              />
+            </div>
+            <div onClick={() => navigate("/cost-ebit")} className="cursor-pointer">
+              <KPICardWithHover
+                title={kpiCards[1].name}
+                value={kpiCards[1].value}
+                target={kpiCards[1].target}
+                variance={kpiCards[1].variance}
+                trend={kpiCards[1].trend}
+                icon={kpiCards[1].icon}
+                insight={kpiCards[1].insight}
+              />
+            </div>
+            <div onClick={() => navigate("/capacity")} className="cursor-pointer">
+              <KPICardWithHover
+                title={kpiCards[2].name}
+                value={kpiCards[2].value}
+                target={kpiCards[2].target}
+                variance={kpiCards[2].variance}
+                trend={kpiCards[2].trend}
+                icon={kpiCards[2].icon}
+                insight={kpiCards[2].insight}
+              />
+            </div>
+            <div onClick={() => navigate("/utilization")} className="cursor-pointer">
+              <KPICardWithHover
+                title={kpiCards[3].name}
+                value={kpiCards[3].value}
+                target={kpiCards[3].target}
+                variance={kpiCards[3].variance}
+                trend={kpiCards[3].trend}
+                icon={kpiCards[3].icon}
+                insight={kpiCards[3].insight}
+              />
+            </div>
           </div>
         </div>
 
