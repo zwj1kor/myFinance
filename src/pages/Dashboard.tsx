@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Sparkles, ArrowRight } from "lucide-react";
@@ -17,21 +16,7 @@ interface MetricCardData {
 }
 
 export default function Dashboard() {
-  const navigate = useNavigate();
   const [selectedAgent, setSelectedAgent] = useState<any>(null);
-
-  const handleKPIClick = (kpiName: string) => {
-    const routeMap: Record<string, string> = {
-      "Revenue": "/",
-      "Cost/EBIT": "/profitability",
-      "Capacity": "/projects",
-      "Billing Utilization": "/utilization",
-    };
-    const route = routeMap[kpiName];
-    if (route && route !== "/") {
-      navigate(route);
-    }
-  };
 
   const kpiCards = [
     { 
@@ -179,7 +164,6 @@ export default function Dashboard() {
                 trend={kpiCards[0].trend}
                 icon={kpiCards[0].icon}
                 insight={kpiCards[0].insight}
-                onClick={() => handleKPIClick(kpiCards[0].name)}
               />
             </div>
 
@@ -193,7 +177,6 @@ export default function Dashboard() {
                 trend={kpiCards[1].trend}
                 icon={kpiCards[1].icon}
                 insight={kpiCards[1].insight}
-                onClick={() => handleKPIClick(kpiCards[1].name)}
               />
             </div>
 
@@ -207,7 +190,6 @@ export default function Dashboard() {
                 trend={kpiCards[2].trend}
                 icon={kpiCards[2].icon}
                 insight={kpiCards[2].insight}
-                onClick={() => handleKPIClick(kpiCards[2].name)}
               />
             </div>
 
@@ -221,7 +203,6 @@ export default function Dashboard() {
                 trend={kpiCards[3].trend}
                 icon={kpiCards[3].icon}
                 insight={kpiCards[3].insight}
-                onClick={() => handleKPIClick(kpiCards[3].name)}
               />
             </div>
           </div>
@@ -235,7 +216,6 @@ export default function Dashboard() {
               trend={kpiCards[0].trend}
               icon={kpiCards[0].icon}
               insight={kpiCards[0].insight}
-              onClick={() => handleKPIClick(kpiCards[0].name)}
             />
             <KPICardWithHover
               title={kpiCards[1].name}
@@ -245,7 +225,6 @@ export default function Dashboard() {
               trend={kpiCards[1].trend}
               icon={kpiCards[1].icon}
               insight={kpiCards[1].insight}
-              onClick={() => handleKPIClick(kpiCards[1].name)}
             />
             <KPICardWithHover
               title={kpiCards[2].name}
@@ -255,7 +234,6 @@ export default function Dashboard() {
               trend={kpiCards[2].trend}
               icon={kpiCards[2].icon}
               insight={kpiCards[2].insight}
-              onClick={() => handleKPIClick(kpiCards[2].name)}
             />
             <KPICardWithHover
               title={kpiCards[3].name}
@@ -265,7 +243,6 @@ export default function Dashboard() {
               trend={kpiCards[3].trend}
               icon={kpiCards[3].icon}
               insight={kpiCards[3].insight}
-              onClick={() => handleKPIClick(kpiCards[3].name)}
             />
           </div>
         </div>
