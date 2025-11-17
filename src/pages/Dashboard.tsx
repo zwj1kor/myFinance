@@ -101,9 +101,9 @@ export default function Dashboard() {
           </p>
         </div>
         {/* Central AI Mind */}
-        <div className="flex items-center justify-center min-h-[400px] sm:min-h-[500px] lg:min-h-[600px] relative px-4 sm:px-6">
+        <div className="flex items-center justify-center min-h-[300px] sm:min-h-[400px] lg:min-h-[700px] relative px-4 sm:px-6 lg:px-8">
           {/* Central Core */}
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-20">
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-20 lg:z-20">
             <div className="relative">
               {/* Outer glow rings */}
               <div className="absolute inset-0 animate-ping opacity-20">
@@ -153,9 +153,9 @@ export default function Dashboard() {
           </div>
 
           {/* KPI Cards positioned radially */}
-          <div className="absolute top-0 left-0 w-full h-full hidden lg:block">
+          <div className="absolute top-0 left-0 w-full h-full hidden lg:block pointer-events-none">
             {/* Top Left - Revenue */}
-            <div className="absolute top-8 left-4 md:left-8 w-52 sm:w-60 md:w-64 lg:w-72 animate-fade-up" style={{ animationDelay: '0s' }}>
+            <div className="absolute top-4 left-4 xl:left-8 w-64 xl:w-72 animate-fade-up pointer-events-auto" style={{ animationDelay: '0s' }}>
               <KPICardWithHover
                 title={kpiCards[0].name}
                 value={kpiCards[0].value}
@@ -168,7 +168,7 @@ export default function Dashboard() {
             </div>
 
             {/* Top Right - Cost/EBIT */}
-            <div className="absolute top-8 right-4 md:right-8 w-52 sm:w-60 md:w-64 lg:w-72 animate-fade-up" style={{ animationDelay: '0.2s' }}>
+            <div className="absolute top-4 right-4 xl:right-8 w-64 xl:w-72 animate-fade-up pointer-events-auto" style={{ animationDelay: '0.2s' }}>
               <KPICardWithHover
                 title={kpiCards[1].name}
                 value={kpiCards[1].value}
@@ -181,7 +181,7 @@ export default function Dashboard() {
             </div>
 
             {/* Bottom Left - Capacity */}
-            <div className="absolute bottom-8 left-4 md:left-8 w-52 sm:w-60 md:w-64 lg:w-72 animate-fade-up" style={{ animationDelay: '0.4s' }}>
+            <div className="absolute bottom-4 left-4 xl:left-8 w-64 xl:w-72 animate-fade-up pointer-events-auto" style={{ animationDelay: '0.4s' }}>
               <KPICardWithHover
                 title={kpiCards[2].name}
                 value={kpiCards[2].value}
@@ -194,7 +194,7 @@ export default function Dashboard() {
             </div>
 
             {/* Bottom Right - Billing Utilization */}
-            <div className="absolute bottom-8 right-4 md:right-8 w-52 sm:w-60 md:w-64 lg:w-72 animate-fade-up" style={{ animationDelay: '0.6s' }}>
+            <div className="absolute bottom-4 right-4 xl:right-8 w-64 xl:w-72 animate-fade-up pointer-events-auto" style={{ animationDelay: '0.6s' }}>
               <KPICardWithHover
                 title={kpiCards[3].name}
                 value={kpiCards[3].value}
@@ -207,7 +207,7 @@ export default function Dashboard() {
             </div>
           </div>
           {/* Mobile/Tablet layout - stacked grid to avoid overlap */}
-          <div className="mt-6 grid grid-cols-1 sm:grid-cols-2 gap-4 lg:hidden">
+          <div className="w-full grid grid-cols-1 sm:grid-cols-2 gap-4 lg:hidden mt-8 px-2">
             <KPICardWithHover
               title={kpiCards[0].name}
               value={kpiCards[0].value}
