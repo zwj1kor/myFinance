@@ -3,61 +3,13 @@ import { useNavigate } from "react-router-dom";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Sparkles, ArrowRight } from "lucide-react";
-import KPICardWithHover from "@/components/KPICardWithHover";
+import { RevenueKPICard, CostEbitKPICard, CapacityKPICard, UtilizationKPICard } from "@/components/kpi";
 import FloatingChatDock from "@/components/FloatingChatDock";
 import AgentDetailModal from "@/components/AgentDetailModal";
-
-interface MetricCardData {
-  name: string;
-  value: string;
-  target: string;
-  variance: number;
-  trend: "up" | "down";
-  icon: string;
-}
 
 export default function Dashboard() {
   const navigate = useNavigate();
   const [selectedAgent, setSelectedAgent] = useState<any>(null);
-
-  const kpiCards = [
-    { 
-      name: "Revenue", 
-      value: "₹110Cr", 
-      target: "₹120Cr", 
-      variance: -8.3, 
-      trend: "down" as const, 
-      icon: "💰",
-      insight: "Revenue up 8.3% due to higher utilization in Europe and successful client expansions in BFSI sector."
-    },
-    { 
-      name: "Cost/EBIT", 
-      value: "₹25Cr", 
-      target: "₹31Cr", 
-      variance: -19.4, 
-      trend: "down" as const, 
-      icon: "📊",
-      insight: "EBIT margin compressed by 3.1pp due to offshore mix shift and vendor cost increases. Action needed on vendor renegotiation."
-    },
-    { 
-      name: "Capacity", 
-      value: "1,250", 
-      target: "1,400", 
-      variance: -10.7, 
-      trend: "down" as const, 
-      icon: "👥",
-      insight: "Capacity utilization at 89%. Bench strength of 150 resources available for immediate deployment to new projects."
-    },
-    { 
-      name: "Billing Utilization", 
-      value: "85%", 
-      target: "95%", 
-      variance: -10.5, 
-      trend: "down" as const, 
-      icon: "⚡",
-      insight: "Utilization gap of 10pp represents ₹12Cr opportunity. Focus on shadow staffing and accelerating project ramp-ups."
-    },
-  ];
 
   const aiAgents = [
     { 
@@ -102,6 +54,7 @@ export default function Dashboard() {
             Your intelligent finance command center
           </p>
         </div>
+
         {/* Central AI Mind */}
         <div className="flex items-center justify-center min-h-[300px] sm:min-h-[400px] lg:min-h-[700px] relative px-4 sm:px-6 lg:px-8">
           {/* Central Core */}
@@ -157,122 +110,47 @@ export default function Dashboard() {
             </div>
           </div>
 
-          {/* KPI Cards positioned radially */}
+          {/* KPI Cards positioned radially - Desktop */}
           <div className="absolute top-0 left-0 w-full h-full hidden lg:block pointer-events-none">
             {/* Top Left - Revenue */}
             <div 
               className="absolute top-4 left-4 xl:left-8 w-64 xl:w-72 animate-fade-up pointer-events-auto cursor-pointer" 
               style={{ animationDelay: '0s' }}
-              onClick={() => navigate("/revenue")}
             >
-              <KPICardWithHover
-                title={kpiCards[0].name}
-                value={kpiCards[0].value}
-                target={kpiCards[0].target}
-                variance={kpiCards[0].variance}
-                trend={kpiCards[0].trend}
-                icon={kpiCards[0].icon}
-                insight={kpiCards[0].insight}
-              />
+              <RevenueKPICard onClick={() => navigate("/revenue")} />
             </div>
 
             {/* Top Right - Cost/EBIT */}
             <div 
               className="absolute top-4 right-4 xl:right-8 w-64 xl:w-72 animate-fade-up pointer-events-auto cursor-pointer" 
               style={{ animationDelay: '0.2s' }}
-              onClick={() => navigate("/cost-ebit")}
             >
-              <KPICardWithHover
-                title={kpiCards[1].name}
-                value={kpiCards[1].value}
-                target={kpiCards[1].target}
-                variance={kpiCards[1].variance}
-                trend={kpiCards[1].trend}
-                icon={kpiCards[1].icon}
-                insight={kpiCards[1].insight}
-              />
+              <CostEbitKPICard onClick={() => navigate("/cost-ebit")} />
             </div>
 
             {/* Bottom Left - Capacity */}
             <div 
               className="absolute bottom-4 left-4 xl:left-8 w-64 xl:w-72 animate-fade-up pointer-events-auto cursor-pointer" 
               style={{ animationDelay: '0.4s' }}
-              onClick={() => navigate("/capacity")}
             >
-              <KPICardWithHover
-                title={kpiCards[2].name}
-                value={kpiCards[2].value}
-                target={kpiCards[2].target}
-                variance={kpiCards[2].variance}
-                trend={kpiCards[2].trend}
-                icon={kpiCards[2].icon}
-                insight={kpiCards[2].insight}
-              />
+              <CapacityKPICard onClick={() => navigate("/capacity")} />
             </div>
 
             {/* Bottom Right - Billing Utilization */}
             <div 
               className="absolute bottom-4 right-4 xl:right-8 w-64 xl:w-72 animate-fade-up pointer-events-auto cursor-pointer" 
               style={{ animationDelay: '0.6s' }}
-              onClick={() => navigate("/utilization")}
             >
-              <KPICardWithHover
-                title={kpiCards[3].name}
-                value={kpiCards[3].value}
-                target={kpiCards[3].target}
-                variance={kpiCards[3].variance}
-                trend={kpiCards[3].trend}
-                icon={kpiCards[3].icon}
-                insight={kpiCards[3].insight}
-              />
+              <UtilizationKPICard onClick={() => navigate("/utilization")} />
             </div>
           </div>
-          {/* Mobile/Tablet layout - stacked grid to avoid overlap */}
+
+          {/* Mobile/Tablet layout - stacked grid */}
           <div className="w-full grid grid-cols-1 sm:grid-cols-2 gap-4 lg:hidden mt-8 px-2">
-            <div onClick={() => navigate("/revenue")} className="cursor-pointer">
-              <KPICardWithHover
-                title={kpiCards[0].name}
-                value={kpiCards[0].value}
-                target={kpiCards[0].target}
-                variance={kpiCards[0].variance}
-                trend={kpiCards[0].trend}
-                icon={kpiCards[0].icon}
-                insight={kpiCards[0].insight}
-              />
-            </div>
-            <div onClick={() => navigate("/cost-ebit")} className="cursor-pointer">
-              <KPICardWithHover
-                title={kpiCards[1].name}
-                value={kpiCards[1].value}
-                target={kpiCards[1].target}
-                variance={kpiCards[1].variance}
-                trend={kpiCards[1].trend}
-                icon={kpiCards[1].icon}
-                insight={kpiCards[1].insight}
-              />
-            </div>
-            <div onClick={() => navigate("/capacity")} className="cursor-pointer">
-              <KPICardWithHover
-                title={kpiCards[2].name}
-                value={kpiCards[2].value}
-                target={kpiCards[2].target}
-                variance={kpiCards[2].variance}
-                trend={kpiCards[2].trend}
-                icon={kpiCards[2].icon}
-                insight={kpiCards[2].insight}
-              />
-            </div>
-            <div onClick={() => navigate("/utilization")} className="cursor-pointer">
-              <KPICardWithHover
-                title={kpiCards[3].name}
-                value={kpiCards[3].value}
-                target={kpiCards[3].target}
-                variance={kpiCards[3].variance}
-                trend={kpiCards[3].trend}
-                icon={kpiCards[3].icon}
-                insight={kpiCards[3].insight}
-              />
-            </div>
+            <RevenueKPICard onClick={() => navigate("/revenue")} />
+            <CostEbitKPICard onClick={() => navigate("/cost-ebit")} />
+            <CapacityKPICard onClick={() => navigate("/capacity")} />
+            <UtilizationKPICard onClick={() => navigate("/utilization")} />
           </div>
         </div>
 
