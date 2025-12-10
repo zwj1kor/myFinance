@@ -1,5 +1,6 @@
 import BaseKPICard from "./BaseKPICard";
 import { KPIData } from "./types";
+import { formatNumber } from "@/lib/utils";
 
 interface CapacityKPICardProps {
   data?: Partial<KPIData>;
@@ -9,8 +10,8 @@ interface CapacityKPICardProps {
 
 const defaultData: KPIData = {
   name: "Capacity",
-  value: "1,250",
-  target: "1,400",
+  value: formatNumber(1250), // 1,250
+  target: formatNumber(1400), // 1,400
   variance: -10.7,
   trend: "down",
   icon: "👥",
