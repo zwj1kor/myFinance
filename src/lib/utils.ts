@@ -12,8 +12,8 @@ export function formatNumber(value: number, locale: string = 'en-US'): string {
 
 export function formatCurrency(
   value: number, 
-  currency: string = 'INR', 
-  locale: string = 'en-IN'
+  currency: string = 'USD', 
+  locale: string = 'en-US'
 ): string {
   return new Intl.NumberFormat(locale, {
     style: 'currency',
@@ -38,18 +38,18 @@ export function formatCompactNumber(value: number, locale: string = 'en-US'): st
 
 export function formatCurrencyCompact(
   value: number, 
-  currency: string = 'INR',
-  locale: string = 'en-IN'
+  currency: string = 'USD',
+  locale: string = 'en-US'
 ): string {
-  const symbol = currency === 'INR' ? '₹' : currency === 'USD' ? '$' : '€';
-  if (value >= 10_000_000) {
-    return `${symbol}${(value / 10_000_000).toFixed(1)}Cr`;
+  const symbol = currency === 'USD' ? '$' : currency === 'EUR' ? '€' : '$';
+  if (value >= 1_000_000_000) {
+    return `${symbol}${(value / 1_000_000_000).toFixed(1)}B`;
   }
-  if (value >= 100_000) {
-    return `${symbol}${(value / 100_000).toFixed(1)}L`;
+  if (value >= 1_000_000) {
+    return `${symbol}${(value / 1_000_000).toFixed(1)}M`;
   }
   if (value >= 1_000) {
-    return `${symbol}${formatNumber(value / 1_000, locale)}K`;
+    return `${symbol}${(value / 1_000).toFixed(1)}K`;
   }
   return `${symbol}${formatNumber(value, locale)}`;
 }
