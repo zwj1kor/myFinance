@@ -9,8 +9,8 @@ interface RevenueKPICardProps {
 
 const defaultData: KPIData = {
   name: "Revenue",
-  value: "₹110Cr",
-  target: "₹120Cr",
+  value: "$14.5M",
+  target: "$16.0M",
   variance: -8.3,
   trend: "down",
   icon: "💰",

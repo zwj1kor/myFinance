@@ -9,8 +9,8 @@ interface CostEbitKPICardProps {
 
 const defaultData: KPIData = {
   name: "Cost/EBIT",
-  value: "₹25Cr",
-  target: "₹31Cr",
+  value: "$3.2M",
+  target: "$4.0M",
   variance: -19.4,
   trend: "down",
   icon: "📊",
