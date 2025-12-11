@@ -20,10 +20,10 @@ export default function BaseKPICard({
       <HoverCardTrigger asChild>
         <Card
           className={cn(
-            "p-6 cursor-pointer glass-card hover-neon group transition-all duration-500",
+            "p-8 cursor-pointer glass-card hover-neon group transition-all duration-500",
             "border-2 border-primary/30 animate-fade-in relative overflow-hidden rounded-2xl",
             "hover:scale-[1.02] hover:shadow-xl hover:shadow-primary/20",
-            "min-h-[200px] flex flex-col justify-between",
+            "min-h-[260px] flex flex-col justify-between",
             className
           )}
           onClick={onClick}
@@ -31,52 +31,52 @@ export default function BaseKPICard({
           {/* Glow layers */}
           <div className="absolute inset-0 bg-gradient-primary opacity-0 group-hover:opacity-10 transition-opacity duration-500" />
           <div className="absolute -inset-1 bg-gradient-neon opacity-0 group-hover:opacity-15 blur-xl transition-opacity duration-700" />
-          <div className="absolute top-0 right-0 w-24 h-24 bg-primary/10 rounded-full blur-2xl group-hover:bg-primary/15 transition-all duration-700" />
+          <div className="absolute top-0 right-0 w-32 h-32 bg-primary/10 rounded-full blur-2xl group-hover:bg-primary/15 transition-all duration-700" />
           
-          <div className="space-y-4 relative z-10 flex-1 flex flex-col justify-between">
+          <div className="space-y-5 relative z-10 flex-1 flex flex-col justify-between">
             {/* Header */}
             <div className="flex items-center justify-between">
-              <div className="flex items-center gap-3">
-                <div className="text-3xl group-hover:scale-110 group-hover:rotate-6 transition-all duration-500 drop-shadow-glow filter group-hover:brightness-110">
+              <div className="flex items-center gap-4">
+                <div className="text-4xl group-hover:scale-110 group-hover:rotate-6 transition-all duration-500 drop-shadow-glow filter group-hover:brightness-110">
                   {icon}
                 </div>
                 <div>
-                  <h3 className="text-base font-display font-bold text-foreground group-hover:text-gradient-neon transition-all duration-300">
+                  <h3 className="text-lg font-display font-bold text-foreground group-hover:text-gradient-neon transition-all duration-300">
                     {name}
                   </h3>
-                  <p className="text-xs text-muted-foreground group-hover:text-primary transition-colors">
+                  <p className="text-sm text-muted-foreground group-hover:text-primary transition-colors">
                     Deep dive →
                   </p>
                 </div>
               </div>
               <div
                 className={cn(
-                  "p-2 rounded-xl transition-all duration-300 group-hover:scale-105",
+                  "p-3 rounded-xl transition-all duration-300 group-hover:scale-105",
                   trend === "up"
                     ? "bg-success/20 shadow-glow group-hover:shadow-success/50"
                     : "bg-destructive/20 group-hover:shadow-destructive/50"
                 )}
               >
                 {trend === "up" ? (
-                  <TrendingUp className="w-5 h-5 text-success" />
+                  <TrendingUp className="w-6 h-6 text-success" />
                 ) : (
-                  <TrendingDown className="w-5 h-5 text-destructive" />
+                  <TrendingDown className="w-6 h-6 text-destructive" />
                 )}
               </div>
             </div>
 
             {/* Value & Target */}
-            <div className="space-y-2">
+            <div className="space-y-3">
               <div className="flex items-baseline gap-2">
-                <span className="text-3xl font-display font-bold text-foreground group-hover:text-gradient-primary transition-all duration-300">
+                <span className="text-4xl font-display font-bold text-foreground group-hover:text-gradient-primary transition-all duration-300">
                   {value}
                 </span>
               </div>
-              <div className="flex items-center justify-between text-xs">
+              <div className="flex items-center justify-between text-sm">
                 <span className="text-muted-foreground font-medium">Target: {target}</span>
                 <span
                   className={cn(
-                    "font-bold px-3 py-1.5 rounded-xl border transition-all duration-300 group-hover:scale-105",
+                    "font-bold px-4 py-2 rounded-xl border transition-all duration-300 group-hover:scale-105",
                     variance >= 0
                       ? "bg-success/10 text-success border-success/30 group-hover:bg-success/20"
                       : "bg-destructive/10 text-destructive border-destructive/30 group-hover:bg-destructive/20"
@@ -89,7 +89,7 @@ export default function BaseKPICard({
             </div>
 
             {/* Progress Bar */}
-            <div className="h-2 bg-muted/50 rounded-full overflow-hidden shadow-inner border border-border/50 group-hover:h-2.5 transition-all duration-300">
+            <div className="h-3 bg-muted/50 rounded-full overflow-hidden shadow-inner border border-border/50 group-hover:h-3.5 transition-all duration-300">
               <div
                 className={cn(
                   "h-full rounded-full transition-all duration-700 group-hover:animate-pulse",

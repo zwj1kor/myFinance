@@ -114,7 +114,7 @@ export default function Dashboard() {
           <div className="absolute top-0 left-0 w-full h-full hidden lg:block pointer-events-none">
             {/* Top Left - Revenue */}
             <div 
-              className="absolute top-4 left-4 xl:left-8 w-72 animate-fade-up pointer-events-auto cursor-pointer" 
+              className="absolute top-4 left-4 xl:left-8 w-80 xl:w-[340px] animate-fade-up pointer-events-auto cursor-pointer" 
               style={{ animationDelay: '0s' }}
             >
               <RevenueKPICard onClick={() => navigate("/revenue")} />
@@ -122,7 +122,7 @@ export default function Dashboard() {
 
             {/* Top Right - Cost/EBIT */}
             <div 
-              className="absolute top-4 right-4 xl:right-8 w-72 animate-fade-up pointer-events-auto cursor-pointer" 
+              className="absolute top-4 right-4 xl:right-8 w-80 xl:w-[340px] animate-fade-up pointer-events-auto cursor-pointer" 
               style={{ animationDelay: '0.2s' }}
             >
               <CostEbitKPICard onClick={() => navigate("/cost-ebit")} />
@@ -130,7 +130,7 @@ export default function Dashboard() {
 
             {/* Bottom Left - Capacity */}
             <div 
-              className="absolute bottom-4 left-4 xl:left-8 w-72 animate-fade-up pointer-events-auto cursor-pointer" 
+              className="absolute bottom-4 left-4 xl:left-8 w-80 xl:w-[340px] animate-fade-up pointer-events-auto cursor-pointer" 
               style={{ animationDelay: '0.4s' }}
             >
               <CapacityKPICard onClick={() => navigate("/capacity")} />
@@ -138,7 +138,7 @@ export default function Dashboard() {
 
             {/* Bottom Right - Billing Utilization */}
             <div 
-              className="absolute bottom-4 right-4 xl:right-8 w-72 animate-fade-up pointer-events-auto cursor-pointer" 
+              className="absolute bottom-4 right-4 xl:right-8 w-80 xl:w-[340px] animate-fade-up pointer-events-auto cursor-pointer" 
               style={{ animationDelay: '0.6s' }}
             >
               <UtilizationKPICard onClick={() => navigate("/utilization")} />
