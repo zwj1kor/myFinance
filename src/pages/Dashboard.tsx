@@ -114,7 +114,7 @@ export default function Dashboard() {
           <div className="absolute top-0 left-0 w-full h-full hidden lg:block pointer-events-none">
             {/* Top Left - Revenue */}
             <div 
-              className="absolute top-4 left-4 xl:left-8 w-64 xl:w-72 animate-fade-up pointer-events-auto cursor-pointer" 
+              className="absolute top-4 left-4 xl:left-8 w-72 animate-fade-up pointer-events-auto cursor-pointer" 
               style={{ animationDelay: '0s' }}
             >
               <RevenueKPICard onClick={() => navigate("/revenue")} />
@@ -122,7 +122,7 @@ export default function Dashboard() {
 
             {/* Top Right - Cost/EBIT */}
             <div 
-              className="absolute top-4 right-4 xl:right-8 w-64 xl:w-72 animate-fade-up pointer-events-auto cursor-pointer" 
+              className="absolute top-4 right-4 xl:right-8 w-72 animate-fade-up pointer-events-auto cursor-pointer" 
               style={{ animationDelay: '0.2s' }}
             >
               <CostEbitKPICard onClick={() => navigate("/cost-ebit")} />
@@ -130,7 +130,7 @@ export default function Dashboard() {
 
             {/* Bottom Left - Capacity */}
             <div 
-              className="absolute bottom-4 left-4 xl:left-8 w-64 xl:w-72 animate-fade-up pointer-events-auto cursor-pointer" 
+              className="absolute bottom-4 left-4 xl:left-8 w-72 animate-fade-up pointer-events-auto cursor-pointer" 
               style={{ animationDelay: '0.4s' }}
             >
               <CapacityKPICard onClick={() => navigate("/capacity")} />
@@ -138,7 +138,7 @@ export default function Dashboard() {
 
             {/* Bottom Right - Billing Utilization */}
             <div 
-              className="absolute bottom-4 right-4 xl:right-8 w-64 xl:w-72 animate-fade-up pointer-events-auto cursor-pointer" 
+              className="absolute bottom-4 right-4 xl:right-8 w-72 animate-fade-up pointer-events-auto cursor-pointer" 
               style={{ animationDelay: '0.6s' }}
             >
               <UtilizationKPICard onClick={() => navigate("/utilization")} />
@@ -156,25 +156,25 @@ export default function Dashboard() {
 
         {/* AI Agents Bottom Section */}
         <div className="mt-6 sm:mt-8 animate-fade-in" style={{ animationDelay: '1s' }}>
-          <Card className="p-4 sm:p-6 lg:p-8 glass-card border-2 border-neon relative overflow-hidden rounded-2xl sm:rounded-3xl shadow-2xl shadow-primary/20">
+          <Card className="p-4 sm:p-6 glass-card border-2 border-neon relative overflow-hidden rounded-2xl shadow-xl shadow-primary/20">
             <div className="absolute inset-0 bg-gradient-primary opacity-5" />
-            <div className="flex items-center gap-3 mb-6 relative z-10">
-              <div className="p-3 bg-gradient-neon rounded-2xl shadow-neon">
-                <Sparkles className="w-7 h-7 text-white animate-pulse" />
+            <div className="flex items-center gap-3 mb-5 relative z-10">
+              <div className="p-2.5 bg-gradient-neon rounded-xl shadow-neon">
+                <Sparkles className="w-6 h-6 text-white animate-pulse" />
               </div>
-              <h2 className="text-2xl font-display font-bold text-gradient-neon">AI Agents</h2>
+              <h2 className="text-xl font-display font-bold text-gradient-neon">AI Agents</h2>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 relative z-10">
               {aiAgents.map((agent, index) => (
                 <Card 
                   key={agent.name} 
-                  className="p-5 glass-card border-2 border-border/50 hover-neon group cursor-pointer animate-scale-in rounded-2xl hover:scale-105 transition-all duration-300 hover:shadow-xl hover:shadow-primary/20"
+                  className="p-4 glass-card border-2 border-border/50 hover-neon group cursor-pointer animate-scale-in rounded-2xl hover:scale-[1.02] transition-all duration-300 hover:shadow-lg hover:shadow-primary/20 min-h-[160px] flex flex-col justify-between"
                   style={{ animationDelay: `${1 + index * 0.1}s` }}
                   onClick={() => setSelectedAgent({ name: agent.name, icon: agent.emoji })}
                 >
-                  <div className="space-y-3">
+                  <div className="space-y-3 flex flex-col h-full justify-between">
                     <div className="flex items-center gap-3">
-                      <span className="text-4xl group-hover:scale-125 group-hover:rotate-12 transition-all duration-300">{agent.emoji}</span>
+                      <span className="text-3xl group-hover:scale-110 group-hover:rotate-6 transition-all duration-300">{agent.emoji}</span>
                       <div className="flex-1">
                         <p className="text-sm font-display font-bold text-foreground">{agent.name}</p>
                         <div className="flex items-center gap-2 mt-1">
@@ -183,11 +183,11 @@ export default function Dashboard() {
                         </div>
                       </div>
                     </div>
-                    <p className="text-xs text-muted-foreground leading-relaxed">{agent.insight}</p>
+                    <p className="text-xs text-muted-foreground leading-relaxed flex-1">{agent.insight}</p>
                     <Button 
                       variant="ghost" 
                       size="sm" 
-                      className="w-full text-primary hover:bg-primary/20 border-2 border-primary/30 hover:border-primary/60 transition-all rounded-xl"
+                      className="w-full text-primary hover:bg-primary/20 border border-primary/30 hover:border-primary/60 transition-all rounded-xl text-xs"
                     >
                       {agent.action}
                       <ArrowRight className="w-3 h-3 ml-2" />
