@@ -1,6 +1,5 @@
 import BaseKPICard from "./BaseKPICard";
 import { KPIData } from "./types";
-import { formatCurrency } from "@/lib/utils";
 
 interface RevenueKPICardProps {
   data?: Partial<KPIData>;
@@ -10,8 +9,8 @@ interface RevenueKPICardProps {
 
 const defaultData: KPIData = {
   name: "Revenue",
-  value: formatCurrency(110000000, 'USD', true), // $110M
-  target: formatCurrency(120000000, 'USD', true), // $120M
+  value: "₹110Cr",
+  target: "₹120Cr",
   variance: -8.3,
   trend: "down",
   icon: "💰",

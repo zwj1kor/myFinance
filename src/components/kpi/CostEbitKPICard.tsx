@@ -1,6 +1,5 @@
 import BaseKPICard from "./BaseKPICard";
 import { KPIData } from "./types";
-import { formatCurrency } from "@/lib/utils";
 
 interface CostEbitKPICardProps {
   data?: Partial<KPIData>;
@@ -10,8 +9,8 @@ interface CostEbitKPICardProps {
 
 const defaultData: KPIData = {
   name: "Cost/EBIT",
-  value: formatCurrency(25000000, 'USD', true), // $25M
-  target: formatCurrency(31000000, 'USD', true), // $31M
+  value: "₹25Cr",
+  target: "₹31Cr",
   variance: -19.4,
   trend: "down",
   icon: "📊",
