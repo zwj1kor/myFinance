@@ -1,9 +1,8 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Card } from "@/components/ui/card";
-import { Sparkles, X, TrendingUp, TrendingDown, MessageCircle } from "lucide-react";
+import { Sparkles, X, TrendingUp, TrendingDown } from "lucide-react";
 import FloatingChatDock from "@/components/FloatingChatDock";
-import TileChatButton from "@/components/TileChatButton";
 
 interface SubKPI {
   name: string;
@@ -199,17 +198,6 @@ export default function Dashboard() {
                   </Card>
                 </div>
 
-                {/* Chat with AI about this KPI */}
-                <div className="mt-4 pt-4 border-t border-border/30">
-                  <div className="flex items-center justify-center gap-3">
-                    <TileChatButton 
-                      context={`${expandedKPI.sub.name} - ${expandedKPI.sub.description}`} 
-                      className="w-10 h-10"
-                    />
-                    <span className="text-sm text-muted-foreground">Chat with AI about this KPI</span>
-                  </div>
-                </div>
-
                 {/* Click anywhere hint */}
                 <div className="text-center mt-4 pt-4 border-t border-border/30">
                   <p className="text-sm text-muted-foreground">Click anywhere outside to close</p>
@@ -248,14 +236,10 @@ export default function Dashboard() {
                       <Card
                         key={subKPI.name}
                         className={`p-2.5 glass-card border ${colorClasses.subBorder} rounded-lg 
-                          transition-all duration-200 hover:scale-[1.02] cursor-pointer hover:shadow-lg ${colorClasses.shadow} relative group`}
+                          transition-all duration-200 hover:scale-[1.02] cursor-pointer hover:shadow-lg ${colorClasses.shadow}`}
                         onClick={() => handleSubKPIClick(kpi.name, subKPI)}
                       >
-                        {/* Chat icon on top right */}
-                        <div className="absolute top-1 right-1 opacity-0 group-hover:opacity-100 transition-opacity duration-200">
-                          <TileChatButton context={`${subKPI.name} in ${kpi.name}`} />
-                        </div>
-                        <p className="text-[10px] text-muted-foreground truncate mb-0.5 pr-6">{subKPI.name}</p>
+                        <p className="text-[10px] text-muted-foreground truncate mb-0.5">{subKPI.name}</p>
                         <div className="flex items-center justify-between gap-1">
                           <p className="text-sm font-display font-bold text-foreground truncate">{subKPI.value}</p>
                           <span className={`text-[10px] flex-shrink-0 ${subKPI.variance >= 0 ? "text-success" : "text-destructive"}`}>
