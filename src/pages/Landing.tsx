@@ -38,12 +38,9 @@ const personas = [
   },
 ];
 
-// Double the personas for seamless infinite loop
-const duplicatedPersonas = [...personas, ...personas];
-
 const Landing = () => {
   return (
-    <div className="min-h-screen bg-background flex flex-col items-center justify-center overflow-hidden">
+    <div className="min-h-screen bg-background flex flex-col items-center justify-center overflow-hidden px-4 py-8">
       {/* Background effects */}
       <div className="absolute inset-0 overflow-hidden">
         <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-primary/10 rounded-full blur-3xl animate-pulse" />
@@ -53,24 +50,23 @@ const Landing = () => {
 
       {/* Header */}
       <div className="relative z-10 text-center mb-12">
-        <h1 className="text-5xl md:text-6xl font-bold bg-gradient-to-r from-primary via-accent to-primary bg-clip-text text-transparent mb-4">
+        <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold bg-gradient-to-r from-primary via-accent to-primary bg-clip-text text-transparent mb-4">
           Finance Intelligence Hub
         </h1>
-        <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
+        <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto">
           Select your persona to access personalized insights and analytics
         </p>
       </div>
 
-      {/* Horizontal Sliding Carousel */}
-      <div className="relative w-full overflow-hidden py-8">
-        {/* Gradient masks for fade effect */}
-        <div className="absolute left-0 top-0 bottom-0 w-32 bg-gradient-to-r from-background to-transparent z-10 pointer-events-none" />
-        <div className="absolute right-0 top-0 bottom-0 w-32 bg-gradient-to-l from-background to-transparent z-10 pointer-events-none" />
-        
-        {/* Sliding track */}
-        <div className="flex animate-slide-carousel hover:[animation-play-state:paused]">
-          {duplicatedPersonas.map((persona, index) => (
-            <div key={`${persona.name}-${index}`} className="flex-shrink-0 px-4">
+      {/* Cards Grid - All visible */}
+      <div className="relative z-10 w-full max-w-7xl">
+        <div className="flex flex-wrap justify-center gap-6 lg:gap-8">
+          {personas.map((persona, index) => (
+            <div 
+              key={persona.name} 
+              className="animate-fade-up"
+              style={{ animationDelay: `${index * 0.1}s` }}
+            >
               <PersonaCard {...persona} />
             </div>
           ))}
@@ -78,10 +74,10 @@ const Landing = () => {
       </div>
 
       {/* Instructions */}
-      <div className="relative z-10 mt-8 text-center">
+      <div className="relative z-10 mt-12 text-center">
         <p className="text-sm text-muted-foreground">
           <span className="inline-block animate-bounce mr-2">👆</span>
-          Hover to pause & flip • Click card to enter dashboard
+          Hover to flip • Click card to enter dashboard
           <span className="inline-block animate-bounce ml-2">👆</span>
         </p>
       </div>
