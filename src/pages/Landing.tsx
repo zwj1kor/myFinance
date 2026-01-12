@@ -50,23 +50,37 @@ const Landing = () => {
 
       {/* Header */}
       <div className="relative z-10 text-center mb-12">
-        <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold bg-gradient-to-r from-primary via-accent to-primary bg-clip-text text-transparent mb-4">
-          Finance Intelligence Hub
+        <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold bg-gradient-to-r from-primary via-accent to-primary bg-clip-text text-transparent mb-2">
+          myFinance.ai
         </h1>
-        <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto">
-          Select your persona to access personalized insights and analytics
+        <p className="text-base md:text-lg text-muted-foreground tracking-widest uppercase">
+          Finance Intelligence Hub
         </p>
       </div>
 
-      {/* Cards Grid - All visible */}
-      <div className="relative z-10 w-full max-w-7xl">
-        <div className="flex flex-wrap justify-center gap-6 lg:gap-8">
-          {personas.map((persona, index) => (
-            <div 
-              key={persona.name} 
-              className="animate-fade-up"
-              style={{ animationDelay: `${index * 0.1}s` }}
-            >
+      {/* Sliding Carousel */}
+      <div className="relative z-10 w-full max-w-7xl overflow-hidden group/carousel">
+        {/* Gradient fade edges */}
+        <div className="absolute left-0 top-0 bottom-0 w-20 md:w-32 bg-gradient-to-r from-background to-transparent z-10 pointer-events-none" />
+        <div className="absolute right-0 top-0 bottom-0 w-20 md:w-32 bg-gradient-to-l from-background to-transparent z-10 pointer-events-none" />
+        
+        {/* Sliding track - duplicated for infinite effect */}
+        <div className="flex gap-6 lg:gap-8 animate-slide-carousel group-hover/carousel:[animation-play-state:paused] py-4">
+          {/* First set */}
+          {personas.map((persona) => (
+            <div key={`first-${persona.name}`} className="flex-shrink-0">
+              <PersonaCard {...persona} />
+            </div>
+          ))}
+          {/* Second set for seamless loop */}
+          {personas.map((persona) => (
+            <div key={`second-${persona.name}`} className="flex-shrink-0">
+              <PersonaCard {...persona} />
+            </div>
+          ))}
+          {/* Third set for extra smooth loop on wide screens */}
+          {personas.map((persona) => (
+            <div key={`third-${persona.name}`} className="flex-shrink-0">
               <PersonaCard {...persona} />
             </div>
           ))}
@@ -77,7 +91,7 @@ const Landing = () => {
       <div className="relative z-10 mt-12 text-center">
         <p className="text-sm text-muted-foreground">
           <span className="inline-block animate-bounce mr-2">👆</span>
-          Hover to flip • Click card to enter dashboard
+          Hover to pause & flip • Click card to enter dashboard
           <span className="inline-block animate-bounce ml-2">👆</span>
         </p>
       </div>
