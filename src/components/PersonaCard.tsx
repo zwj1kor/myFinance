@@ -19,17 +19,24 @@ const PersonaCard = ({ name, title, description, icon, route }: PersonaCardProps
 
   return (
     <div
-      className="w-52 h-64 cursor-pointer perspective-1000 group"
+      className="w-52 h-64 cursor-pointer group"
+      style={{ perspective: "1000px" }}
       onMouseEnter={() => setIsFlipped(true)}
       onMouseLeave={() => setIsFlipped(false)}
       onClick={handleClick}
     >
       <div
-        className={`relative w-full h-full transition-all duration-500 transform-style-3d 
-          group-hover:scale-110 group-hover:-translate-y-2 ${isFlipped ? "rotate-y-180" : ""}`}
+        className="relative w-full h-full transition-all duration-500 group-hover:scale-110 group-hover:-translate-y-2"
+        style={{ 
+          transformStyle: "preserve-3d",
+          transform: isFlipped ? "rotateY(180deg)" : "rotateY(0deg)"
+        }}
       >
         {/* Front of card */}
-        <div className="absolute inset-0 backface-hidden rounded-2xl bg-gradient-to-br from-primary/20 via-card to-accent/20 border border-primary/30 shadow-xl shadow-primary/10 flex flex-col items-center justify-center gap-3 p-5 overflow-hidden group-hover:shadow-2xl group-hover:shadow-primary/30 transition-shadow duration-300">
+        <div 
+          className="absolute inset-0 rounded-2xl bg-gradient-to-br from-primary/20 via-card to-accent/20 border border-primary/30 shadow-xl shadow-primary/10 flex flex-col items-center justify-center gap-3 p-5 overflow-hidden group-hover:shadow-2xl group-hover:shadow-primary/30 transition-shadow duration-300"
+          style={{ backfaceVisibility: "hidden" }}
+        >
           {/* Shine effect overlay */}
           <div className="absolute inset-0 opacity-0 group-hover:opacity-100 pointer-events-none overflow-hidden">
             <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700 ease-in-out" />
@@ -47,7 +54,13 @@ const PersonaCard = ({ name, title, description, icon, route }: PersonaCardProps
         </div>
 
         {/* Back of card */}
-        <div className="absolute inset-0 backface-hidden rotate-y-180 rounded-2xl bg-gradient-to-br from-accent/30 via-card to-primary/30 border border-accent/40 shadow-xl shadow-accent/10 flex flex-col items-center justify-center gap-3 p-5 overflow-hidden group-hover:shadow-2xl group-hover:shadow-accent/30 transition-shadow duration-300">
+        <div 
+          className="absolute inset-0 rounded-2xl bg-gradient-to-br from-accent/30 via-card to-primary/30 border border-accent/40 shadow-xl shadow-accent/10 flex flex-col items-center justify-center gap-3 p-5 overflow-hidden group-hover:shadow-2xl group-hover:shadow-accent/30 transition-shadow duration-300"
+          style={{ 
+            backfaceVisibility: "hidden",
+            transform: "rotateY(180deg)"
+          }}
+        >
           {/* Shine effect overlay */}
           <div className="absolute inset-0 opacity-0 group-hover:opacity-100 pointer-events-none overflow-hidden">
             <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700 ease-in-out delay-300" />
