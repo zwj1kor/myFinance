@@ -13,6 +13,7 @@ import RevenueDetails from "./pages/RevenueDetails";
 import CostEbitDetails from "./pages/CostEbitDetails";
 import CapacityDetails from "./pages/CapacityDetails";
 import UtilizationDetails from "./pages/UtilizationDetails";
+import CashflowDetails from "./pages/CashflowDetails";
 import AIOverview from "./pages/AIOverview";
 import NotFound from "./pages/NotFound";
 
@@ -34,6 +35,7 @@ const AppContent = () => {
         <Route path="/cost-ebit" element={<CostEbitDetails />} />
         <Route path="/capacity" element={<CapacityDetails />} />
         <Route path="/utilization" element={<UtilizationDetails />} />
+        <Route path="/cashflow" element={<CashflowDetails />} />
         <Route path="/ai-overview" element={<AIOverview />} />
         <Route path="*" element={<NotFound />} />
       </Routes>

@@ -1,35 +1,64 @@
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { ArrowLeft, TrendingUp, DollarSign, Target, Calendar } from "lucide-react";
-import { useNavigate } from "react-router-dom";
-import { Progress } from "@/components/ui/progress";
+import { ArrowLeft } from "lucide-react";
+import { useNavigate, useSearchParams } from "react-router-dom";
+
+interface MetricData {
+  name: string;
+  value: string;
+  target: string;
+  variance: number;
+  trend: "up" | "down";
+  description: string;
+}
+
+const revenueMetrics: MetricData[] = [
+  {
+    name: "Receivables",
+    value: "₹18Cr",
+    target: "₹15Cr",
+    variance: 20.0,
+    trend: "up",
+    description: "Outstanding amounts to be collected from clients",
+  },
+  {
+    name: "Collections",
+    value: "₹95Cr",
+    target: "₹100Cr",
+    variance: -5.0,
+    trend: "down",
+    description: "Total cash collected from clients this period",
+  },
+  {
+    name: "Export Realization",
+    value: "₹42Cr",
+    target: "₹45Cr",
+    variance: -6.7,
+    trend: "down",
+    description: "Revenue realized from international clients",
+  },
+  {
+    name: "Revenue",
+    value: "₹110Cr",
+    target: "₹120Cr",
+    variance: -8.3,
+    trend: "down",
+    description: "Total revenue generated this period",
+  },
+  {
+    name: "Revenue per Capacity",
+    value: "₹8.8L",
+    target: "₹9.2L",
+    variance: -4.3,
+    trend: "down",
+    description: "Average revenue generated per resource",
+  },
+];
 
 export default function RevenueDetails() {
   const navigate = useNavigate();
-
-  const revenueData = {
-    current: "₹110Cr",
-    target: "₹120Cr",
-    variance: -8.3,
-    growth: "+12.5%",
-    quarters: [
-      { name: "Q1", value: "₹25Cr", growth: "+8%" },
-      { name: "Q2", value: "₹28Cr", growth: "+12%" },
-      { name: "Q3", value: "₹30Cr", growth: "+15%" },
-      { name: "Q4", value: "₹27Cr", growth: "+10%" },
-    ],
-    topClients: [
-      { name: "BFSI Sector", revenue: "₹35Cr", share: "32%" },
-      { name: "Manufacturing", revenue: "₹28Cr", share: "25%" },
-      { name: "Healthcare", revenue: "₹22Cr", share: "20%" },
-      { name: "Technology", revenue: "₹25Cr", share: "23%" },
-    ],
-    regions: [
-      { name: "Europe", revenue: "₹45Cr", growth: "+18%" },
-      { name: "North America", revenue: "₹38Cr", growth: "+10%" },
-      { name: "Asia Pacific", revenue: "₹27Cr", growth: "+8%" },
-    ],
-  };
+  const [searchParams] = useSearchParams();
+  const selectedMetric = searchParams.get("metric");
 
   return (
     <div className="min-h-screen bg-background p-4 sm:p-6 lg:p-8">
@@ -40,146 +69,68 @@ export default function RevenueDetails() {
             <Button
               variant="ghost"
               size="icon"
-              onClick={() => navigate("/")}
+              onClick={() => navigate("/dashboard")}
               className="hover:bg-primary/20 hover:scale-110 transition-all rounded-2xl"
             >
               <ArrowLeft className="w-5 h-5" />
             </Button>
             <div>
               <h1 className="text-3xl sm:text-4xl font-display font-bold text-gradient-neon">
-                Revenue Analytics
+                Revenue Metrics
               </h1>
-              <p className="text-muted-foreground mt-1">Deep dive into revenue performance and trends</p>
+              <p className="text-muted-foreground mt-1">Detailed breakdown of revenue KPIs</p>
             </div>
           </div>
           <div className="text-5xl animate-float">💰</div>
         </div>
 
-        {/* Key Metrics */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-          <Card className="p-6 glass-card border-2 border-primary/30 hover:border-primary/60 transition-all rounded-2xl hover:shadow-xl hover:shadow-primary/20">
-            <div className="flex items-center gap-3 mb-3">
-              <div className="p-3 bg-gradient-primary rounded-2xl shadow-glow">
-                <DollarSign className="w-6 h-6 text-white" />
-              </div>
-              <p className="text-sm text-muted-foreground">Current Revenue</p>
-            </div>
-            <p className="text-3xl font-display font-bold text-gradient-neon">{revenueData.current}</p>
-            <p className="text-sm text-success mt-2">{revenueData.growth} YoY</p>
-          </Card>
-
-          <Card className="p-6 glass-card border-2 border-accent/30 hover:border-accent/60 transition-all rounded-2xl hover:shadow-xl hover:shadow-accent/20">
-            <div className="flex items-center gap-3 mb-3">
-              <div className="p-3 bg-gradient-accent rounded-2xl shadow-glow">
-                <Target className="w-6 h-6 text-white" />
-              </div>
-              <p className="text-sm text-muted-foreground">Target Revenue</p>
-            </div>
-            <p className="text-3xl font-display font-bold text-foreground">{revenueData.target}</p>
-            <p className="text-sm text-warning mt-2">{revenueData.variance}% variance</p>
-          </Card>
-
-          <Card className="p-6 glass-card border-2 border-secondary/30 hover:border-secondary/60 transition-all rounded-2xl hover:shadow-xl hover:shadow-secondary/20">
-            <div className="flex items-center gap-3 mb-3">
-              <div className="p-3 bg-gradient-neon rounded-2xl shadow-glow">
-                <TrendingUp className="w-6 h-6 text-white" />
-              </div>
-              <p className="text-sm text-muted-foreground">Growth Rate</p>
-            </div>
-            <p className="text-3xl font-display font-bold text-gradient-neon">+12.5%</p>
-            <p className="text-sm text-success mt-2">Above industry avg</p>
-          </Card>
-
-          <Card className="p-6 glass-card border-2 border-border/50 hover:border-primary/60 transition-all rounded-2xl hover:shadow-xl hover:shadow-primary/20">
-            <div className="flex items-center gap-3 mb-3">
-              <div className="p-3 bg-gradient-primary rounded-2xl shadow-glow">
-                <Calendar className="w-6 h-6 text-white" />
-              </div>
-              <p className="text-sm text-muted-foreground">Forecast</p>
-            </div>
-            <p className="text-3xl font-display font-bold text-foreground">₹128Cr</p>
-            <p className="text-sm text-success mt-2">Next quarter</p>
-          </Card>
-        </div>
-
-        {/* Quarterly Performance */}
-        <Card className="p-6 lg:p-8 glass-card border-2 border-neon rounded-2xl shadow-xl shadow-primary/20">
-          <h2 className="text-2xl font-display font-bold text-gradient-neon mb-6">Quarterly Performance</h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-            {revenueData.quarters.map((quarter) => (
-              <Card key={quarter.name} className="p-5 glass-card border-2 border-border/50 hover:border-primary/60 transition-all rounded-2xl hover:scale-105">
-                <p className="text-sm text-muted-foreground mb-2">{quarter.name}</p>
-                <p className="text-2xl font-display font-bold text-foreground mb-1">{quarter.value}</p>
-                <p className="text-sm text-success">{quarter.growth} growth</p>
-              </Card>
-            ))}
-          </div>
-        </Card>
-
-        {/* Top Clients and Regional Performance */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-          <Card className="p-6 lg:p-8 glass-card border-2 border-neon rounded-2xl shadow-xl shadow-primary/20">
-            <h2 className="text-2xl font-display font-bold text-gradient-neon mb-6">Top Clients</h2>
-            <div className="space-y-4">
-              {revenueData.topClients.map((client) => (
-                <div key={client.name} className="space-y-2">
-                  <div className="flex justify-between items-center">
-                    <p className="text-sm font-display font-semibold text-foreground">{client.name}</p>
-                    <p className="text-sm text-primary font-bold">{client.revenue}</p>
+        {/* Metrics Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {revenueMetrics.map((metric, index) => {
+            const isSelected = selectedMetric === metric.name.toLowerCase().replace(/\s+/g, '-');
+            
+            return (
+              <Card
+                key={metric.name}
+                className={`p-6 lg:p-8 glass-card border-2 rounded-2xl cursor-pointer transition-all duration-300
+                  hover:shadow-xl hover:shadow-primary/20 hover:scale-[1.02] animate-fade-up
+                  ${isSelected ? "border-primary ring-2 ring-primary/30" : "border-primary/30 hover:border-primary/60"}`}
+                style={{ animationDelay: `${index * 0.1}s` }}
+              >
+                <div className="space-y-4">
+                  <div className="flex items-center justify-between">
+                    <h3 className="text-xl font-display font-bold text-foreground">{metric.name}</h3>
+                    <span className={`text-sm px-2 py-1 rounded-full ${
+                      metric.variance >= 0 
+                        ? "bg-success/20 text-success border border-success/30" 
+                        : "bg-destructive/20 text-destructive border border-destructive/30"
+                    }`}>
+                      {metric.variance >= 0 ? "↑" : "↓"} {Math.abs(metric.variance)}%
+                    </span>
                   </div>
-                  <div className="flex items-center gap-3">
-                    <Progress value={parseInt(client.share)} className="flex-1 h-2" />
-                    <span className="text-xs text-muted-foreground w-10">{client.share}</span>
+                  
+                  <div className="space-y-2">
+                    <p className="text-4xl font-display font-bold text-gradient-neon">{metric.value}</p>
+                    <p className="text-sm text-muted-foreground">Target: {metric.target}</p>
+                  </div>
+
+                  <p className="text-sm text-muted-foreground leading-relaxed">
+                    {metric.description}
+                  </p>
+
+                  <div className="pt-4 border-t border-border/50">
+                    <div className="flex items-center gap-2">
+                      <div className={`w-2 h-2 rounded-full ${metric.variance >= 0 ? "bg-success" : "bg-warning"} animate-pulse`} />
+                      <span className="text-xs text-muted-foreground">
+                        {metric.variance >= 0 ? "On track" : "Needs attention"}
+                      </span>
+                    </div>
                   </div>
                 </div>
-              ))}
-            </div>
-          </Card>
-
-          <Card className="p-6 lg:p-8 glass-card border-2 border-neon rounded-2xl shadow-xl shadow-primary/20">
-            <h2 className="text-2xl font-display font-bold text-gradient-neon mb-6">Regional Performance</h2>
-            <div className="space-y-6">
-              {revenueData.regions.map((region) => (
-                <Card key={region.name} className="p-4 glass-card border-2 border-border/50 hover:border-accent/60 transition-all rounded-2xl">
-                  <div className="flex justify-between items-center">
-                    <div>
-                      <p className="text-base font-display font-semibold text-foreground">{region.name}</p>
-                      <p className="text-sm text-success mt-1">{region.growth} growth</p>
-                    </div>
-                    <p className="text-2xl font-display font-bold text-gradient-neon">{region.revenue}</p>
-                  </div>
-                </Card>
-              ))}
-            </div>
-          </Card>
+              </Card>
+            );
+          })}
         </div>
-
-        {/* AI Insights */}
-        <Card className="p-6 lg:p-8 glass-card border-2 border-primary/50 rounded-2xl shadow-xl shadow-primary/20">
-          <div className="flex items-center gap-3 mb-4">
-            <div className="p-3 bg-gradient-neon rounded-2xl shadow-glow">
-              <TrendingUp className="w-6 h-6 text-white animate-pulse" />
-            </div>
-            <h2 className="text-2xl font-display font-bold text-gradient-neon">AI-Powered Insights</h2>
-          </div>
-          <div className="space-y-4">
-            <div className="p-4 bg-muted/30 rounded-2xl border border-success/30">
-              <p className="text-sm text-foreground leading-relaxed">
-                <span className="font-bold text-success">✓ Strong Performance:</span> Revenue increased by 8.3% driven by higher utilization in Europe region and successful client expansions in the BFSI sector.
-              </p>
-            </div>
-            <div className="p-4 bg-muted/30 rounded-2xl border border-warning/30">
-              <p className="text-sm text-foreground leading-relaxed">
-                <span className="font-bold text-warning">⚠ Opportunity:</span> BFSI sector shows 32% share with potential for 15% growth through cross-selling additional services to existing clients.
-              </p>
-            </div>
-            <div className="p-4 bg-muted/30 rounded-2xl border border-accent/30">
-              <p className="text-sm text-foreground leading-relaxed">
-                <span className="font-bold text-accent">→ Recommendation:</span> Focus on accelerating Healthcare and Technology sector deals in Q4 to close the ₹10Cr gap to target.
-              </p>
-            </div>
-          </div>
-        </Card>
       </div>
     </div>
   );
