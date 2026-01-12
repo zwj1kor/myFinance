@@ -311,12 +311,12 @@ All colors MUST be HSL.
       transform: translateX(0);
     }
     100% {
-      transform: translateX(-50%);
+      transform: translateX(-33.333%);
     }
   }
 
   .animate-slide-carousel {
-    animation: slide-carousel 12s linear infinite;
+    animation: slide-carousel 20s linear infinite;
   }
 
   /* Card shine effect */
