@@ -1,8 +1,10 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Card } from "@/components/ui/card";
-import { Sparkles, X, TrendingUp, TrendingDown } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { Sparkles, X, TrendingUp, TrendingDown, MessageCircle } from "lucide-react";
 import FloatingChatDock from "@/components/FloatingChatDock";
+import KPIChatWindow from "@/components/KPIChatWindow";
 
 interface SubKPI {
   name: string;
@@ -82,6 +84,7 @@ const mainKPIs: MainKPI[] = [
 export default function Dashboard() {
   const navigate = useNavigate();
   const [expandedKPI, setExpandedKPI] = useState<{ main: string; sub: SubKPI } | null>(null);
+  const [chatOpen, setChatOpen] = useState<{ type: 'tile' | 'detail'; name: string; value?: string } | null>(null);
 
   const getColorClasses = (color: string) => {
     const colors: Record<string, { border: string; bg: string; shadow: string; subBorder: string }> = {
@@ -99,6 +102,16 @@ export default function Dashboard() {
 
   const handleClose = () => {
     setExpandedKPI(null);
+  };
+
+  const handleTileChatClick = (e: React.MouseEvent, kpiName: string) => {
+    e.stopPropagation();
+    setChatOpen({ type: 'tile', name: kpiName });
+  };
+
+  const handleDetailChatClick = (e: React.MouseEvent, kpiName: string, kpiValue: string) => {
+    e.stopPropagation();
+    setChatOpen({ type: 'detail', name: kpiName, value: kpiValue });
   };
 
   const mainKPI = expandedKPI ? mainKPIs.find(k => k.name === expandedKPI.main) : null;
@@ -198,9 +211,16 @@ export default function Dashboard() {
                   </Card>
                 </div>
 
-                {/* Click anywhere hint */}
-                <div className="text-center mt-4 pt-4 border-t border-border/30">
+                {/* Chat Button at the bottom */}
+                <div className="mt-4 pt-4 border-t border-border/30 flex items-center justify-between">
                   <p className="text-sm text-muted-foreground">Click anywhere outside to close</p>
+                  <Button
+                    onClick={(e) => handleDetailChatClick(e, expandedKPI.sub.name, expandedKPI.sub.value)}
+                    className="bg-gradient-primary hover:shadow-glow border border-primary/50 gap-2"
+                  >
+                    <MessageCircle className="w-4 h-4" />
+                    Chat about this KPI
+                  </Button>
                 </div>
               </div>
             </Card>
@@ -222,12 +242,22 @@ export default function Dashboard() {
                 <div className={`absolute inset-0 ${colorClasses.bg} opacity-5`} />
                 
                 <div className="relative z-10">
-                  {/* Header */}
-                  <div className="flex items-center gap-2 mb-3 pb-2 border-b border-border/30">
-                    <span className="text-2xl">{kpi.icon}</span>
-                    <h2 className="text-lg font-display font-bold text-gradient-neon">
-                      {kpi.name}
-                    </h2>
+                  {/* Header with Chat Icon */}
+                  <div className="flex items-center justify-between mb-3 pb-2 border-b border-border/30">
+                    <div className="flex items-center gap-2">
+                      <span className="text-2xl">{kpi.icon}</span>
+                      <h2 className="text-lg font-display font-bold text-gradient-neon">
+                        {kpi.name}
+                      </h2>
+                    </div>
+                    <Button
+                      variant="ghost"
+                      size="icon"
+                      onClick={(e) => handleTileChatClick(e, kpi.name)}
+                      className="w-8 h-8 rounded-full bg-primary/10 hover:bg-primary/20 border border-primary/30 hover:border-primary/50 transition-all hover:scale-110"
+                    >
+                      <MessageCircle className="w-4 h-4 text-primary" />
+                    </Button>
                   </div>
 
                   {/* Sub-KPIs Grid */}
@@ -277,7 +307,16 @@ export default function Dashboard() {
         </div>
       </div>
 
-      <FloatingChatDock />
+      {/* KPI-specific Chat Window */}
+      <KPIChatWindow
+        isOpen={chatOpen !== null}
+        onClose={() => setChatOpen(null)}
+        kpiName={chatOpen?.name || ''}
+        kpiValue={chatOpen?.value}
+      />
+
+      {/* Only show floating dock when KPI chat is not open */}
+      {!chatOpen && <FloatingChatDock />}
     </div>
   );
 }
