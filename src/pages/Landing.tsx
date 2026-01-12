@@ -1,4 +1,3 @@
-import { useEffect, useState } from "react";
 import PersonaCard from "@/components/PersonaCard";
 
 const personas = [
@@ -39,37 +38,10 @@ const personas = [
   },
 ];
 
+// Double the personas for seamless infinite loop
+const duplicatedPersonas = [...personas, ...personas];
+
 const Landing = () => {
-  const [rotation, setRotation] = useState(0);
-  const [isPaused, setIsPaused] = useState(false);
-
-  useEffect(() => {
-    if (isPaused) return;
-    
-    const interval = setInterval(() => {
-      setRotation((prev) => (prev + 0.3) % 360);
-    }, 50);
-
-    return () => clearInterval(interval);
-  }, [isPaused]);
-
-  const getCardPosition = (index: number) => {
-    const angle = (index * (360 / personas.length) + rotation) * (Math.PI / 180);
-    const radiusX = 320;
-    const radiusY = 80;
-    const x = Math.sin(angle) * radiusX;
-    const z = Math.cos(angle) * radiusY;
-    const scale = (z + radiusY) / (radiusY * 2) * 0.4 + 0.6;
-    const zIndex = Math.round((z + radiusY) * 10);
-    const opacity = scale * 0.4 + 0.6;
-
-    return {
-      transform: `translateX(${x}px) translateZ(${z}px) scale(${scale})`,
-      zIndex,
-      opacity,
-    };
-  };
-
   return (
     <div className="min-h-screen bg-background flex flex-col items-center justify-center overflow-hidden">
       {/* Background effects */}
@@ -80,7 +52,7 @@ const Landing = () => {
       </div>
 
       {/* Header */}
-      <div className="relative z-10 text-center mb-16">
+      <div className="relative z-10 text-center mb-12">
         <h1 className="text-5xl md:text-6xl font-bold bg-gradient-to-r from-primary via-accent to-primary bg-clip-text text-transparent mb-4">
           Finance Intelligence Hub
         </h1>
@@ -89,44 +61,29 @@ const Landing = () => {
         </p>
       </div>
 
-      {/* 3D Carousel */}
-      <div
-        className="relative w-full h-[400px] flex items-center justify-center perspective-1000"
-        onMouseEnter={() => setIsPaused(true)}
-        onMouseLeave={() => setIsPaused(false)}
-      >
-        <div className="relative w-64 h-80 transform-style-3d">
-          {personas.map((persona, index) => (
-            <PersonaCard
-              key={persona.name}
-              {...persona}
-              style={getCardPosition(index)}
-            />
+      {/* Horizontal Sliding Carousel */}
+      <div className="relative w-full overflow-hidden py-8">
+        {/* Gradient masks for fade effect */}
+        <div className="absolute left-0 top-0 bottom-0 w-32 bg-gradient-to-r from-background to-transparent z-10 pointer-events-none" />
+        <div className="absolute right-0 top-0 bottom-0 w-32 bg-gradient-to-l from-background to-transparent z-10 pointer-events-none" />
+        
+        {/* Sliding track */}
+        <div className="flex animate-slide-carousel hover:[animation-play-state:paused]">
+          {duplicatedPersonas.map((persona, index) => (
+            <div key={`${persona.name}-${index}`} className="flex-shrink-0 px-4">
+              <PersonaCard {...persona} />
+            </div>
           ))}
         </div>
       </div>
 
       {/* Instructions */}
-      <div className="relative z-10 mt-16 text-center">
+      <div className="relative z-10 mt-8 text-center">
         <p className="text-sm text-muted-foreground">
           <span className="inline-block animate-bounce mr-2">👆</span>
-          Hover to pause • Click card to enter dashboard
+          Hover to pause & flip • Click card to enter dashboard
           <span className="inline-block animate-bounce ml-2">👆</span>
         </p>
-      </div>
-
-      {/* Orbit indicator dots */}
-      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex gap-2">
-        {personas.map((_, index) => (
-          <div
-            key={index}
-            className="w-2 h-2 rounded-full bg-primary/40 transition-all duration-300"
-            style={{
-              transform: `scale(${1 + Math.sin((rotation + index * 72) * Math.PI / 180) * 0.3})`,
-              opacity: 0.5 + Math.sin((rotation + index * 72) * Math.PI / 180) * 0.5,
-            }}
-          />
-        ))}
       </div>
     </div>
   );
