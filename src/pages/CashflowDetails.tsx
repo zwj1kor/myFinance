@@ -12,82 +12,58 @@ interface MetricData {
   description: string;
 }
 
-const costMetrics: MetricData[] = [
+const cashflowMetrics: MetricData[] = [
   {
-    name: "Consulting Cost",
-    value: "₹25Cr",
-    target: "₹23Cr",
-    variance: 8.7,
+    name: "Cash Inflow",
+    value: "₹92Cr",
+    target: "₹100Cr",
+    variance: -8.0,
+    trend: "down",
+    description: "Total cash received from all sources",
+  },
+  {
+    name: "Cash Outflow",
+    value: "₹47Cr",
+    target: "₹45Cr",
+    variance: 4.4,
     trend: "up",
-    description: "External consulting and advisory fees",
+    description: "Total cash paid out for all expenses",
   },
   {
-    name: "Software Cost",
-    value: "₹12Cr",
-    target: "₹12.5Cr",
-    variance: -4.0,
+    name: "Net Cash",
+    value: "₹45Cr",
+    target: "₹55Cr",
+    variance: -18.2,
     trend: "down",
-    description: "Software licenses, subscriptions, and tools",
+    description: "Net cash position after all transactions",
   },
   {
-    name: "Hardware Cost",
-    value: "₹8Cr",
-    target: "₹7.5Cr",
-    variance: 6.7,
+    name: "Working Capital",
+    value: "₹28Cr",
+    target: "₹30Cr",
+    variance: -6.7,
+    trend: "down",
+    description: "Capital available for day-to-day operations",
+  },
+  {
+    name: "Days Sales Outstanding",
+    value: "58 days",
+    target: "45 days",
+    variance: 28.9,
     trend: "up",
-    description: "Hardware procurement and maintenance",
+    description: "Average time to collect payment from clients",
   },
   {
-    name: "Travel Cost",
-    value: "₹5Cr",
-    target: "₹6Cr",
-    variance: -16.7,
-    trend: "down",
-    description: "Business travel and accommodation expenses",
-  },
-  {
-    name: "Corporate Cost",
-    value: "₹10Cr",
-    target: "₹9.5Cr",
-    variance: 5.3,
+    name: "Cash Conversion Cycle",
+    value: "42 days",
+    target: "35 days",
+    variance: 20.0,
     trend: "up",
-    description: "Corporate overheads and administrative costs",
-  },
-  {
-    name: "Indirect Cost",
-    value: "₹7Cr",
-    target: "₹7.2Cr",
-    variance: -2.8,
-    trend: "down",
-    description: "Indirect operational expenses",
-  },
-  {
-    name: "Resource Cost",
-    value: "₹65Cr",
-    target: "₹62Cr",
-    variance: 4.8,
-    trend: "up",
-    description: "Total personnel and resource costs",
-  },
-  {
-    name: "EBIT",
-    value: "₹25Cr",
-    target: "₹31Cr",
-    variance: -19.4,
-    trend: "down",
-    description: "Earnings Before Interest and Taxes",
-  },
-  {
-    name: "Gross Margin",
-    value: "22.7%",
-    target: "25.8%",
-    variance: -12.0,
-    trend: "down",
-    description: "Gross profit as percentage of revenue",
+    description: "Time to convert investments to cash",
   },
 ];
 
-export default function CostEbitDetails() {
+export default function CashflowDetails() {
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
   const selectedMetric = searchParams.get("metric");
@@ -108,29 +84,27 @@ export default function CostEbitDetails() {
             </Button>
             <div>
               <h1 className="text-3xl sm:text-4xl font-display font-bold text-gradient-neon">
-                Cost & EBIT Metrics
+                Cashflow Metrics
               </h1>
-              <p className="text-muted-foreground mt-1">Detailed breakdown of cost KPIs</p>
+              <p className="text-muted-foreground mt-1">Detailed breakdown of cashflow KPIs</p>
             </div>
           </div>
-          <div className="text-5xl animate-float">📊</div>
+          <div className="text-5xl animate-float">💸</div>
         </div>
 
         {/* Metrics Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {costMetrics.map((metric, index) => {
+          {cashflowMetrics.map((metric, index) => {
             const isSelected = selectedMetric === metric.name.toLowerCase().replace(/\s+/g, '-');
-            const isCostMetric = !["EBIT", "Gross Margin"].includes(metric.name);
-            
-            // For costs, positive variance (higher than target) is bad
-            const isGood = isCostMetric ? metric.variance <= 0 : metric.variance >= 0;
+            const isNegativeGood = ["Cash Outflow", "Days Sales Outstanding", "Cash Conversion Cycle"].includes(metric.name);
+            const isGood = isNegativeGood ? metric.variance <= 0 : metric.variance >= 0;
             
             return (
               <Card
                 key={metric.name}
                 className={`p-6 lg:p-8 glass-card border-2 rounded-2xl cursor-pointer transition-all duration-300
-                  hover:shadow-xl hover:shadow-warning/20 hover:scale-[1.02] animate-fade-up
-                  ${isSelected ? "border-warning ring-2 ring-warning/30" : "border-warning/30 hover:border-warning/60"}`}
+                  hover:shadow-xl hover:shadow-success/20 hover:scale-[1.02] animate-fade-up
+                  ${isSelected ? "border-success ring-2 ring-success/30" : "border-success/30 hover:border-success/60"}`}
                 style={{ animationDelay: `${index * 0.1}s` }}
               >
                 <div className="space-y-4">
