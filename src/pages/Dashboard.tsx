@@ -236,7 +236,7 @@ export default function Dashboard() {
             return (
               <Card
                 key={kpi.name}
-                className={`p-8 lg:p-10 glass-card border-2 ${colorClasses.border} rounded-2xl cursor-pointer 
+                className={`p-6 lg:p-8 glass-card border-2 ${colorClasses.border} rounded-2xl cursor-pointer 
                   transition-all duration-500 hover:shadow-2xl ${colorClasses.shadow} hover:scale-[1.02] relative overflow-hidden animate-fade-up`}
                 style={{ animationDelay: `${index * 0.1}s` }}
                 onClick={() => handleKPIClick(kpi.name)}
@@ -246,31 +246,16 @@ export default function Dashboard() {
                 
                 <div className="relative z-10">
                   {/* Content */}
-                  <div className="flex items-center justify-between">
-                    <div className="flex items-center gap-4">
-                      <span className="text-6xl lg:text-7xl animate-float">{kpi.icon}</span>
-                      <div>
-                        <h2 className="text-3xl lg:text-4xl font-display font-bold text-gradient-neon">
-                          {kpi.name}
-                        </h2>
-                        <p className="text-sm text-muted-foreground mt-2">
-                          Target: {kpi.target}
-                        </p>
-                      </div>
-                    </div>
-                    <div className="text-right">
-                      <p className="text-4xl lg:text-5xl font-display font-bold text-foreground">
-                        {kpi.value}
-                      </p>
-                      <p className={`text-base mt-2 ${kpi.variance >= 0 ? "text-success" : "text-destructive"}`}>
-                        {kpi.variance >= 0 ? "↑" : "↓"} {Math.abs(kpi.variance)}%
+                  <div className="flex items-center gap-4">
+                    <span className="text-4xl lg:text-5xl animate-float">{kpi.icon}</span>
+                    <div>
+                      <h2 className="text-xl lg:text-2xl font-display font-bold text-gradient-neon">
+                        {kpi.name}
+                      </h2>
+                      <p className="text-xs text-muted-foreground mt-1">
+                        Click to view details
                       </p>
                     </div>
-                  </div>
-
-                  {/* Click hint */}
-                  <div className="mt-6 pt-4 border-t border-border/30 text-center">
-                    <p className="text-xs text-muted-foreground">Click to view details</p>
                   </div>
                 </div>
               </Card>
