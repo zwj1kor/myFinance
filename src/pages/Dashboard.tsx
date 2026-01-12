@@ -34,11 +34,9 @@ const mainKPIs: MainKPI[] = [
     icon: "💰",
     color: "primary",
     subKPIs: [
-      { name: "Receivables", value: "₹18Cr", trend: "up", variance: 5.2, description: "Outstanding amounts to be collected", details: { current: "₹18Cr", target: "₹15Cr", lastMonth: "₹17.1Cr", ytd: "₹16.5Cr", insight: "Receivables increased due to new enterprise contracts. Collection cycle improved by 3 days." } },
-      { name: "Collections", value: "₹95Cr", trend: "up", variance: 8.1, description: "Total cash collected from clients", details: { current: "₹95Cr", target: "₹100Cr", lastMonth: "₹87.9Cr", ytd: "₹92Cr", insight: "Strong collection performance driven by BFSI sector. Focus on Manufacturing sector for Q4." } },
-      { name: "Export Realization", value: "₹42Cr", trend: "down", variance: -3.2, description: "Revenue from international clients", details: { current: "₹42Cr", target: "₹45Cr", lastMonth: "₹43.4Cr", ytd: "₹41Cr", insight: "Currency fluctuation impacted realization. Hedge strategy recommended for next quarter." } },
       { name: "Revenue", value: "₹110Cr", trend: "down", variance: -8.3, description: "Total revenue generated", details: { current: "₹110Cr", target: "₹120Cr", lastMonth: "₹105Cr", ytd: "₹108Cr", insight: "Revenue below target due to delayed project starts. Pipeline shows recovery in Q4." } },
-      { name: "Revenue per Capacity", value: "₹8.8L", trend: "up", variance: 2.4, description: "Average revenue per resource", details: { current: "₹8.8L", target: "₹9.2L", lastMonth: "₹8.6L", ytd: "₹8.5L", insight: "Improved utilization driving revenue per head. Focus on senior resource deployment." } },
+      { name: "Revenue/Capacity", value: "₹8.8L", trend: "up", variance: 2.4, description: "Average revenue per resource", details: { current: "₹8.8L", target: "₹9.2L", lastMonth: "₹8.6L", ytd: "₹8.5L", insight: "Improved utilization driving revenue per head. Focus on senior resource deployment." } },
+      { name: "Price-Mix Ratio", value: "1.12", trend: "up", variance: 3.5, description: "Ratio of actual to standard pricing", details: { current: "1.12", target: "1.15", lastMonth: "1.08", ytd: "1.10", insight: "Premium services driving favorable price-mix. Focus on high-value engagements." } },
     ],
   },
   {
@@ -53,8 +51,6 @@ const mainKPIs: MainKPI[] = [
       { name: "Corporate Cost", value: "₹10Cr", trend: "up", variance: 3.2, description: "Corporate overheads", details: { current: "₹10Cr", target: "₹9.5Cr", lastMonth: "₹9.7Cr", ytd: "₹9.8Cr", insight: "Office expansion in Tier-2 cities increasing costs. ROI expected in 6 months." } },
       { name: "Indirect Cost", value: "₹7Cr", trend: "down", variance: -1.8, description: "Indirect operational expenses", details: { current: "₹7Cr", target: "₹7.2Cr", lastMonth: "₹7.1Cr", ytd: "₹7Cr", insight: "Process automation reducing indirect costs. Continue RPA implementation." } },
       { name: "Resource Cost", value: "₹65Cr", trend: "up", variance: 5.4, description: "Personnel costs", details: { current: "₹65Cr", target: "₹62Cr", lastMonth: "₹61.7Cr", ytd: "₹63Cr", insight: "Salary increments and new hires driving costs. Review contractor-to-FTE ratio." } },
-      { name: "EBIT", value: "₹25Cr", trend: "down", variance: -19.4, description: "Earnings Before Interest & Taxes", details: { current: "₹25Cr", target: "₹31Cr", lastMonth: "₹27Cr", ytd: "₹26Cr", insight: "EBIT compression due to cost overruns. Immediate action on vendor renegotiation." } },
-      { name: "Gross Margin", value: "22.7%", trend: "down", variance: -3.1, description: "Gross profit percentage", details: { current: "22.7%", target: "25.8%", lastMonth: "23.5%", ytd: "23.1%", insight: "Margin pressure from resource mix. Increase offshore leverage to 75%." } },
     ],
   },
   {
@@ -62,10 +58,9 @@ const mainKPIs: MainKPI[] = [
     icon: "⚡",
     color: "accent",
     subKPIs: [
-      { name: "Billable Hours", value: "125K", trend: "up", variance: 4.2, description: "Total hours billed", details: { current: "125K", target: "140K", lastMonth: "120K", ytd: "122K", insight: "Billable hours improving with new project ramp-ups. Target 95% utilization." } },
-      { name: "Non-Billable Hours", value: "22K", trend: "down", variance: -8.1, description: "Internal/non-billable hours", details: { current: "22K", target: "15K", lastMonth: "24K", ytd: "23K", insight: "Training and bench time reducing. Focus on faster project deployment." } },
-      { name: "Billing Rate", value: "₹4,500/hr", trend: "up", variance: 2.8, description: "Average hourly rate", details: { current: "₹4,500/hr", target: "₹4,200/hr", lastMonth: "₹4,380/hr", ytd: "₹4,350/hr", insight: "Rate improvement through value-based pricing. Premium skills commanding 20% higher." } },
-      { name: "Invoice Raised", value: "₹98Cr", trend: "up", variance: 6.5, description: "Total invoices raised", details: { current: "₹98Cr", target: "₹105Cr", lastMonth: "₹92Cr", ytd: "₹95Cr", insight: "Invoice volume increasing. Focus on timely milestone billing to improve cash flow." } },
+      { name: "Billing Utilization", value: "85%", trend: "up", variance: 4.2, description: "Percentage of billable capacity utilized", details: { current: "85%", target: "90%", lastMonth: "81.6%", ytd: "83%", insight: "Utilization improving with new project ramp-ups. Target 90% by quarter end." } },
+      { name: "Billed Capacity", value: "1,250", trend: "up", variance: 3.8, description: "Total resources currently billing", details: { current: "1,250", target: "1,400", lastMonth: "1,204", ytd: "1,220", insight: "Billed capacity growing with new client wins. Focus on faster onboarding." } },
+      { name: "Available Capacity", value: "220", trend: "down", variance: -12.5, description: "Resources available for new projects", details: { current: "220", target: "150", lastMonth: "251", ytd: "235", insight: "Bench reducing as projects ramp up. Maintain 10% buffer for new opportunities." } },
     ],
   },
   {
@@ -77,6 +72,18 @@ const mainKPIs: MainKPI[] = [
       { name: "Cash Outflow", value: "₹47Cr", trend: "up", variance: 12.1, description: "Total cash paid out", details: { current: "₹47Cr", target: "₹45Cr", lastMonth: "₹41.9Cr", ytd: "₹44Cr", insight: "Vendor payments and salary disbursements driving outflow. Optimize payment terms." } },
       { name: "Net Cash", value: "₹45Cr", trend: "down", variance: -18.2, description: "Net cash position", details: { current: "₹45Cr", target: "₹55Cr", lastMonth: "₹55Cr", ytd: "₹50Cr", insight: "Net cash below target due to capex investments. Expected recovery in Q1." } },
       { name: "Working Capital", value: "₹28Cr", trend: "down", variance: -5.4, description: "Day-to-day operations capital", details: { current: "₹28Cr", target: "₹30Cr", lastMonth: "₹29.6Cr", ytd: "₹29Cr", insight: "Working capital adequate for operations. Monitor DSO for improvement." } },
+      { name: "Receivables", value: "₹18Cr", trend: "up", variance: 5.2, description: "Outstanding amounts to be collected", details: { current: "₹18Cr", target: "₹15Cr", lastMonth: "₹17.1Cr", ytd: "₹16.5Cr", insight: "Receivables increased due to new enterprise contracts. Collection cycle improved by 3 days." } },
+      { name: "Collections", value: "₹95Cr", trend: "up", variance: 8.1, description: "Total cash collected from clients", details: { current: "₹95Cr", target: "₹100Cr", lastMonth: "₹87.9Cr", ytd: "₹92Cr", insight: "Strong collection performance driven by BFSI sector. Focus on Manufacturing sector for Q4." } },
+      { name: "Export Realization", value: "₹42Cr", trend: "down", variance: -3.2, description: "Revenue from international clients", details: { current: "₹42Cr", target: "₹45Cr", lastMonth: "₹43.4Cr", ytd: "₹41Cr", insight: "Currency fluctuation impacted realization. Hedge strategy recommended for next quarter." } },
+    ],
+  },
+  {
+    name: "Profitability",
+    icon: "📈",
+    color: "info",
+    subKPIs: [
+      { name: "Gross Margin", value: "22.7%", trend: "down", variance: -3.1, description: "Gross profit percentage", details: { current: "22.7%", target: "25.8%", lastMonth: "23.5%", ytd: "23.1%", insight: "Margin pressure from resource mix. Increase offshore leverage to 75%." } },
+      { name: "EBIT %", value: "18.5%", trend: "down", variance: -2.8, description: "EBIT as percentage of revenue", details: { current: "18.5%", target: "21%", lastMonth: "19.1%", ytd: "19%", insight: "EBIT margin compression due to cost overruns. Focus on operational efficiency." } },
     ],
   },
 ];
@@ -92,6 +99,7 @@ export default function Dashboard() {
       warning: { border: "border-warning/40", bg: "bg-gradient-warning", shadow: "shadow-warning/20", subBorder: "border-warning/20 hover:border-warning/40" },
       accent: { border: "border-accent/40", bg: "bg-gradient-accent", shadow: "shadow-accent/20", subBorder: "border-accent/20 hover:border-accent/40" },
       success: { border: "border-success/40", bg: "bg-gradient-success", shadow: "shadow-success/20", subBorder: "border-success/20 hover:border-success/40" },
+      info: { border: "border-info/40", bg: "bg-gradient-info", shadow: "shadow-info/20", subBorder: "border-info/20 hover:border-info/40" },
     };
     return colors[color] || colors.primary;
   };
