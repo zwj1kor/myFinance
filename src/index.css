@@ -304,4 +304,32 @@ All colors MUST be HSL.
   .bg-gradient-radial {
     background: radial-gradient(circle, var(--tw-gradient-stops));
   }
+
+  /* Sliding Carousel Animation */
+  @keyframes slide-carousel {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(-50%);
+    }
+  }
+
+  .animate-slide-carousel {
+    animation: slide-carousel 12s linear infinite;
+  }
+
+  /* Card shine effect */
+  @keyframes shine {
+    0% {
+      transform: translateX(-100%);
+    }
+    100% {
+      transform: translateX(100%);
+    }
+  }
+
+  .animate-shine {
+    animation: shine 0.7s ease-in-out;
+  }
 }
