@@ -187,13 +187,12 @@ export default function Dashboard() {
         <div className="text-center mb-6 animate-fade-in">
           <div className="flex justify-center mb-4">
             <Button
-              variant="ghost"
-              size="icon"
+              variant="outline"
               onClick={() => navigate("/")}
-              className="hover:bg-muted/50 hover:scale-110 transition-all"
-              title="Go to Home"
+              className="gap-2 hover:bg-muted/50 border-primary/30 hover:border-primary/50"
             >
-              <Home className="w-5 h-5" />
+              <Home className="w-4 h-4" />
+              Switch Persona
             </Button>
           </div>
           <h1 className="text-2xl sm:text-3xl lg:text-4xl font-display font-bold text-gradient-neon mb-1">
