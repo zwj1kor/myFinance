@@ -58,18 +58,9 @@ const indiaKPIs: MainKPI[] = [
       { name: "Software Cost", value: "45.2 M$", trend: "up", variance: 6.5, description: "Software licenses and subscriptions", details: { current: "45.2 M$", target: "42.0 M$", lastMonth: "43.5 M$", ytd: "44.0 M$", insight: "Cloud and SaaS adoption driving costs. License optimization in progress." } },
       { name: "Consulting Cost", value: "28.5 M$", trend: "down", variance: -4.2, description: "External consulting expenses", details: { current: "28.5 M$", target: "30.0 M$", lastMonth: "29.8 M$", ytd: "29.0 M$", insight: "Reduced external consultants with internal capability building." } },
       { name: "Corporate Cost", value: "67.8 M$", trend: "up", variance: 2.8, description: "Corporate overhead expenses", details: { current: "67.8 M$", target: "65.0 M$", lastMonth: "66.5 M$", ytd: "67.0 M$", insight: "Corporate allocations as per group policy. Efficiency measures ongoing." } },
-      { name: "Total Direct Cost", value: "996.7 M$", trend: "up", variance: 2.5, description: "Sum of all direct costs", details: { current: "996.7 M$", target: "950.0 M$", lastMonth: "980.0 M$", ytd: "990.0 M$", insight: "Total direct costs aligned with revenue growth. Cost efficiency improving." } },
-    ],
-  },
-  {
-    name: "Other Cost",
-    icon: "💸",
-    color: "destructive",
-    subKPIs: [
       { name: "Current Cost", value: "38.5 M$", trend: "up", variance: 3.2, description: "Current operational expenses", details: { current: "38.5 M$", target: "36.0 M$", lastMonth: "37.5 M$", ytd: "38.0 M$", insight: "Current costs trending slightly above target. Monitoring closely." } },
-      { name: "Depreciation Cost", value: "22.8 M$", trend: "down", variance: -1.5, description: "Asset depreciation expenses", details: { current: "22.8 M$", target: "24.0 M$", lastMonth: "23.2 M$", ytd: "23.0 M$", insight: "Depreciation reducing with fully depreciated assets. New capex planned." } },
-      { name: "Pass Through Cost", value: "15.2 M$", trend: "up", variance: 8.5, description: "Client pass-through expenses", details: { current: "15.2 M$", target: "14.0 M$", lastMonth: "14.5 M$", ytd: "14.8 M$", insight: "Increased client reimbursable expenses. Fully recoverable from clients." } },
-      { name: "Revenue Hardware Cost", value: "12.5 M$", trend: "down", variance: -5.8, description: "Hardware costs for revenue projects", details: { current: "12.5 M$", target: "15.0 M$", lastMonth: "13.2 M$", ytd: "13.0 M$", insight: "Cloud migration reducing hardware costs. Shift to OpEx model." } },
+      { name: "Other Cost", value: "89.0 M$", trend: "up", variance: 2.5, description: "Depreciation, pass-through, and hardware costs", details: { current: "89.0 M$", target: "85.0 M$", lastMonth: "87.0 M$", ytd: "88.0 M$", insight: "Other costs include depreciation, pass-through, and revenue hardware costs." } },
+      { name: "Total Direct Cost", value: "996.7 M$", trend: "up", variance: 2.5, description: "Sum of all direct costs", details: { current: "996.7 M$", target: "950.0 M$", lastMonth: "980.0 M$", ytd: "990.0 M$", insight: "Total direct costs aligned with revenue growth. Cost efficiency improving." } },
     ],
   },
   {
@@ -117,18 +108,9 @@ const mexicoKPIs: MainKPI[] = [
       { name: "Software Cost", value: "18.5 M$", trend: "up", variance: 7.2, description: "Software licenses and subscriptions", details: { current: "18.5 M$", target: "16.5 M$", lastMonth: "17.2 M$", ytd: "17.8 M$", insight: "SaaS adoption driving costs. Enterprise license negotiations underway." } },
       { name: "Consulting Cost", value: "12.2 M$", trend: "down", variance: -6.5, description: "External consulting expenses", details: { current: "12.2 M$", target: "14.0 M$", lastMonth: "13.0 M$", ytd: "12.5 M$", insight: "Internal capability development reducing external dependency." } },
       { name: "Corporate Cost", value: "25.8 M$", trend: "up", variance: 3.5, description: "Corporate overhead expenses", details: { current: "25.8 M$", target: "24.0 M$", lastMonth: "25.2 M$", ytd: "25.5 M$", insight: "Corporate allocations growing with regional expansion." } },
-      { name: "Total Direct Cost", value: "289.5 M$", trend: "up", variance: 3.8, description: "Sum of all direct costs", details: { current: "289.5 M$", target: "280.0 M$", lastMonth: "284.0 M$", ytd: "286.5 M$", insight: "Costs aligned with growth. Focus on automation to improve margins." } },
-    ],
-  },
-  {
-    name: "Other Cost",
-    icon: "💸",
-    color: "destructive",
-    subKPIs: [
       { name: "Current Cost", value: "14.2 M$", trend: "up", variance: 4.5, description: "Current operational expenses", details: { current: "14.2 M$", target: "13.0 M$", lastMonth: "13.8 M$", ytd: "14.0 M$", insight: "Current costs rising with expansion. Monitoring in place." } },
-      { name: "Depreciation Cost", value: "8.5 M$", trend: "down", variance: -2.8, description: "Asset depreciation expenses", details: { current: "8.5 M$", target: "9.0 M$", lastMonth: "8.8 M$", ytd: "8.6 M$", insight: "Lower depreciation from cloud migration strategy." } },
-      { name: "Pass Through Cost", value: "6.8 M$", trend: "up", variance: 12.5, description: "Client pass-through expenses", details: { current: "6.8 M$", target: "6.0 M$", lastMonth: "6.2 M$", ytd: "6.5 M$", insight: "Higher client reimbursables. 100% recovery rate maintained." } },
-      { name: "Revenue Hardware Cost", value: "4.2 M$", trend: "down", variance: -8.2, description: "Hardware costs for revenue projects", details: { current: "4.2 M$", target: "5.0 M$", lastMonth: "4.5 M$", ytd: "4.4 M$", insight: "Hardware costs decreasing with cloud-first approach." } },
+      { name: "Other Cost", value: "33.7 M$", trend: "up", variance: 3.2, description: "Depreciation, pass-through, and hardware costs", details: { current: "33.7 M$", target: "32.0 M$", lastMonth: "33.0 M$", ytd: "33.5 M$", insight: "Other costs include depreciation, pass-through, and revenue hardware costs." } },
+      { name: "Total Direct Cost", value: "289.5 M$", trend: "up", variance: 3.8, description: "Sum of all direct costs", details: { current: "289.5 M$", target: "280.0 M$", lastMonth: "284.0 M$", ytd: "286.5 M$", insight: "Costs aligned with growth. Focus on automation to improve margins." } },
     ],
   },
   {
@@ -176,18 +158,9 @@ const vietnamKPIs: MainKPI[] = [
       { name: "Software Cost", value: "12.8 M$", trend: "up", variance: 9.5, description: "Software licenses and subscriptions", details: { current: "12.8 M$", target: "11.5 M$", lastMonth: "11.8 M$", ytd: "12.2 M$", insight: "Development tools and cloud services driving costs. Volume discounts being negotiated." } },
       { name: "Consulting Cost", value: "8.5 M$", trend: "up", variance: 5.2, description: "External consulting expenses", details: { current: "8.5 M$", target: "8.0 M$", lastMonth: "8.2 M$", ytd: "8.3 M$", insight: "Strategic consulting for Japan market entry. Expected to reduce post-stabilization." } },
       { name: "Corporate Cost", value: "18.2 M$", trend: "up", variance: 4.8, description: "Corporate overhead expenses", details: { current: "18.2 M$", target: "17.0 M$", lastMonth: "17.5 M$", ytd: "17.8 M$", insight: "Corporate allocations increasing with headcount growth." } },
-      { name: "Total Direct Cost", value: "173.5 M$", trend: "up", variance: 7.2, description: "Sum of all direct costs", details: { current: "173.5 M$", target: "165.0 M$", lastMonth: "164.3 M$", ytd: "168.4 M$", insight: "Growth-driven costs. Investment phase for market expansion." } },
-    ],
-  },
-  {
-    name: "Other Cost",
-    icon: "💸",
-    color: "destructive",
-    subKPIs: [
       { name: "Current Cost", value: "9.8 M$", trend: "up", variance: 6.2, description: "Current operational expenses", details: { current: "9.8 M$", target: "9.0 M$", lastMonth: "9.2 M$", ytd: "9.5 M$", insight: "Current costs rising with rapid expansion. Expected to normalize." } },
-      { name: "Depreciation Cost", value: "5.5 M$", trend: "up", variance: 8.5, description: "Asset depreciation expenses", details: { current: "5.5 M$", target: "5.0 M$", lastMonth: "5.2 M$", ytd: "5.3 M$", insight: "New office equipment and infrastructure driving depreciation." } },
-      { name: "Pass Through Cost", value: "4.2 M$", trend: "up", variance: 15.2, description: "Client pass-through expenses", details: { current: "4.2 M$", target: "3.5 M$", lastMonth: "3.8 M$", ytd: "4.0 M$", insight: "Japan client projects with higher pass-through. Fully recovered." } },
-      { name: "Revenue Hardware Cost", value: "3.8 M$", trend: "down", variance: -3.5, description: "Hardware costs for revenue projects", details: { current: "3.8 M$", target: "4.0 M$", lastMonth: "3.9 M$", ytd: "3.85 M$", insight: "Hardware costs reducing with cloud adoption strategy." } },
+      { name: "Other Cost", value: "23.3 M$", trend: "up", variance: 5.5, description: "Depreciation, pass-through, and hardware costs", details: { current: "23.3 M$", target: "21.5 M$", lastMonth: "22.5 M$", ytd: "23.0 M$", insight: "Other costs include depreciation, pass-through, and revenue hardware costs." } },
+      { name: "Total Direct Cost", value: "173.5 M$", trend: "up", variance: 7.2, description: "Sum of all direct costs", details: { current: "173.5 M$", target: "165.0 M$", lastMonth: "164.3 M$", ytd: "168.4 M$", insight: "Growth-driven costs. Investment phase for market expansion." } },
     ],
   },
   {
