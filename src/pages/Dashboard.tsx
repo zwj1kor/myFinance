@@ -374,12 +374,15 @@ export default function Dashboard() {
       </div>
 
       {/* KPI-specific Chat Window */}
-      <KPIChatWindow
-        isOpen={chatOpen !== null}
-        onClose={() => setChatOpen(null)}
-        kpiName={chatOpen?.name || ''}
-        kpiValue={chatOpen?.value}
-      />
+      {chatOpen && (
+        <KPIChatWindow
+          key={chatOpen.name}
+          isOpen={true}
+          onClose={() => setChatOpen(null)}
+          kpiName={chatOpen.name}
+          kpiValue={chatOpen.value}
+        />
+      )}
 
       {/* Only show floating dock when KPI chat is not open */}
       {!chatOpen && <FloatingChatDock />}
