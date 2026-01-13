@@ -11,6 +11,11 @@ import { Checkbox } from "@/components/ui/checkbox";
 import { Textarea } from "@/components/ui/textarea";
 import { MessageSquare, Send } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
 
 const kpiList = [
   { id: "revenue", label: "Revenue" },
@@ -85,15 +90,20 @@ export default function FeedbackDialog() {
 
   return (
     <Dialog open={open} onOpenChange={setOpen}>
-      <DialogTrigger asChild>
-        <Button
-          variant="ghost"
-          size="icon"
-          className="hidden sm:flex hover:bg-muted/50 transition-all hover:scale-110 hover:shadow-glow"
-        >
-          <MessageSquare className="w-5 h-5" />
-        </Button>
-      </DialogTrigger>
+      <Tooltip delayDuration={0}>
+        <TooltipTrigger asChild>
+          <DialogTrigger asChild>
+            <Button
+              variant="ghost"
+              size="icon"
+              className="hidden sm:flex hover:bg-muted/50 transition-all hover:scale-110 hover:shadow-glow"
+            >
+              <MessageSquare className="w-5 h-5" />
+            </Button>
+          </DialogTrigger>
+        </TooltipTrigger>
+        <TooltipContent>Feedback</TooltipContent>
+      </Tooltip>
       <DialogContent className="max-w-2xl max-h-[80vh] overflow-y-auto">
         <DialogHeader>
           <DialogTitle className="text-xl font-display font-bold text-gradient-neon">
