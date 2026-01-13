@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Sparkles, X, TrendingUp, TrendingDown, MessageCircle, Home } from "lucide-react";
 import KPIChatWindow from "@/components/KPIChatWindow";
 import CountrySelector from "@/components/CountrySelector";
-import { Country, kpiDataByCountry, SubKPI, MainKPI, countries } from "@/data/countryKPIs";
+import { Country, kpiDataByCountry, SubKPI, MainKPI } from "@/data/countryKPIs";
 
 // Persona type for route state
 interface Persona {
@@ -126,13 +126,6 @@ export default function Dashboard() {
                     </div>
                   </div>
                   <div className="flex items-center gap-4">
-                    {/* Country Code Indicator */}
-                    <div className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-primary/10 border border-primary/30">
-                      <span className="text-lg">{countries.find(c => c.code === selectedCountry)?.flag}</span>
-                      <span className="text-sm font-bold text-primary">
-                        {selectedCountry === 'india' ? 'IN' : selectedCountry === 'mexico' ? 'MX' : 'VN'}
-                      </span>
-                    </div>
                     <div className="text-right">
                       <p className="text-3xl lg:text-4xl font-display font-bold text-foreground">
                         {expandedKPI.sub.value}
