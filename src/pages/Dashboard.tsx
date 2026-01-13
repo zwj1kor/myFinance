@@ -3,6 +3,7 @@ import { useNavigate, useLocation } from "react-router-dom";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Sparkles, X, TrendingUp, TrendingDown, MessageCircle, Home } from "lucide-react";
+import FloatingChatDock from "@/components/FloatingChatDock";
 import KPIChatWindow from "@/components/KPIChatWindow";
 
 // Persona type for route state
@@ -309,9 +310,9 @@ export default function Dashboard() {
                       variant="ghost"
                       size="icon"
                       onClick={(e) => handleTileChatClick(e, kpi.name)}
-                      className="w-8 h-8 rounded-full bg-primary/10 hover:bg-primary/20 border border-primary/30 hover:border-primary/50 transition-all hover:scale-110 animate-bounce"
+                      className="w-8 h-8 rounded-full bg-primary/10 hover:bg-primary/20 border border-primary/30 hover:border-primary/50 transition-all hover:scale-110"
                     >
-                      <MessageCircle className="w-4 h-4 text-primary animate-pulse" />
+                      <MessageCircle className="w-4 h-4 text-primary" />
                     </Button>
                   </div>
 
@@ -373,6 +374,8 @@ export default function Dashboard() {
         />
       )}
 
+      {/* Only show floating dock when KPI chat is not open */}
+      {!chatOpen && <FloatingChatDock />}
     </div>
   );
 }
