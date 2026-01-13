@@ -1,5 +1,8 @@
+import { useState, useEffect, useCallback } from "react";
 import PersonaCard from "@/components/PersonaCard";
 import ThemeToggle from "@/components/ThemeToggle";
+import { Button } from "@/components/ui/button";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 
 const personas = [
   {
@@ -40,6 +43,38 @@ const personas = [
 ];
 
 const Landing = () => {
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [isMobile, setIsMobile] = useState(false);
+  const [isPaused, setIsPaused] = useState(false);
+
+  useEffect(() => {
+    const checkMobile = () => setIsMobile(window.innerWidth < 640);
+    checkMobile();
+    window.addEventListener("resize", checkMobile);
+    return () => window.removeEventListener("resize", checkMobile);
+  }, []);
+
+  // Auto-rotate for mobile
+  useEffect(() => {
+    if (!isMobile || isPaused) return;
+    const interval = setInterval(() => {
+      setCurrentIndex((prev) => (prev + 1) % personas.length);
+    }, 3000);
+    return () => clearInterval(interval);
+  }, [isMobile, isPaused]);
+
+  const handlePrev = useCallback(() => {
+    setCurrentIndex((prev) => (prev - 1 + personas.length) % personas.length);
+    setIsPaused(true);
+    setTimeout(() => setIsPaused(false), 5000);
+  }, []);
+
+  const handleNext = useCallback(() => {
+    setCurrentIndex((prev) => (prev + 1) % personas.length);
+    setIsPaused(true);
+    setTimeout(() => setIsPaused(false), 5000);
+  }, []);
+
   return (
     <div className="min-h-screen bg-background flex flex-col items-center justify-center overflow-hidden px-4 py-8 relative">
       {/* Theme Toggle only */}
@@ -65,35 +100,98 @@ const Landing = () => {
         </div>
       </div>
 
-      {/* Sliding Carousel */}
-      <div className="relative z-10 w-full max-w-7xl overflow-hidden group/carousel">
-        {/* Gradient fade edges */}
-        <div className="absolute left-0 top-0 bottom-0 w-20 md:w-32 bg-gradient-to-r from-background to-transparent z-10 pointer-events-none" />
-        <div className="absolute right-0 top-0 bottom-0 w-20 md:w-32 bg-gradient-to-l from-background to-transparent z-10 pointer-events-none" />
-        
-        {/* Sliding track - duplicated for infinite effect */}
-        <div className="flex gap-6 lg:gap-8 animate-slide-carousel group-hover/carousel:[animation-play-state:paused] py-4">
-          {/* First set */}
-          {personas.map((persona) => (
-            <div key={`first-${persona.name}`} className="flex-shrink-0">
-              <PersonaCard {...persona} />
+      {/* Mobile Carousel with Navigation */}
+      {isMobile ? (
+        <div className="relative z-10 w-full flex flex-col items-center gap-6">
+          {/* Carousel Container */}
+          <div className="relative w-full overflow-hidden">
+            <div 
+              className="flex transition-transform duration-500 ease-out"
+              style={{ transform: `translateX(calc(50% - ${currentIndex * 176}px - 80px))` }}
+            >
+              {personas.map((persona, index) => (
+                <div 
+                  key={persona.name} 
+                  className={`flex-shrink-0 px-2 transition-all duration-300 ${
+                    index === currentIndex ? "scale-100 opacity-100" : "scale-90 opacity-50"
+                  }`}
+                >
+                  <PersonaCard {...persona} />
+                </div>
+              ))}
             </div>
-          ))}
-          {/* Second set for seamless loop */}
-          {personas.map((persona) => (
-            <div key={`second-${persona.name}`} className="flex-shrink-0">
-              <PersonaCard {...persona} />
-            </div>
-          ))}
-          {/* Third set for extra smooth loop on wide screens */}
-          {personas.map((persona) => (
-            <div key={`third-${persona.name}`} className="flex-shrink-0">
-              <PersonaCard {...persona} />
-            </div>
-          ))}
-        </div>
-      </div>
+          </div>
 
+          {/* Navigation Controls */}
+          <div className="flex items-center gap-4">
+            <Button
+              variant="outline"
+              size="icon"
+              className="h-10 w-10 rounded-full border-primary/30 bg-card/80 backdrop-blur-sm"
+              onClick={handlePrev}
+            >
+              <ChevronLeft className="h-5 w-5" />
+            </Button>
+            
+            {/* Dots indicator */}
+            <div className="flex gap-2">
+              {personas.map((_, index) => (
+                <button
+                  key={index}
+                  onClick={() => {
+                    setCurrentIndex(index);
+                    setIsPaused(true);
+                    setTimeout(() => setIsPaused(false), 5000);
+                  }}
+                  className={`h-2 rounded-full transition-all duration-300 ${
+                    index === currentIndex 
+                      ? "w-6 bg-primary" 
+                      : "w-2 bg-muted-foreground/30"
+                  }`}
+                />
+              ))}
+            </div>
+
+            <Button
+              variant="outline"
+              size="icon"
+              className="h-10 w-10 rounded-full border-primary/30 bg-card/80 backdrop-blur-sm"
+              onClick={handleNext}
+            >
+              <ChevronRight className="h-5 w-5" />
+            </Button>
+          </div>
+        </div>
+      ) : (
+        /* Desktop Sliding Carousel */
+        <div className="relative z-10 w-full max-w-7xl overflow-hidden group/carousel">
+          {/* Gradient fade edges */}
+          <div className="absolute left-0 top-0 bottom-0 w-20 md:w-32 bg-gradient-to-r from-background to-transparent z-10 pointer-events-none" />
+          <div className="absolute right-0 top-0 bottom-0 w-20 md:w-32 bg-gradient-to-l from-background to-transparent z-10 pointer-events-none" />
+          
+          {/* Sliding track - duplicated for infinite effect */}
+          <div className="flex gap-6 lg:gap-8 animate-slide-carousel group-hover/carousel:[animation-play-state:paused] py-4">
+            {/* First set */}
+            {personas.map((persona) => (
+              <div key={`first-${persona.name}`} className="flex-shrink-0">
+                <PersonaCard {...persona} />
+              </div>
+            ))}
+            {/* Second set for seamless loop */}
+            {personas.map((persona) => (
+              <div key={`second-${persona.name}`} className="flex-shrink-0">
+                <PersonaCard {...persona} />
+              </div>
+            ))}
+            {/* Third set for extra smooth loop on wide screens */}
+            {personas.map((persona) => (
+              <div key={`third-${persona.name}`} className="flex-shrink-0">
+                <PersonaCard {...persona} />
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
     </div>
   );
 };

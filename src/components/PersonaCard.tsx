@@ -25,7 +25,7 @@ const PersonaCard = ({ name, title, description, icon, route }: PersonaCardProps
 
   return (
     <div
-      className="w-52 h-64 cursor-pointer group"
+      className="w-40 h-52 sm:w-52 sm:h-64 cursor-pointer group"
       style={{ perspective: "1000px" }}
       onMouseEnter={() => setIsFlipped(true)}
       onMouseLeave={() => setIsFlipped(false)}
@@ -51,9 +51,9 @@ const PersonaCard = ({ name, title, description, icon, route }: PersonaCardProps
           {/* Glow effect on hover */}
           <div className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none bg-gradient-to-br from-primary/10 to-accent/10" />
           
-          <div className="text-5xl relative z-10 group-hover:scale-110 transition-transform duration-300">{icon}</div>
-          <h3 className="text-xl font-bold text-foreground relative z-10">{name}</h3>
-          <p className="text-xs text-muted-foreground text-center relative z-10 line-clamp-2">{title}</p>
+          <div className="text-4xl sm:text-5xl relative z-10 group-hover:scale-110 transition-transform duration-300">{icon}</div>
+          <h3 className="text-lg sm:text-xl font-bold text-foreground relative z-10">{name}</h3>
+          <p className="text-[10px] sm:text-xs text-muted-foreground text-center relative z-10 line-clamp-2">{title}</p>
         </div>
 
         {/* Back of card */}
