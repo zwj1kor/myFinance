@@ -1,5 +1,6 @@
 import PersonaCard from "@/components/PersonaCard";
 import ThemeToggle from "@/components/ThemeToggle";
+import bankBackground from "@/assets/bank-background.jpg";
 
 const personas = [
   {
@@ -42,6 +43,14 @@ const personas = [
 const Landing = () => {
   return (
     <div className="min-h-screen bg-background flex flex-col items-center justify-center overflow-hidden px-4 py-8 relative">
+      {/* Bank Background Image */}
+      <div 
+        className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+        style={{ backgroundImage: `url(${bankBackground})` }}
+      />
+      {/* Dark overlay for readability */}
+      <div className="absolute inset-0 bg-background/80 dark:bg-background/85" />
+      
       {/* Theme Toggle only */}
       <div className="absolute top-4 right-4 z-20">
         <ThemeToggle />
