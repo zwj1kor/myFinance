@@ -58,6 +58,7 @@ export default function Dashboard() {
   };
 
   const handleSubKPIClick = (mainName: string, subKPI: SubKPI) => {
+    setChatOpen(null); // Close any open chat when clicking a KPI
     setExpandedKPI({ main: mainName, sub: subKPI });
   };
 
