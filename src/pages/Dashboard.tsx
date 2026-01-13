@@ -64,6 +64,7 @@ export default function Dashboard() {
 
   const handleClose = () => {
     setExpandedKPI(null);
+    setChatOpen(null); // Close chat when KPI detail is closed
   };
 
   const handleTileChatClick = (e: React.MouseEvent, kpiName: string) => {
