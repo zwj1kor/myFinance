@@ -1,7 +1,8 @@
 import { NavLink } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { Bell, User, Home, Sparkles } from "lucide-react";
+import { User, Home, Sparkles } from "lucide-react";
 import ThemeToggle from "./ThemeToggle";
+import FeedbackDialog from "./FeedbackDialog";
 
 const navLinks = [
   { label: "AI Copilot", path: "/copilot" },
@@ -66,9 +67,7 @@ export default function Navbar() {
 
             <ThemeToggle />
 
-            <Button variant="ghost" size="icon" className="hidden sm:flex hover:bg-muted/50 transition-all hover:scale-110 hover:shadow-glow">
-              <Bell className="w-5 h-5" />
-            </Button>
+            <FeedbackDialog />
 
             <Button variant="ghost" size="icon" className="hidden sm:flex hover:bg-muted/50 transition-all hover:scale-110 hover:shadow-glow">
               <User className="w-5 h-5" />
