@@ -1,6 +1,6 @@
 import { NavLink } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { Bell, User } from "lucide-react";
+import { Bell, User, Home, Sparkles } from "lucide-react";
 import ThemeToggle from "./ThemeToggle";
 
 const navLinks = [
@@ -16,11 +16,20 @@ export default function Navbar() {
           {/* Logo */}
           <NavLink to="/dashboard" className="flex items-center gap-3 group flex-shrink-0">
             <div className="w-11 h-11 bg-gradient-primary rounded-2xl flex items-center justify-center shadow-neon group-hover:shadow-glow transition-all group-hover:scale-105 border border-primary/50">
-              <span className="text-white font-display font-bold text-base">mF</span>
+              <Sparkles className="w-6 h-6 text-white" />
             </div>
             <span className="text-foreground font-display font-bold text-2xl hidden lg:block text-gradient-neon">
               myFinance.AI
             </span>
+          </NavLink>
+
+          {/* Home Icon */}
+          <NavLink
+            to="/"
+            className="p-2 rounded-full hover:bg-muted/50 transition-all hover:scale-110 hover:shadow-glow"
+            title="Home"
+          >
+            <Home className="w-5 h-5 text-foreground" />
           </NavLink>
 
           {/* Navigation */}
