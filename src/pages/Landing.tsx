@@ -94,11 +94,14 @@ const Landing = () => {
 
       {/* Instructions */}
       <div className="relative z-10 mt-12 text-center">
-        <p className="text-sm text-muted-foreground">
-          <span className="inline-block animate-bounce mr-2">👆</span>
-          Hover to pause & flip • Click card to enter dashboard
-          <span className="inline-block animate-bounce ml-2">👆</span>
-        </p>
+        <div className="inline-flex flex-col items-center gap-1 px-6 py-3 rounded-xl bg-card/50 backdrop-blur-sm border border-border/50 shadow-lg">
+          <p className="text-sm font-medium text-foreground/80">
+            Hover to view
+          </p>
+          <p className="text-xs text-muted-foreground">
+            Click card to enter dashboard
+          </p>
+        </div>
       </div>
     </div>
   );
