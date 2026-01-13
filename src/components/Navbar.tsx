@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button";
 import { User, Home, Sparkles } from "lucide-react";
 import ThemeToggle from "./ThemeToggle";
 import FeedbackDialog from "./FeedbackDialog";
+import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip";
 
 const navLinks = [
   { label: "AI Copilot", path: "/copilot" },
@@ -69,9 +70,16 @@ export default function Navbar() {
 
             <FeedbackDialog />
 
-            <Button variant="ghost" size="icon" className="hidden sm:flex hover:bg-muted/50 transition-all hover:scale-110 hover:shadow-glow">
-              <User className="w-5 h-5" />
-            </Button>
+            <Tooltip delayDuration={0}>
+              <TooltipTrigger asChild>
+                <Button variant="ghost" size="icon" className="hidden sm:flex hover:bg-muted/50 transition-all hover:scale-110 hover:shadow-glow">
+                  <User className="w-5 h-5" />
+                </Button>
+              </TooltipTrigger>
+              <TooltipContent>
+                <p>John Wick</p>
+              </TooltipContent>
+            </Tooltip>
           </div>
         </div>
       </div>
