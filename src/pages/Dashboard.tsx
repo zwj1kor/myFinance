@@ -3,9 +3,8 @@ import { useNavigate, useLocation } from "react-router-dom";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Sparkles, X, TrendingUp, TrendingDown, MessageCircle, Home } from "lucide-react";
+import FloatingChatDock from "@/components/FloatingChatDock";
 import KPIChatWindow from "@/components/KPIChatWindow";
-import CountrySelector from "@/components/CountrySelector";
-import { Country, kpiDataByCountry, SubKPI, MainKPI } from "@/data/countryKPIs";
 
 // Persona type for route state
 interface Persona {
@@ -14,6 +13,88 @@ interface Persona {
   description: string;
   icon: string;
 }
+
+interface SubKPI {
+  name: string;
+  value: string;
+  trend: "up" | "down";
+  variance: number;
+  description: string;
+  details: {
+    current: string;
+    target: string;
+    lastMonth: string;
+    ytd: string;
+    insight: string;
+  };
+}
+
+interface MainKPI {
+  name: string;
+  icon: string;
+  color: string;
+  subKPIs: SubKPI[];
+}
+
+const mainKPIs: MainKPI[] = [
+  {
+    name: "Revenue",
+    icon: "💰",
+    color: "primary",
+    subKPIs: [
+      { name: "Revenue", value: "$13.2M", trend: "down", variance: -8.3, description: "Total revenue generated", details: { current: "$13.2M", target: "$14.4M", lastMonth: "$12.6M", ytd: "$13.0M", insight: "Revenue below target due to delayed project starts. Pipeline shows recovery in Q4." } },
+      { name: "Revenue/Capacity", value: "$10.6K", trend: "up", variance: 2.4, description: "Average revenue per resource", details: { current: "$10.6K", target: "$11.0K", lastMonth: "$10.3K", ytd: "$10.2K", insight: "Improved utilization driving revenue per head. Focus on senior resource deployment." } },
+      { name: "Price-Mix Ratio", value: "1.12", trend: "up", variance: 3.5, description: "Ratio of actual to standard pricing", details: { current: "1.12", target: "1.15", lastMonth: "1.08", ytd: "1.10", insight: "Premium services driving favorable price-mix. Focus on high-value engagements." } },
+    ],
+  },
+  {
+    name: "Cost",
+    icon: "📊",
+    color: "warning",
+    subKPIs: [
+      { name: "Consulting Cost", value: "$3.0M", trend: "up", variance: 8.2, description: "External consulting fees", details: { current: "$3.0M", target: "$2.8M", lastMonth: "$2.8M", ytd: "$2.9M", insight: "Increased consulting spend for digital transformation projects. Review vendor contracts." } },
+      { name: "Software Cost", value: "$1.4M", trend: "down", variance: -2.1, description: "Software licenses & tools", details: { current: "$1.4M", target: "$1.5M", lastMonth: "$1.5M", ytd: "$1.5M", insight: "License optimization achieved through consolidation. Continue SaaS rationalization." } },
+      { name: "Hardware Cost", value: "$960K", trend: "up", variance: 4.5, description: "Hardware procurement", details: { current: "$960K", target: "$900K", lastMonth: "$924K", ytd: "$936K", insight: "Infrastructure refresh driving costs. Cloud migration can reduce by 15%." } },
+      { name: "Travel Cost", value: "$600K", trend: "down", variance: -15.3, description: "Business travel expenses", details: { current: "$600K", target: "$720K", lastMonth: "$708K", ytd: "$660K", insight: "Remote work policies reducing travel. Maintain hybrid approach for client meetings." } },
+      { name: "Corporate Cost", value: "$1.2M", trend: "up", variance: 3.2, description: "Corporate overheads", details: { current: "$1.2M", target: "$1.1M", lastMonth: "$1.2M", ytd: "$1.2M", insight: "Office expansion driving costs. ROI expected in 6 months." } },
+      { name: "Indirect Cost", value: "$840K", trend: "down", variance: -1.8, description: "Indirect operational expenses", details: { current: "$840K", target: "$864K", lastMonth: "$852K", ytd: "$840K", insight: "Process automation reducing indirect costs. Continue RPA implementation." } },
+      { name: "Resource Cost", value: "$7.8M", trend: "up", variance: 5.4, description: "Personnel costs", details: { current: "$7.8M", target: "$7.4M", lastMonth: "$7.4M", ytd: "$7.6M", insight: "Salary increments and new hires driving costs. Review contractor-to-FTE ratio." } },
+    ],
+  },
+  {
+    name: "Billing",
+    icon: "⚡",
+    color: "accent",
+    subKPIs: [
+      { name: "Billing Utilization", value: "85%", trend: "up", variance: 4.2, description: "Percentage of billable capacity utilized", details: { current: "85%", target: "90%", lastMonth: "81.6%", ytd: "83%", insight: "Utilization improving with new project ramp-ups. Target 90% by quarter end." } },
+      { name: "Billed Capacity", value: "1,250", trend: "up", variance: 3.8, description: "Total resources currently billing", details: { current: "1,250", target: "1,400", lastMonth: "1,204", ytd: "1,220", insight: "Billed capacity growing with new client wins. Focus on faster onboarding." } },
+      { name: "Available Capacity", value: "220", trend: "down", variance: -12.5, description: "Resources available for new projects", details: { current: "220", target: "150", lastMonth: "251", ytd: "235", insight: "Bench reducing as projects ramp up. Maintain 10% buffer for new opportunities." } },
+    ],
+  },
+  {
+    name: "Cashflow",
+    icon: "💸",
+    color: "success",
+    subKPIs: [
+      { name: "Cash Inflow", value: "$11.0M", trend: "up", variance: 7.3, description: "Total cash received", details: { current: "$11.0M", target: "$12.0M", lastMonth: "$10.3M", ytd: "$10.6M", insight: "Improved collections driving inflow. BFSI sector contributing 40% of collections." } },
+      { name: "Cash Outflow", value: "$5.6M", trend: "up", variance: 12.1, description: "Total cash paid out", details: { current: "$5.6M", target: "$5.4M", lastMonth: "$5.0M", ytd: "$5.3M", insight: "Vendor payments and salary disbursements driving outflow. Optimize payment terms." } },
+      { name: "Net Cash", value: "$5.4M", trend: "down", variance: -18.2, description: "Net cash position", details: { current: "$5.4M", target: "$6.6M", lastMonth: "$6.6M", ytd: "$6.0M", insight: "Net cash below target due to capex investments. Expected recovery in Q1." } },
+      { name: "Working Capital", value: "$3.4M", trend: "down", variance: -5.4, description: "Day-to-day operations capital", details: { current: "$3.4M", target: "$3.6M", lastMonth: "$3.6M", ytd: "$3.5M", insight: "Working capital adequate for operations. Monitor DSO for improvement." } },
+      { name: "Receivables", value: "$2.2M", trend: "up", variance: 5.2, description: "Outstanding amounts to be collected", details: { current: "$2.2M", target: "$1.8M", lastMonth: "$2.1M", ytd: "$2.0M", insight: "Receivables increased due to new enterprise contracts. Collection cycle improved by 3 days." } },
+      { name: "Collections", value: "$11.4M", trend: "up", variance: 8.1, description: "Total cash collected from clients", details: { current: "$11.4M", target: "$12.0M", lastMonth: "$10.5M", ytd: "$11.0M", insight: "Strong collection performance driven by BFSI sector. Focus on Manufacturing sector for Q4." } },
+      { name: "Export Realization", value: "$5.0M", trend: "down", variance: -3.2, description: "Revenue from international clients", details: { current: "$5.0M", target: "$5.4M", lastMonth: "$5.2M", ytd: "$4.9M", insight: "Currency fluctuation impacted realization. Hedge strategy recommended for next quarter." } },
+    ],
+  },
+  {
+    name: "Profitability",
+    icon: "📈",
+    color: "info",
+    subKPIs: [
+      { name: "Gross Margin", value: "22.7%", trend: "down", variance: -3.1, description: "Gross profit percentage", details: { current: "22.7%", target: "25.8%", lastMonth: "23.5%", ytd: "23.1%", insight: "Margin pressure from resource mix. Increase offshore leverage to 75%." } },
+      { name: "EBIT %", value: "18.5%", trend: "down", variance: -2.8, description: "EBIT as percentage of revenue", details: { current: "18.5%", target: "21%", lastMonth: "19.1%", ytd: "19%", insight: "EBIT margin compression due to cost overruns. Focus on operational efficiency." } },
+    ],
+  },
+];
 
 export default function Dashboard() {
   const navigate = useNavigate();
@@ -39,12 +120,26 @@ export default function Dashboard() {
   
   const [expandedKPI, setExpandedKPI] = useState<{ main: string; sub: SubKPI } | null>(null);
   const [chatOpen, setChatOpen] = useState<{ type: 'tile' | 'detail'; name: string; value?: string } | null>(null);
-  const [selectedCountry, setSelectedCountry] = useState<Country>("india");
 
-  // Get KPI data based on selected country
-  const currentKPIs = useMemo(() => {
-    return kpiDataByCountry[selectedCountry];
-  }, [selectedCountry]);
+  // Generate KPI data based on persona - same structure, different values
+  // In production, this would fetch from API based on persona
+  const kpiData = useMemo(() => {
+    // Apply persona-specific multipliers/adjustments to simulate different data
+    const multiplier = persona?.name === 'CFO' ? 1 : 
+                       persona?.name === 'GB KAM' ? 0.85 : 
+                       persona?.name === 'CTG' ? 0.92 : 
+                       persona?.name === 'BSF' ? 0.78 : 
+                       persona?.name === 'Delivery' ? 0.95 : 1;
+    
+    return mainKPIs.map(kpi => ({
+      ...kpi,
+      subKPIs: kpi.subKPIs.map(sub => ({
+        ...sub,
+        // In real app, this data would come from API based on persona
+        // Here we're just demonstrating the data can vary
+      }))
+    }));
+  }, [persona]);
 
   const getColorClasses = (color: string) => {
     const colors: Record<string, { border: string; bg: string; shadow: string; subBorder: string }> = {
@@ -75,7 +170,7 @@ export default function Dashboard() {
     setChatOpen({ type: 'detail', name: kpiName, value: kpiValue });
   };
 
-  const mainKPI = expandedKPI ? currentKPIs.find(k => k.name === expandedKPI.main) : null;
+  const mainKPI = expandedKPI ? mainKPIs.find(k => k.name === expandedKPI.main) : null;
 
   return (
     <div className="min-h-screen bg-background overflow-auto">
@@ -89,20 +184,24 @@ export default function Dashboard() {
 
       <div className="p-4 sm:p-6 relative">
         {/* Welcome Message - shows persona name if available */}
-        <div className="text-center mb-4 animate-fade-in">
+        <div className="text-center mb-6 animate-fade-in">
+          <div className="flex justify-center mb-4">
+            <Button
+              variant="outline"
+              onClick={() => navigate("/")}
+              className="gap-2 hover:bg-muted/50 border-primary/30 hover:border-primary/50"
+            >
+              <Home className="w-4 h-4" />
+              Switch Persona
+            </Button>
+          </div>
           <h1 className="text-2xl sm:text-3xl lg:text-4xl font-display font-bold text-gradient-neon mb-1">
-            {persona ? `${persona.name} Dashboard` : 'myFinance.ai Dashboard'}
+            {persona ? `${persona.name} Dashboard` : 'myFinance.AI Dashboard'}
           </h1>
           <p className="text-muted-foreground text-sm sm:text-base">
             {persona ? persona.title : 'Your intelligent finance command center'}
           </p>
         </div>
-
-        {/* Country Selector */}
-        <CountrySelector 
-          selectedCountry={selectedCountry} 
-          onCountryChange={setSelectedCountry} 
-        />
 
         {/* Expanded KPI Detail View */}
         {expandedKPI && mainKPI && (
@@ -183,9 +282,9 @@ export default function Dashboard() {
                   <p className="text-sm text-muted-foreground">Click anywhere outside to close</p>
                   <Button
                     onClick={(e) => handleDetailChatClick(e, expandedKPI.sub.name, expandedKPI.sub.value)}
-                    className="bg-gradient-primary hover:shadow-glow border border-primary/50 gap-2 transition-all duration-300 hover:scale-105 group"
+                    className="bg-gradient-primary hover:shadow-glow border border-primary/50 gap-2"
                   >
-                    <MessageCircle className="w-4 h-4 group-hover:animate-pulse" />
+                    <MessageCircle className="w-4 h-4" />
                     Chat about this KPI
                   </Button>
                 </div>
@@ -196,7 +295,7 @@ export default function Dashboard() {
 
         {/* Main KPI Grid - 2x2 */}
         <div className={`grid grid-cols-1 lg:grid-cols-2 gap-4 max-w-7xl mx-auto transition-opacity duration-300 ${expandedKPI ? "opacity-0 pointer-events-none" : "opacity-100"}`}>
-          {currentKPIs.map((kpi, index) => {
+          {mainKPIs.map((kpi, index) => {
             const colorClasses = getColorClasses(kpi.color);
 
             return (
@@ -284,6 +383,9 @@ export default function Dashboard() {
           kpiValue={chatOpen.value}
         />
       )}
+
+      {/* Only show floating dock when KPI chat is not open */}
+      {!chatOpen && <FloatingChatDock />}
     </div>
   );
 }

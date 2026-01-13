@@ -2,11 +2,6 @@ import { Moon, Sun } from "lucide-react";
 import { useTheme } from "next-themes";
 import { Button } from "@/components/ui/button";
 import { useEffect, useState } from "react";
-import {
-  Tooltip,
-  TooltipContent,
-  TooltipTrigger,
-} from "@/components/ui/tooltip";
 
 export default function ThemeToggle() {
   const { resolvedTheme, setTheme } = useTheme();
@@ -25,25 +20,18 @@ export default function ThemeToggle() {
   }
 
   return (
-    <Tooltip delayDuration={0}>
-      <TooltipTrigger asChild>
-        <Button
-          variant="ghost"
-          size="icon"
-          onClick={() => setTheme(resolvedTheme === "dark" ? "light" : "dark")}
-          className="hover:bg-muted/50 transition-all hover:scale-110 hover:shadow-glow"
-        >
-          {resolvedTheme === "dark" ? (
-            <Sun className="h-5 w-5 transition-all" />
-          ) : (
-            <Moon className="h-5 w-5 transition-all" />
-          )}
-          <span className="sr-only">Toggle theme</span>
-        </Button>
-      </TooltipTrigger>
-      <TooltipContent>
-        {resolvedTheme === "dark" ? "Switch to day mode" : "Switch to night mode"}
-      </TooltipContent>
-    </Tooltip>
+    <Button
+      variant="ghost"
+      size="icon"
+      onClick={() => setTheme(resolvedTheme === "dark" ? "light" : "dark")}
+      className="hover:bg-muted/50 transition-all hover:scale-110 hover:shadow-glow"
+    >
+      {resolvedTheme === "dark" ? (
+        <Sun className="h-5 w-5 transition-all" />
+      ) : (
+        <Moon className="h-5 w-5 transition-all" />
+      )}
+      <span className="sr-only">Toggle theme</span>
+    </Button>
   );
 }

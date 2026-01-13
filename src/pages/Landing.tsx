@@ -11,22 +11,22 @@ const personas = [
   },
   {
     name: "GB KAM",
-    title: "GB Key Account Manager",
+    title: "Global Business Key Account Manager",
     description: "End-to-end visibility into key account performance, utilization metrics, and revenue optimization opportunities.",
     icon: "🌐",
     route: "/dashboard",
   },
   {
     name: "CTG",
-    title: "Controlling & Internal Accounting",
-    description: "Ensures financial discipline, compliance, and operational transparency across BGSW.",
+    title: "Consulting Technology Group",
+    description: "Technology-driven insights for consulting operations, capacity planning, and resource allocation.",
     icon: "⚙️",
     route: "/dashboard",
   },
   {
     name: "BSF",
-    title: "Business Finance",
-    description: "Strategic financial partner enabling performance, profitability, and resource optimization across BGSW.",
+    title: "Business Support Functions",
+    description: "Operational excellence metrics, cost efficiency tracking, and cross-functional performance analytics.",
     icon: "📊",
     route: "/dashboard",
   },
@@ -42,8 +42,10 @@ const personas = [
 const Landing = () => {
   return (
     <div className="min-h-screen bg-background flex flex-col items-center justify-center overflow-hidden px-4 py-8 relative">
-      {/* Theme Toggle only */}
-      <div className="absolute top-4 right-4 z-20">
+      {/* Powered By BGSW/BDO Branding & Theme Toggle */}
+      <div className="absolute top-4 right-4 z-20 flex items-center gap-3">
+        <span className="text-xs text-muted-foreground font-medium">Powered By BGSW/BDO</span>
+        <img src="/bgsw-logo.svg" alt="BGSW Logo" className="h-6 w-auto" />
         <ThemeToggle />
       </div>
       {/* Background effects */}
@@ -55,14 +57,12 @@ const Landing = () => {
 
       {/* Header */}
       <div className="relative z-10 text-center mb-12">
-        <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold bg-gradient-to-r from-primary via-accent to-primary bg-clip-text text-transparent mb-4">
+        <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold bg-gradient-to-r from-primary via-accent to-primary bg-clip-text text-transparent mb-2">
           myFinance.ai
         </h1>
-        <div className="flex items-center justify-center gap-3">
-          <span className="text-sm md:text-base text-muted-foreground font-medium">Powered By</span>
-          <span className="text-sm md:text-base font-bold text-foreground">BGSW/BDO</span>
-          <img src="/bgsw-logo.svg" alt="BGSW Logo" className="h-6 w-auto" />
-        </div>
+        <p className="text-base md:text-lg text-muted-foreground tracking-widest uppercase">
+          Finance Intelligence Hub
+        </p>
       </div>
 
       {/* Sliding Carousel */}
@@ -94,6 +94,17 @@ const Landing = () => {
         </div>
       </div>
 
+      {/* Instructions */}
+      <div className="relative z-10 mt-12 text-center">
+        <div className="inline-flex flex-col items-center gap-1.5 px-6 py-3 rounded-xl bg-card/50 backdrop-blur-sm border border-border/50 shadow-lg">
+          <p className="text-sm text-muted-foreground">
+            Hover on card to view
+          </p>
+          <p className="text-sm font-bold bg-gradient-to-r from-primary via-accent to-primary bg-clip-text text-transparent animate-pulse">
+            Click card to enter dashboard
+          </p>
+        </div>
+      </div>
     </div>
   );
 };
