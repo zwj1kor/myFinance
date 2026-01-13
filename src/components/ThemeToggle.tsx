@@ -25,7 +25,7 @@ export default function ThemeToggle() {
   }
 
   return (
-    <Tooltip>
+    <Tooltip delayDuration={0}>
       <TooltipTrigger asChild>
         <Button
           variant="ghost"
