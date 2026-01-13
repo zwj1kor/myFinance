@@ -1,10 +1,13 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { Card } from "@/components/ui/card";
-import { Sparkles, TrendingUp } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { Sparkles, TrendingUp, ArrowLeft } from "lucide-react";
 import AgentDetailModal from "@/components/AgentDetailModal";
 import { aiAgents, AIAgent } from "@/data/aiAgents";
 
 export default function AIAgents() {
+  const navigate = useNavigate();
   const [selectedAgent, setSelectedAgent] = useState<AIAgent | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -16,6 +19,16 @@ export default function AIAgents() {
   return (
     <div className="min-h-screen bg-background">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        {/* Back Button */}
+        <Button
+          variant="ghost"
+          onClick={() => navigate("/dashboard")}
+          className="mb-6 gap-2 hover:bg-muted/50"
+        >
+          <ArrowLeft className="w-4 h-4" />
+          Back to Dashboard
+        </Button>
+
         {/* Header */}
         <div className="mb-12 animate-fade-up text-center">
           <div className="inline-flex items-center justify-center w-20 h-20 bg-gradient-primary rounded-3xl mb-6 shadow-xl animate-pulse-glow">
