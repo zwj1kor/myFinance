@@ -14,7 +14,12 @@ const PersonaCard = ({ name, title, description, icon, route }: PersonaCardProps
   const navigate = useNavigate();
 
   const handleClick = () => {
-    navigate(route);
+    // Pass persona data via route state - Dashboard loads data based on persona
+    navigate(route, { 
+      state: { 
+        persona: { name, title, description, icon } 
+      } 
+    });
   };
 
   return (

@@ -16,7 +16,7 @@ export default function FloatingChatDock() {
   const [messages, setMessages] = useState<Message[]>([
     {
       role: "assistant",
-      content: "Hi! EBIT margin improved 2.1pp this quarter. Want me to forecast next quarter?",
+      content: "Hi! I'm your AI assistant. How can I help you today?",
     },
   ]);
   const [input, setInput] = useState("");
@@ -32,7 +32,7 @@ export default function FloatingChatDock() {
         ...prev,
         {
           role: "assistant",
-          content: "Based on current trends and your query, here's what I found: Revenue is tracking 8% below plan, but utilization improvements in Europe are offsetting some losses. I recommend focusing on high-margin accounts to close the gap.",
+          content: "Thank you for your message. I'm here to assist you with any questions or tasks you might have. Feel free to ask me anything!",
         },
       ]);
     }, 1000);
@@ -64,7 +64,7 @@ export default function FloatingChatDock() {
               <MessageCircle className="w-5 h-5 text-white" />
             </div>
             <div>
-              <p className="font-display font-semibold text-sm text-gradient-neon">CFO Copilot</p>
+              <p className="font-display font-semibold text-sm text-gradient-neon">AI Assistant</p>
               <p className="text-xs text-muted-foreground">Click to expand</p>
             </div>
           </div>
@@ -94,8 +94,8 @@ export default function FloatingChatDock() {
             <MessageCircle className="w-5 h-5" />
           </div>
           <div>
-            <p className="font-display font-semibold">CFO Copilot</p>
-            <p className="text-xs text-white/80">Your AI Finance Assistant</p>
+            <p className="font-display font-semibold">AI Assistant</p>
+            <p className="text-xs text-white/80">How can I help you?</p>
           </div>
         </div>
         <div className="flex gap-1 relative z-10">
