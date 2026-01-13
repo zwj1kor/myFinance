@@ -126,11 +126,9 @@ export default function Dashboard() {
                     </div>
                   </div>
                   <div className="flex items-center gap-4">
-                    {/* Country Indicator with Flag */}
+                    {/* Country Indicator */}
                     <div className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-primary/10 border border-primary/30">
-                      <span className="text-base">
-                        {selectedCountry === "india" ? "🇮🇳" : selectedCountry === "mexico" ? "🇲🇽" : "🇻🇳"}
-                      </span>
+                      <span className="text-xs font-medium text-muted-foreground">Region:</span>
                       <span className="text-sm font-display font-bold text-primary">
                         {selectedCountry === "india" ? "IN" : selectedCountry === "mexico" ? "MX" : "VN"}
                       </span>
