@@ -6,7 +6,7 @@ import { TrendingUp, TrendingDown, AlertCircle, CheckCircle, Sparkles } from "lu
 interface AgentDetailModalProps {
   isOpen: boolean;
   onClose: () => void;
-  agent: { name: string; icon: any } | null;
+  agent: { name: string; icon: any; description?: string; status?: string; color?: string } | null;
 }
 
 export default function AgentDetailModal({ isOpen, onClose, agent }: AgentDetailModalProps) {

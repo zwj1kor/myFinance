@@ -2,6 +2,7 @@ import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { ArrowLeft, Sparkles, Brain, Zap, Target, TrendingUp } from "lucide-react";
 import { useNavigate } from "react-router-dom";
+import { aiAgents } from "@/data/aiAgents";
 
 export default function AIOverview() {
   const navigate = useNavigate();
@@ -30,53 +31,6 @@ export default function AIOverview() {
       icon: TrendingUp,
       description: "Optimize your operations with AI-driven recommendations for cost reduction, revenue enhancement, and efficiency improvements.",
       features: ["Cost optimization", "Revenue maximization", "Efficiency gains", "Benchmark comparison"],
-    },
-  ];
-
-  const agents = [
-    {
-      name: "Revenue Agent",
-      emoji: "📈",
-      responsibility: "Revenue Growth & Pipeline Management",
-      capabilities: [
-        "Monitors revenue trends across segments and regions",
-        "Identifies high-value deals in pipeline",
-        "Forecasts quarterly and annual revenue",
-        "Analyzes client retention and expansion opportunities",
-      ],
-    },
-    {
-      name: "Cost & EBIT Agent",
-      emoji: "💸",
-      responsibility: "Cost Control & Profitability Optimization",
-      capabilities: [
-        "Tracks cost breakdown and variance analysis",
-        "Identifies savings opportunities",
-        "Monitors EBIT margins and trends",
-        "Recommends vendor renegotiation strategies",
-      ],
-    },
-    {
-      name: "Capacity Agent",
-      emoji: "👥",
-      responsibility: "Workforce Planning & Resource Management",
-      capabilities: [
-        "Manages capacity planning and forecasting",
-        "Tracks skill distribution and demand",
-        "Monitors bench strength and deployment",
-        "Optimizes hiring pipeline",
-      ],
-    },
-    {
-      name: "Utilization Agent",
-      emoji: "⚡",
-      responsibility: "Billing Optimization & Efficiency",
-      capabilities: [
-        "Tracks billable vs non-billable utilization",
-        "Identifies shadow staffing issues",
-        "Monitors utilization by level and project",
-        "Recommends resource reallocation strategies",
-      ],
     },
   ];
 
@@ -123,7 +77,7 @@ export default function AIOverview() {
             <div className="flex flex-wrap gap-4">
               <div className="flex items-center gap-2 px-4 py-2 bg-success/20 rounded-2xl border border-success/30">
                 <div className="w-2 h-2 bg-success rounded-full animate-neon-pulse" />
-                <span className="text-sm font-display font-semibold text-success">4 Active AI Agents</span>
+                <span className="text-sm font-display font-semibold text-success">{aiAgents.length} Active AI Agents</span>
               </div>
               <div className="flex items-center gap-2 px-4 py-2 bg-primary/20 rounded-2xl border border-primary/30">
                 <Zap className="w-4 h-4 text-primary" />
@@ -172,7 +126,7 @@ export default function AIOverview() {
         <div>
           <h2 className="text-2xl font-display font-bold text-gradient-neon mb-6">Meet Your AI Agents</h2>
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-            {agents.map((agent) => (
+            {aiAgents.map((agent) => (
               <Card key={agent.name} className="p-6 glass-card border-2 border-neon rounded-2xl shadow-xl shadow-primary/20 hover:scale-105 transition-all group">
                 <div className="flex items-center gap-4 mb-4">
                   <span className="text-5xl group-hover:scale-125 group-hover:rotate-12 transition-all">{agent.emoji}</span>
