@@ -42,10 +42,8 @@ const personas = [
 const Landing = () => {
   return (
     <div className="min-h-screen bg-background flex flex-col items-center justify-center overflow-hidden px-4 py-8 relative">
-      {/* Powered By BGSW/BDO Branding & Theme Toggle */}
-      <div className="absolute top-4 right-4 z-20 flex items-center gap-3">
-        <span className="text-xs text-muted-foreground font-medium">Powered By BGSW/BDO</span>
-        <img src="/bgsw-logo.svg" alt="BGSW Logo" className="h-6 w-auto" />
+      {/* Theme Toggle only */}
+      <div className="absolute top-4 right-4 z-20">
         <ThemeToggle />
       </div>
       {/* Background effects */}
@@ -57,12 +55,14 @@ const Landing = () => {
 
       {/* Header */}
       <div className="relative z-10 text-center mb-12">
-        <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold bg-gradient-to-r from-primary via-accent to-primary bg-clip-text text-transparent mb-2">
+        <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold bg-gradient-to-r from-primary via-accent to-primary bg-clip-text text-transparent mb-4">
           myFinance.ai
         </h1>
-        <p className="text-base md:text-lg text-muted-foreground tracking-widest uppercase">
-          Finance Intelligence Hub
-        </p>
+        <div className="flex items-center justify-center gap-3">
+          <span className="text-sm md:text-base text-muted-foreground font-medium">Powered By</span>
+          <span className="text-sm md:text-base font-bold text-foreground">BGSW/BDO</span>
+          <img src="/bgsw-logo.svg" alt="BGSW Logo" className="h-6 w-auto" />
+        </div>
       </div>
 
       {/* Sliding Carousel */}
