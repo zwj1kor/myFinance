@@ -2,7 +2,7 @@ import { useState, useMemo } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Sparkles, X, TrendingUp, TrendingDown, MessageCircle } from "lucide-react";
+import { Sparkles, X, TrendingUp, TrendingDown, MessageCircle, Home } from "lucide-react";
 import FloatingChatDock from "@/components/FloatingChatDock";
 import KPIChatWindow from "@/components/KPIChatWindow";
 
@@ -170,6 +170,16 @@ export default function Dashboard() {
       <div className="p-4 sm:p-6 relative">
         {/* Welcome Message - shows persona name if available */}
         <div className="text-center mb-6 animate-fade-in">
+          <div className="flex justify-center mb-4">
+            <Button
+              variant="outline"
+              onClick={() => navigate("/")}
+              className="gap-2 hover:bg-muted/50 border-primary/30 hover:border-primary/50"
+            >
+              <Home className="w-4 h-4" />
+              Switch Persona
+            </Button>
+          </div>
           <h1 className="text-2xl sm:text-3xl lg:text-4xl font-display font-bold text-gradient-neon mb-1">
             {persona ? `${persona.name} Dashboard` : 'myFinance.AI Dashboard'}
           </h1>
