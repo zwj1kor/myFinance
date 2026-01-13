@@ -44,6 +44,17 @@ export default function Navbar() {
 
           {/* Right Side Actions */}
           <div className="flex items-center gap-3">
+            {/* Powered By BGSW/BDO */}
+            <div className="hidden md:flex items-center gap-2 px-3 py-1.5 bg-muted/30 rounded-full border border-border/50">
+              <span className="text-xs text-muted-foreground font-medium">Powered By</span>
+              <span className="text-xs font-bold text-foreground">BGSW/BDO</span>
+              <img 
+                src="/bgsw-logo.svg" 
+                alt="BGSW Logo" 
+                className="h-5 w-auto"
+              />
+            </div>
+
             <ThemeToggle />
 
             <Button variant="ghost" size="icon" className="hidden sm:flex hover:bg-muted/50 transition-all hover:scale-110 hover:shadow-glow">

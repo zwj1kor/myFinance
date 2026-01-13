@@ -1,51 +1,14 @@
 import { useState } from "react";
 import { Card } from "@/components/ui/card";
-import { Sparkles, TrendingUp, DollarSign, PieChart, Droplets, Navigation } from "lucide-react";
+import { Sparkles, TrendingUp } from "lucide-react";
 import AgentDetailModal from "@/components/AgentDetailModal";
-
-const agents = [
-  {
-    name: "Growth and Revenue Intelligence",
-    icon: TrendingUp,
-    description: "Monitors revenue streams, identifies growth opportunities, and provides actionable insights for revenue optimization.",
-    status: "active",
-    color: "from-blue-500/20 to-cyan-500/20 border-blue-500/30",
-  },
-  {
-    name: "Spend and Cost Control",
-    icon: DollarSign,
-    description: "Tracks expenditures, identifies cost-saving opportunities, and ensures budget adherence across all departments.",
-    status: "active",
-    color: "from-green-500/20 to-emerald-500/20 border-green-500/30",
-  },
-  {
-    name: "Margin and Profitability Analyst",
-    icon: PieChart,
-    description: "Analyzes profit margins, evaluates product/service profitability, and recommends margin improvement strategies.",
-    status: "active",
-    color: "from-purple-500/20 to-pink-500/20 border-purple-500/30",
-  },
-  {
-    name: "Liquidity and Cashflow Guardian",
-    icon: Droplets,
-    description: "Monitors cash flow patterns, predicts liquidity needs, and alerts on potential cash flow issues.",
-    status: "active",
-    color: "from-cyan-500/20 to-blue-500/20 border-cyan-500/30",
-  },
-  {
-    name: "Scenario and Risk Navigator",
-    icon: Navigation,
-    description: "Models various financial scenarios, assesses risks, and provides strategic recommendations for decision-making.",
-    status: "active",
-    color: "from-orange-500/20 to-red-500/20 border-orange-500/30",
-  },
-];
+import { aiAgents, AIAgent } from "@/data/aiAgents";
 
 export default function AIAgents() {
-  const [selectedAgent, setSelectedAgent] = useState<typeof agents[0] | null>(null);
+  const [selectedAgent, setSelectedAgent] = useState<AIAgent | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  const handleAgentClick = (agent: typeof agents[0]) => {
+  const handleAgentClick = (agent: AIAgent) => {
     setSelectedAgent(agent);
     setIsModalOpen(true);
   };
@@ -68,7 +31,7 @@ export default function AIAgents() {
 
         {/* Agents Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
-          {agents.map((agent, index) => {
+          {aiAgents.map((agent, index) => {
             const IconComponent = agent.icon;
             return (
               <Card 
@@ -108,7 +71,7 @@ export default function AIAgents() {
               </div>
               <p className="text-sm text-muted-foreground font-medium">Total Agents</p>
             </div>
-            <p className="text-5xl font-bold text-foreground">{agents.length}</p>
+            <p className="text-5xl font-bold text-foreground">{aiAgents.length}</p>
           </Card>
           <Card className="p-8 bg-gradient-to-br from-success/10 to-success/5 border-success/20 hover-lift shadow-lg">
             <div className="flex items-center gap-4 mb-3">
@@ -117,7 +80,7 @@ export default function AIAgents() {
               </div>
               <p className="text-sm text-muted-foreground font-medium">Active Now</p>
             </div>
-            <p className="text-5xl font-bold text-success">{agents.filter(a => a.status === "active").length}</p>
+            <p className="text-5xl font-bold text-success">{aiAgents.filter(a => a.status === "active").length}</p>
           </Card>
           <Card className="p-8 bg-gradient-to-br from-accent/10 to-accent/5 border-accent/20 hover-lift shadow-lg">
             <div className="flex items-center gap-4 mb-3">
