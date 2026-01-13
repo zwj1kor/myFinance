@@ -40,7 +40,12 @@ const personas = [
 
 const Landing = () => {
   return (
-    <div className="min-h-screen bg-background flex flex-col items-center justify-center overflow-hidden px-4 py-8">
+    <div className="min-h-screen bg-background flex flex-col items-center justify-center overflow-hidden px-4 py-8 relative">
+      {/* Powered By BGSW/BDO Branding */}
+      <div className="absolute top-4 right-4 z-20 flex items-center gap-2">
+        <span className="text-xs text-muted-foreground font-medium">Powered By BGSW/BDO</span>
+        <img src="/bgsw-logo.svg" alt="BGSW Logo" className="h-6 w-auto" />
+      </div>
       {/* Background effects */}
       <div className="absolute inset-0 overflow-hidden">
         <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-primary/10 rounded-full blur-3xl animate-pulse" />
