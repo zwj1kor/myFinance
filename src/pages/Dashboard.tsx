@@ -4,6 +4,8 @@ import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Sparkles, X, TrendingUp, TrendingDown, MessageCircle, Home } from "lucide-react";
 import KPIChatWindow from "@/components/KPIChatWindow";
+import CountrySelector from "@/components/CountrySelector";
+import { Country, kpiDataByCountry, SubKPI, MainKPI } from "@/data/countryKPIs";
 
 // Persona type for route state
 interface Persona {
@@ -12,84 +14,6 @@ interface Persona {
   description: string;
   icon: string;
 }
-
-interface SubKPI {
-  name: string;
-  value: string;
-  trend: "up" | "down";
-  variance: number;
-  description: string;
-  details: {
-    current: string;
-    target: string;
-    lastMonth: string;
-    ytd: string;
-    insight: string;
-  };
-}
-
-interface MainKPI {
-  name: string;
-  icon: string;
-  color: string;
-  subKPIs: SubKPI[];
-}
-
-const mainKPIs: MainKPI[] = [
-  {
-    name: "Revenue",
-    icon: "💰",
-    color: "primary",
-    subKPIs: [
-      { name: "Revenue", value: "1,670 M$", trend: "up", variance: 5.2, description: "Total revenue generated", details: { current: "1,670 M$", target: "1,800 M$", lastMonth: "1,620 M$", ytd: "1,650 M$", insight: "Revenue on track with 5.2% growth. Strong performance in BFSI and Manufacturing sectors." } },
-      { name: "Revenue/Capacity", value: "4,205", trend: "up", variance: 3.8, description: "Average revenue per resource", details: { current: "4,205", target: "4,500", lastMonth: "4,100", ytd: "4,150", insight: "Revenue per head improving with senior resource deployment and premium project wins." } },
-    ],
-  },
-  {
-    name: "Cost",
-    icon: "📊",
-    color: "warning",
-    subKPIs: [
-      { name: "Resource Cost", value: "593.7 M$", trend: "up", variance: 4.2, description: "Personnel costs", details: { current: "593.7 M$", target: "580.0 M$", lastMonth: "585.0 M$", ytd: "590.0 M$", insight: "Annual increments and new hires. Attrition reduced to 8% from 12%." } },
-      { name: "Travel Cost", value: "19.2 M$", trend: "down", variance: -12.8, description: "Business travel expenses", details: { current: "19.2 M$", target: "22.0 M$", lastMonth: "20.5 M$", ytd: "19.8 M$", insight: "Hybrid work model reducing travel while maintaining client relationships." } },
-      { name: "Other Direct Cost", value: "283.8 M$", trend: "up", variance: 3.2, description: "Other direct operational expenses", details: { current: "283.8 M$", target: "275.0 M$", lastMonth: "278.0 M$", ytd: "280.0 M$", insight: "Direct costs managed within acceptable variance. Optimization ongoing." } },
-      { name: "Total Direct Cost", value: "996.7 M$", trend: "up", variance: 2.5, description: "Sum of all direct costs", details: { current: "996.7 M$", target: "950.0 M$", lastMonth: "980.0 M$", ytd: "990.0 M$", insight: "Total direct costs aligned with revenue growth. Cost efficiency improving." } },
-    ],
-  },
-  {
-    name: "Profitability",
-    icon: "📈",
-    color: "info",
-    subKPIs: [
-      { name: "Gross Margin %", value: "17.92%", trend: "up", variance: 1.8, description: "Gross profit percentage", details: { current: "17.92%", target: "20.0%", lastMonth: "17.5%", ytd: "17.7%", insight: "Margin improving with offshore leverage at 72%. Target 20% mix next quarter." } },
-      { name: "EBIT %", value: "17.92%", trend: "up", variance: 2.1, description: "EBIT as percentage of revenue", details: { current: "17.92%", target: "18.5%", lastMonth: "17.5%", ytd: "17.7%", insight: "EBIT margin expanding with operational efficiencies. Cost optimization delivering." } },
-    ],
-  },
-  {
-    name: "Billing",
-    icon: "⚡",
-    color: "accent",
-    subKPIs: [
-      { name: "Billing Utilization", value: "87%", trend: "up", variance: 3.5, description: "Percentage of billable capacity utilized", details: { current: "87%", target: "90%", lastMonth: "84%", ytd: "85%", insight: "Utilization improving steadily. On track to reach 90% target by month-end." } },
-      { name: "Billed Capacity", value: "1,325", trend: "up", variance: 4.2, description: "Total resources currently billing", details: { current: "1,325", target: "1,400", lastMonth: "1,272", ytd: "1,295", insight: "Strong hiring and faster onboarding adding 53 billed resources this month." } },
-      { name: "Available Capacity", value: "195", trend: "down", variance: -8.5, description: "Resources available for new projects", details: { current: "195", target: "175", lastMonth: "213", ytd: "205", insight: "Bench optimization progressing. Strategic buffer maintained for opportunities." } },
-    ],
-  },
-  {
-    name: "Cashflow",
-    icon: "💸",
-    color: "success",
-    subKPIs: [
-      { name: "Cash Inflow", value: "22.8 M$", trend: "up", variance: 6.8, description: "Total cash received", details: { current: "22.8 M$", target: "23.5 M$", lastMonth: "21.3 M$", ytd: "21.8 M$", insight: "Collections strong at 93% of billings. BFSI contributing 42% of inflows." } },
-      { name: "Cash Outflow", value: "18.2 M$", trend: "up", variance: 4.5, description: "Total cash paid out", details: { current: "18.2 M$", target: "17.8 M$", lastMonth: "17.4 M$", ytd: "17.6 M$", insight: "Outflow increase due to vendor payments. Payment terms optimization in progress." } },
-      { name: "Net Cash", value: "4.6 M$", trend: "up", variance: 8.2, description: "Net cash position", details: { current: "4.6 M$", target: "5.0 M$", lastMonth: "4.25 M$", ytd: "4.4 M$", insight: "Positive net cash maintained. Surplus invested in short-term instruments." } },
-      { name: "Working Capital", value: "6.8 M$", trend: "up", variance: 2.5, description: "Day-to-day operations capital", details: { current: "6.8 M$", target: "7.0 M$", lastMonth: "6.63 M$", ytd: "6.7 M$", insight: "Working capital healthy at 1.8x current ratio. DSO improved by 4 days." } },
-      { name: "Receivables", value: "5.4 M$", trend: "down", variance: -6.2, description: "Outstanding amounts to be collected", details: { current: "5.4 M$", target: "5.0 M$", lastMonth: "5.76 M$", ytd: "5.5 M$", insight: "Receivables reducing with improved collection. Focus on 60+ day aging." } },
-      { name: "Collections", value: "23.2 M$", trend: "up", variance: 7.4, description: "Total cash collected from clients", details: { current: "23.2 M$", target: "24.0 M$", lastMonth: "21.6 M$", ytd: "22.2 M$", insight: "Record collection month driven by enterprise accounts. Efficiency at 96%." } },
-      { name: "Export Realization", value: "9.8 M$", trend: "up", variance: 4.5, description: "Revenue from international clients", details: { current: "9.8 M$", target: "10.2 M$", lastMonth: "9.38 M$", ytd: "9.5 M$", insight: "International revenue growing. Currency hedging protecting margins." } },
-    ],
-  },
-];
 
 export default function Dashboard() {
   const navigate = useNavigate();
@@ -115,26 +39,12 @@ export default function Dashboard() {
   
   const [expandedKPI, setExpandedKPI] = useState<{ main: string; sub: SubKPI } | null>(null);
   const [chatOpen, setChatOpen] = useState<{ type: 'tile' | 'detail'; name: string; value?: string } | null>(null);
+  const [selectedCountry, setSelectedCountry] = useState<Country>("india");
 
-  // Generate KPI data based on persona - same structure, different values
-  // In production, this would fetch from API based on persona
-  const kpiData = useMemo(() => {
-    // Apply persona-specific multipliers/adjustments to simulate different data
-    const multiplier = persona?.name === 'CFO' ? 1 : 
-                       persona?.name === 'GB KAM' ? 0.85 : 
-                       persona?.name === 'CTG' ? 0.92 : 
-                       persona?.name === 'BSF' ? 0.78 : 
-                       persona?.name === 'Delivery' ? 0.95 : 1;
-    
-    return mainKPIs.map(kpi => ({
-      ...kpi,
-      subKPIs: kpi.subKPIs.map(sub => ({
-        ...sub,
-        // In real app, this data would come from API based on persona
-        // Here we're just demonstrating the data can vary
-      }))
-    }));
-  }, [persona]);
+  // Get KPI data based on selected country
+  const currentKPIs = useMemo(() => {
+    return kpiDataByCountry[selectedCountry];
+  }, [selectedCountry]);
 
   const getColorClasses = (color: string) => {
     const colors: Record<string, { border: string; bg: string; shadow: string; subBorder: string }> = {
@@ -165,7 +75,7 @@ export default function Dashboard() {
     setChatOpen({ type: 'detail', name: kpiName, value: kpiValue });
   };
 
-  const mainKPI = expandedKPI ? mainKPIs.find(k => k.name === expandedKPI.main) : null;
+  const mainKPI = expandedKPI ? currentKPIs.find(k => k.name === expandedKPI.main) : null;
 
   return (
     <div className="min-h-screen bg-background overflow-auto">
@@ -179,14 +89,20 @@ export default function Dashboard() {
 
       <div className="p-4 sm:p-6 relative">
         {/* Welcome Message - shows persona name if available */}
-        <div className="text-center mb-6 animate-fade-in">
+        <div className="text-center mb-4 animate-fade-in">
           <h1 className="text-2xl sm:text-3xl lg:text-4xl font-display font-bold text-gradient-neon mb-1">
-            {persona ? `${persona.name} Dashboard` : 'myFinance.AI Dashboard'}
+            {persona ? `${persona.name} Dashboard` : 'myFinance.ai Dashboard'}
           </h1>
           <p className="text-muted-foreground text-sm sm:text-base">
             {persona ? persona.title : 'Your intelligent finance command center'}
           </p>
         </div>
+
+        {/* Country Selector */}
+        <CountrySelector 
+          selectedCountry={selectedCountry} 
+          onCountryChange={setSelectedCountry} 
+        />
 
         {/* Expanded KPI Detail View */}
         {expandedKPI && mainKPI && (
@@ -280,7 +196,7 @@ export default function Dashboard() {
 
         {/* Main KPI Grid - 2x2 */}
         <div className={`grid grid-cols-1 lg:grid-cols-2 gap-4 max-w-7xl mx-auto transition-opacity duration-300 ${expandedKPI ? "opacity-0 pointer-events-none" : "opacity-100"}`}>
-          {mainKPIs.map((kpi, index) => {
+          {currentKPIs.map((kpi, index) => {
             const colorClasses = getColorClasses(kpi.color);
 
             return (
