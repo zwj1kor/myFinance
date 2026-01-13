@@ -13,24 +13,24 @@ export default function Navbar() {
     <nav className="bg-card/50 border-b border-primary/20 sticky top-0 z-50 backdrop-blur-xl shadow-glow">
       <div className="max-w-[1920px] mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
-          {/* Logo */}
-          <NavLink to="/dashboard" className="flex items-center gap-3 group flex-shrink-0">
-            <div className="w-11 h-11 bg-gradient-primary rounded-2xl flex items-center justify-center shadow-neon group-hover:shadow-glow transition-all group-hover:scale-105 border border-primary/50">
-              <Sparkles className="w-6 h-6 text-white" />
-            </div>
-            <span className="text-foreground font-display font-bold text-2xl hidden lg:block text-gradient-neon">
-              myFinance.AI
-            </span>
-          </NavLink>
-
-          {/* Home Icon */}
-          <NavLink
-            to="/"
-            className="p-2 rounded-full hover:bg-muted/50 transition-all hover:scale-110 hover:shadow-glow"
-            title="Home"
-          >
-            <Home className="w-5 h-5 text-foreground" />
-          </NavLink>
+          {/* Logo with Home button */}
+          <div className="flex items-center gap-2">
+            <NavLink to="/dashboard" className="flex items-center gap-3 group flex-shrink-0">
+              <div className="w-11 h-11 bg-gradient-primary rounded-2xl flex items-center justify-center shadow-neon group-hover:shadow-glow transition-all group-hover:scale-105 border border-primary/50">
+                <Sparkles className="w-6 h-6 text-white" />
+              </div>
+              <span className="text-foreground font-display font-bold text-2xl hidden lg:block text-gradient-neon">
+                myFinance.ai
+              </span>
+            </NavLink>
+            <NavLink
+              to="/"
+              className="p-2 rounded-full hover:bg-muted/50 transition-all hover:scale-110 hover:shadow-glow"
+              title="Home"
+            >
+              <Home className="w-5 h-5 text-foreground" />
+            </NavLink>
+          </div>
 
           {/* Navigation */}
           <div className="flex items-center gap-2">
