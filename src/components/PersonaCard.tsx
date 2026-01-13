@@ -14,11 +14,12 @@ const PersonaCard = ({ name, title, description, icon, route }: PersonaCardProps
   const navigate = useNavigate();
 
   const handleClick = () => {
+    const persona = { name, title, description, icon };
+    // Save persona to localStorage for persistence across navigation
+    localStorage.setItem('selectedPersona', JSON.stringify(persona));
     // Pass persona data via route state - Dashboard loads data based on persona
     navigate(route, { 
-      state: { 
-        persona: { name, title, description, icon } 
-      } 
+      state: { persona } 
     });
   };
 

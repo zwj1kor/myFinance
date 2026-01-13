@@ -100,8 +100,23 @@ export default function Dashboard() {
   const navigate = useNavigate();
   const location = useLocation();
   
-  // Get persona from route state - Dashboard renders same structure, data varies per persona
-  const persona = (location.state as { persona?: Persona } | null)?.persona;
+  // Get persona from route state or localStorage
+  const routePersona = (location.state as { persona?: Persona } | null)?.persona;
+  const [persona, setPersona] = useState<Persona | null>(() => {
+    if (routePersona) {
+      return routePersona;
+    }
+    // Fallback to localStorage
+    const saved = localStorage.getItem('selectedPersona');
+    return saved ? JSON.parse(saved) : null;
+  });
+  
+  // Update localStorage when route state has persona
+  useState(() => {
+    if (routePersona) {
+      localStorage.setItem('selectedPersona', JSON.stringify(routePersona));
+    }
+  });
   
   const [expandedKPI, setExpandedKPI] = useState<{ main: string; sub: SubKPI } | null>(null);
   const [chatOpen, setChatOpen] = useState<{ type: 'tile' | 'detail'; name: string; value?: string } | null>(null);
