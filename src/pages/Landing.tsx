@@ -11,7 +11,7 @@ const personas = [
   },
   {
     name: "GB KAM",
-    title: "Global Business Key Account Manager",
+    title: "GB Key Account Manager",
     description: "End-to-end visibility into key account performance, utilization metrics, and revenue optimization opportunities.",
     icon: "🌐",
     route: "/dashboard",
