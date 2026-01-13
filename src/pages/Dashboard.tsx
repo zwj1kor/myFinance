@@ -1,10 +1,18 @@
-import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useState, useMemo } from "react";
+import { useNavigate, useLocation } from "react-router-dom";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Sparkles, X, TrendingUp, TrendingDown, MessageCircle } from "lucide-react";
 import FloatingChatDock from "@/components/FloatingChatDock";
 import KPIChatWindow from "@/components/KPIChatWindow";
+
+// Persona type for route state
+interface Persona {
+  name: string;
+  title: string;
+  description: string;
+  icon: string;
+}
 
 interface SubKPI {
   name: string;
@@ -90,8 +98,33 @@ const mainKPIs: MainKPI[] = [
 
 export default function Dashboard() {
   const navigate = useNavigate();
+  const location = useLocation();
+  
+  // Get persona from route state - Dashboard renders same structure, data varies per persona
+  const persona = (location.state as { persona?: Persona } | null)?.persona;
+  
   const [expandedKPI, setExpandedKPI] = useState<{ main: string; sub: SubKPI } | null>(null);
   const [chatOpen, setChatOpen] = useState<{ type: 'tile' | 'detail'; name: string; value?: string } | null>(null);
+
+  // Generate KPI data based on persona - same structure, different values
+  // In production, this would fetch from API based on persona
+  const kpiData = useMemo(() => {
+    // Apply persona-specific multipliers/adjustments to simulate different data
+    const multiplier = persona?.name === 'CFO' ? 1 : 
+                       persona?.name === 'GB KAM' ? 0.85 : 
+                       persona?.name === 'CTG' ? 0.92 : 
+                       persona?.name === 'BSF' ? 0.78 : 
+                       persona?.name === 'Delivery' ? 0.95 : 1;
+    
+    return mainKPIs.map(kpi => ({
+      ...kpi,
+      subKPIs: kpi.subKPIs.map(sub => ({
+        ...sub,
+        // In real app, this data would come from API based on persona
+        // Here we're just demonstrating the data can vary
+      }))
+    }));
+  }, [persona]);
 
   const getColorClasses = (color: string) => {
     const colors: Record<string, { border: string; bg: string; shadow: string; subBorder: string }> = {
@@ -135,13 +168,13 @@ export default function Dashboard() {
       )}
 
       <div className="p-4 sm:p-6 relative">
-        {/* Welcome Message */}
+        {/* Welcome Message - shows persona name if available */}
         <div className="text-center mb-6 animate-fade-in">
           <h1 className="text-2xl sm:text-3xl lg:text-4xl font-display font-bold text-gradient-neon mb-1">
-            myFinance.AI Dashboard
+            {persona ? `${persona.name} Dashboard` : 'myFinance.AI Dashboard'}
           </h1>
           <p className="text-muted-foreground text-sm sm:text-base">
-            Your intelligent finance command center
+            {persona ? persona.title : 'Your intelligent finance command center'}
           </p>
         </div>
 
