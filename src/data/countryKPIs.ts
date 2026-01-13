@@ -43,6 +43,9 @@ const indiaKPIs: MainKPI[] = [
     subKPIs: [
       { name: "Revenue", value: "1,670 M$", trend: "up", variance: 5.2, description: "Total revenue generated", details: { current: "1,670 M$", target: "1,800 M$", lastMonth: "1,620 M$", ytd: "1,650 M$", insight: "Revenue on track with 5.2% growth. Strong performance in BFSI and Manufacturing sectors." } },
       { name: "Revenue/Capacity", value: "4,205", trend: "up", variance: 3.8, description: "Average revenue per resource", details: { current: "4,205", target: "4,500", lastMonth: "4,100", ytd: "4,150", insight: "Revenue per head improving with senior resource deployment and premium project wins." } },
+      { name: "Receivables", value: "5.4 M$", trend: "down", variance: -6.2, description: "Outstanding amounts to be collected", details: { current: "5.4 M$", target: "5.0 M$", lastMonth: "5.76 M$", ytd: "5.5 M$", insight: "Receivables reducing with improved collection. Focus on 60+ day aging." } },
+      { name: "Collections", value: "23.2 M$", trend: "up", variance: 7.4, description: "Total cash collected from clients", details: { current: "23.2 M$", target: "24.0 M$", lastMonth: "21.6 M$", ytd: "22.2 M$", insight: "Record collection month driven by enterprise accounts. Efficiency at 96%." } },
+      { name: "Export Realization", value: "9.8 M$", trend: "up", variance: 4.5, description: "Revenue from international clients", details: { current: "9.8 M$", target: "10.2 M$", lastMonth: "9.38 M$", ytd: "9.5 M$", insight: "International revenue growing. Currency hedging protecting margins." } },
     ],
   },
   {
@@ -75,20 +78,6 @@ const indiaKPIs: MainKPI[] = [
       { name: "Available Capacity", value: "195", trend: "down", variance: -8.5, description: "Resources available for new projects", details: { current: "195", target: "175", lastMonth: "213", ytd: "205", insight: "Bench optimization progressing. Strategic buffer maintained for opportunities." } },
     ],
   },
-  {
-    name: "Cashflow",
-    icon: "💸",
-    color: "success",
-    subKPIs: [
-      { name: "Cash Inflow", value: "22.8 M$", trend: "up", variance: 6.8, description: "Total cash received", details: { current: "22.8 M$", target: "23.5 M$", lastMonth: "21.3 M$", ytd: "21.8 M$", insight: "Collections strong at 93% of billings. BFSI contributing 42% of inflows." } },
-      { name: "Cash Outflow", value: "18.2 M$", trend: "up", variance: 4.5, description: "Total cash paid out", details: { current: "18.2 M$", target: "17.8 M$", lastMonth: "17.4 M$", ytd: "17.6 M$", insight: "Outflow increase due to vendor payments. Payment terms optimization in progress." } },
-      { name: "Net Cash", value: "4.6 M$", trend: "up", variance: 8.2, description: "Net cash position", details: { current: "4.6 M$", target: "5.0 M$", lastMonth: "4.25 M$", ytd: "4.4 M$", insight: "Positive net cash maintained. Surplus invested in short-term instruments." } },
-      { name: "Working Capital", value: "6.8 M$", trend: "up", variance: 2.5, description: "Day-to-day operations capital", details: { current: "6.8 M$", target: "7.0 M$", lastMonth: "6.63 M$", ytd: "6.7 M$", insight: "Working capital healthy at 1.8x current ratio. DSO improved by 4 days." } },
-      { name: "Receivables", value: "5.4 M$", trend: "down", variance: -6.2, description: "Outstanding amounts to be collected", details: { current: "5.4 M$", target: "5.0 M$", lastMonth: "5.76 M$", ytd: "5.5 M$", insight: "Receivables reducing with improved collection. Focus on 60+ day aging." } },
-      { name: "Collections", value: "23.2 M$", trend: "up", variance: 7.4, description: "Total cash collected from clients", details: { current: "23.2 M$", target: "24.0 M$", lastMonth: "21.6 M$", ytd: "22.2 M$", insight: "Record collection month driven by enterprise accounts. Efficiency at 96%." } },
-      { name: "Export Realization", value: "9.8 M$", trend: "up", variance: 4.5, description: "Revenue from international clients", details: { current: "9.8 M$", target: "10.2 M$", lastMonth: "9.38 M$", ytd: "9.5 M$", insight: "International revenue growing. Currency hedging protecting margins." } },
-    ],
-  },
 ];
 
 // Mexico KPI Data
@@ -100,6 +89,9 @@ const mexicoKPIs: MainKPI[] = [
     subKPIs: [
       { name: "Revenue", value: "485 M$", trend: "up", variance: 7.8, description: "Total revenue generated", details: { current: "485 M$", target: "520 M$", lastMonth: "465 M$", ytd: "475 M$", insight: "Strong revenue growth in nearshore services. US clients driving 65% of business." } },
       { name: "Revenue/Capacity", value: "5,120", trend: "up", variance: 4.5, description: "Average revenue per resource", details: { current: "5,120", target: "5,500", lastMonth: "4,950", ytd: "5,000", insight: "Higher billing rates due to nearshore premium positioning." } },
+      { name: "Receivables", value: "2.8 M$", trend: "down", variance: -8.5, description: "Outstanding amounts to be collected", details: { current: "2.8 M$", target: "2.5 M$", lastMonth: "3.1 M$", ytd: "2.9 M$", insight: "DSO improved by 5 days. Focus on enterprise accounts." } },
+      { name: "Collections", value: "8.5 M$", trend: "up", variance: 11.2, description: "Total cash collected from clients", details: { current: "8.5 M$", target: "8.8 M$", lastMonth: "7.6 M$", ytd: "8.0 M$", insight: "Record collections. Improved invoicing process helping." } },
+      { name: "Export Realization", value: "7.2 M$", trend: "up", variance: 6.8, description: "Revenue from international clients", details: { current: "7.2 M$", target: "7.5 M$", lastMonth: "6.8 M$", ytd: "7.0 M$", insight: "US market remains primary focus. LATAM expansion planned." } },
     ],
   },
   {
@@ -132,20 +124,6 @@ const mexicoKPIs: MainKPI[] = [
       { name: "Available Capacity", value: "42", trend: "down", variance: -15.2, description: "Resources available for new projects", details: { current: "42", target: "50", lastMonth: "52", ytd: "48", insight: "Low bench indicating strong demand. Proactive hiring in progress." } },
     ],
   },
-  {
-    name: "Cashflow",
-    icon: "💸",
-    color: "success",
-    subKPIs: [
-      { name: "Cash Inflow", value: "8.2 M$", trend: "up", variance: 9.5, description: "Total cash received", details: { current: "8.2 M$", target: "8.5 M$", lastMonth: "7.5 M$", ytd: "7.8 M$", insight: "Strong collections from US clients. 95% on-time payments." } },
-      { name: "Cash Outflow", value: "6.1 M$", trend: "up", variance: 5.2, description: "Total cash paid out", details: { current: "6.1 M$", target: "5.8 M$", lastMonth: "5.8 M$", ytd: "5.9 M$", insight: "Payroll expansion driving outflows. Within acceptable range." } },
-      { name: "Net Cash", value: "2.1 M$", trend: "up", variance: 12.8, description: "Net cash position", details: { current: "2.1 M$", target: "2.0 M$", lastMonth: "1.7 M$", ytd: "1.9 M$", insight: "Positive cash flow maintained. Currency hedging active." } },
-      { name: "Working Capital", value: "3.2 M$", trend: "up", variance: 4.5, description: "Day-to-day operations capital", details: { current: "3.2 M$", target: "3.0 M$", lastMonth: "3.0 M$", ytd: "3.1 M$", insight: "Healthy working capital. Prepared for expansion." } },
-      { name: "Receivables", value: "2.8 M$", trend: "down", variance: -8.5, description: "Outstanding amounts to be collected", details: { current: "2.8 M$", target: "2.5 M$", lastMonth: "3.1 M$", ytd: "2.9 M$", insight: "DSO improved by 5 days. Focus on enterprise accounts." } },
-      { name: "Collections", value: "8.5 M$", trend: "up", variance: 11.2, description: "Total cash collected from clients", details: { current: "8.5 M$", target: "8.8 M$", lastMonth: "7.6 M$", ytd: "8.0 M$", insight: "Record collections. Improved invoicing process helping." } },
-      { name: "Export Realization", value: "7.2 M$", trend: "up", variance: 6.8, description: "Revenue from international clients", details: { current: "7.2 M$", target: "7.5 M$", lastMonth: "6.8 M$", ytd: "7.0 M$", insight: "US market remains primary focus. LATAM expansion planned." } },
-    ],
-  },
 ];
 
 // Vietnam KPI Data
@@ -157,6 +135,9 @@ const vietnamKPIs: MainKPI[] = [
     subKPIs: [
       { name: "Revenue", value: "320 M$", trend: "up", variance: 12.5, description: "Total revenue generated", details: { current: "320 M$", target: "350 M$", lastMonth: "298 M$", ytd: "305 M$", insight: "Fastest growing region with 12.5% growth. Japan and APAC driving expansion." } },
       { name: "Revenue/Capacity", value: "3,850", trend: "up", variance: 6.2, description: "Average revenue per resource", details: { current: "3,850", target: "4,200", lastMonth: "3,650", ytd: "3,750", insight: "Revenue per head growing with skill upgrades and premium projects." } },
+      { name: "Receivables", value: "2.2 M$", trend: "up", variance: 5.8, description: "Outstanding amounts to be collected", details: { current: "2.2 M$", target: "1.8 M$", lastMonth: "2.1 M$", ytd: "2.15 M$", insight: "Receivables growing with business. Focus on reducing DSO." } },
+      { name: "Collections", value: "5.5 M$", trend: "up", variance: 18.2, description: "Total cash collected from clients", details: { current: "5.5 M$", target: "6.0 M$", lastMonth: "4.8 M$", ytd: "5.1 M$", insight: "Strong collection growth. Japan accounts paying on time." } },
+      { name: "Export Realization", value: "4.8 M$", trend: "up", variance: 15.5, description: "Revenue from international clients", details: { current: "4.8 M$", target: "5.2 M$", lastMonth: "4.2 M$", ytd: "4.5 M$", insight: "Export revenue growing with Japan and Singapore clients." } },
     ],
   },
   {
@@ -187,20 +168,6 @@ const vietnamKPIs: MainKPI[] = [
       { name: "Billing Utilization", value: "82%", trend: "up", variance: 5.8, description: "Percentage of billable capacity utilized", details: { current: "82%", target: "88%", lastMonth: "78%", ytd: "80%", insight: "Utilization improving rapidly. New projects ramping up." } },
       { name: "Billed Capacity", value: "680", trend: "up", variance: 8.5, description: "Total resources currently billing", details: { current: "680", target: "750", lastMonth: "635", ytd: "655", insight: "Aggressive hiring plan on track. 45 new billable resources added." } },
       { name: "Available Capacity", value: "148", trend: "down", variance: -5.2, description: "Resources available for new projects", details: { current: "148", target: "120", lastMonth: "158", ytd: "155", insight: "Bench being deployed to new Japan accounts. Training ongoing." } },
-    ],
-  },
-  {
-    name: "Cashflow",
-    icon: "💸",
-    color: "success",
-    subKPIs: [
-      { name: "Cash Inflow", value: "5.8 M$", trend: "up", variance: 14.5, description: "Total cash received", details: { current: "5.8 M$", target: "6.2 M$", lastMonth: "5.1 M$", ytd: "5.4 M$", insight: "Growing cash inflows with new client additions. APAC expansion driving growth." } },
-      { name: "Cash Outflow", value: "4.9 M$", trend: "up", variance: 12.2, description: "Total cash paid out", details: { current: "4.9 M$", target: "4.5 M$", lastMonth: "4.4 M$", ytd: "4.6 M$", insight: "Investment phase outflows. Infrastructure and talent acquisition." } },
-      { name: "Net Cash", value: "0.9 M$", trend: "up", variance: 28.5, description: "Net cash position", details: { current: "0.9 M$", target: "1.2 M$", lastMonth: "0.7 M$", ytd: "0.8 M$", insight: "Positive net cash maintained despite growth investments." } },
-      { name: "Working Capital", value: "1.8 M$", trend: "up", variance: 8.5, description: "Day-to-day operations capital", details: { current: "1.8 M$", target: "2.0 M$", lastMonth: "1.65 M$", ytd: "1.72 M$", insight: "Working capital building. Adequate for current operations." } },
-      { name: "Receivables", value: "2.2 M$", trend: "up", variance: 5.8, description: "Outstanding amounts to be collected", details: { current: "2.2 M$", target: "1.8 M$", lastMonth: "2.1 M$", ytd: "2.15 M$", insight: "Receivables growing with business. Focus on reducing DSO." } },
-      { name: "Collections", value: "5.5 M$", trend: "up", variance: 18.2, description: "Total cash collected from clients", details: { current: "5.5 M$", target: "6.0 M$", lastMonth: "4.8 M$", ytd: "5.1 M$", insight: "Strong collection growth. Japan accounts paying on time." } },
-      { name: "Export Realization", value: "4.8 M$", trend: "up", variance: 15.5, description: "Revenue from international clients", details: { current: "4.8 M$", target: "5.2 M$", lastMonth: "4.2 M$", ytd: "4.5 M$", insight: "Export revenue growing with Japan and Singapore clients." } },
     ],
   },
 ];
