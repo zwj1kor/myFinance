@@ -94,17 +94,6 @@ const Landing = () => {
         </div>
       </div>
 
-      {/* Instructions */}
-      <div className="relative z-10 mt-12 text-center">
-        <div className="inline-flex flex-col items-center gap-1.5 px-6 py-3 rounded-xl bg-card/50 backdrop-blur-sm border border-border/50 shadow-lg">
-          <p className="text-sm text-muted-foreground">
-            Hover on card to view
-          </p>
-          <p className="text-sm font-bold bg-gradient-to-r from-primary via-accent to-primary bg-clip-text text-transparent animate-pulse">
-            Click card to enter dashboard
-          </p>
-        </div>
-      </div>
     </div>
   );
 };

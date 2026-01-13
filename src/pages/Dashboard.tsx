@@ -42,9 +42,9 @@ const mainKPIs: MainKPI[] = [
     icon: "💰",
     color: "primary",
     subKPIs: [
-      { name: "Revenue", value: "$13.2M", trend: "down", variance: -8.3, description: "Total revenue generated", details: { current: "$13.2M", target: "$14.4M", lastMonth: "$12.6M", ytd: "$13.0M", insight: "Revenue below target due to delayed project starts. Pipeline shows recovery in Q4." } },
-      { name: "Revenue/Capacity", value: "$10.6K", trend: "up", variance: 2.4, description: "Average revenue per resource", details: { current: "$10.6K", target: "$11.0K", lastMonth: "$10.3K", ytd: "$10.2K", insight: "Improved utilization driving revenue per head. Focus on senior resource deployment." } },
-      { name: "Price-Mix Ratio", value: "1.12", trend: "up", variance: 3.5, description: "Ratio of actual to standard pricing", details: { current: "1.12", target: "1.15", lastMonth: "1.08", ytd: "1.10", insight: "Premium services driving favorable price-mix. Focus on high-value engagements." } },
+      { name: "Revenue", value: "$24.5M", trend: "up", variance: 5.2, description: "Total revenue generated", details: { current: "$24.5M", target: "$25.0M", lastMonth: "$23.3M", ytd: "$23.8M", insight: "Revenue on track with 5.2% growth. Strong performance in BFSI and Manufacturing sectors." } },
+      { name: "Revenue/Capacity", value: "$18.5K", trend: "up", variance: 3.8, description: "Average revenue per resource", details: { current: "$18.5K", target: "$19.0K", lastMonth: "$17.8K", ytd: "$18.0K", insight: "Revenue per head improving with senior resource deployment and premium project wins." } },
+      { name: "Price-Mix Ratio", value: "1.08", trend: "up", variance: 2.1, description: "Ratio of actual to standard pricing", details: { current: "1.08", target: "1.10", lastMonth: "1.06", ytd: "1.07", insight: "Favorable price-mix driven by digital transformation projects." } },
     ],
   },
   {
@@ -52,13 +52,13 @@ const mainKPIs: MainKPI[] = [
     icon: "📊",
     color: "warning",
     subKPIs: [
-      { name: "Consulting Cost", value: "$3.0M", trend: "up", variance: 8.2, description: "External consulting fees", details: { current: "$3.0M", target: "$2.8M", lastMonth: "$2.8M", ytd: "$2.9M", insight: "Increased consulting spend for digital transformation projects. Review vendor contracts." } },
-      { name: "Software Cost", value: "$1.4M", trend: "down", variance: -2.1, description: "Software licenses & tools", details: { current: "$1.4M", target: "$1.5M", lastMonth: "$1.5M", ytd: "$1.5M", insight: "License optimization achieved through consolidation. Continue SaaS rationalization." } },
-      { name: "Hardware Cost", value: "$960K", trend: "up", variance: 4.5, description: "Hardware procurement", details: { current: "$960K", target: "$900K", lastMonth: "$924K", ytd: "$936K", insight: "Infrastructure refresh driving costs. Cloud migration can reduce by 15%." } },
-      { name: "Travel Cost", value: "$600K", trend: "down", variance: -15.3, description: "Business travel expenses", details: { current: "$600K", target: "$720K", lastMonth: "$708K", ytd: "$660K", insight: "Remote work policies reducing travel. Maintain hybrid approach for client meetings." } },
-      { name: "Corporate Cost", value: "$1.2M", trend: "up", variance: 3.2, description: "Corporate overheads", details: { current: "$1.2M", target: "$1.1M", lastMonth: "$1.2M", ytd: "$1.2M", insight: "Office expansion driving costs. ROI expected in 6 months." } },
-      { name: "Indirect Cost", value: "$840K", trend: "down", variance: -1.8, description: "Indirect operational expenses", details: { current: "$840K", target: "$864K", lastMonth: "$852K", ytd: "$840K", insight: "Process automation reducing indirect costs. Continue RPA implementation." } },
-      { name: "Resource Cost", value: "$7.8M", trend: "up", variance: 5.4, description: "Personnel costs", details: { current: "$7.8M", target: "$7.4M", lastMonth: "$7.4M", ytd: "$7.6M", insight: "Salary increments and new hires driving costs. Review contractor-to-FTE ratio." } },
+      { name: "Consulting Cost", value: "$4.2M", trend: "up", variance: 6.5, description: "External consulting fees", details: { current: "$4.2M", target: "$4.0M", lastMonth: "$3.9M", ytd: "$4.0M", insight: "Consulting spend up for cloud migration. Vendor contract renegotiation in Q2." } },
+      { name: "Software Cost", value: "$2.1M", trend: "down", variance: -4.5, description: "Software licenses & tools", details: { current: "$2.1M", target: "$2.2M", lastMonth: "$2.2M", ytd: "$2.2M", insight: "License consolidation saving $100K monthly. SaaS rationalization on track." } },
+      { name: "Hardware Cost", value: "$1.3M", trend: "up", variance: 3.2, description: "Hardware procurement", details: { current: "$1.3M", target: "$1.2M", lastMonth: "$1.26M", ytd: "$1.28M", insight: "Data center refresh driving costs. Cloud-first strategy to reduce by 20%." } },
+      { name: "Travel Cost", value: "$850K", trend: "down", variance: -12.8, description: "Business travel expenses", details: { current: "$850K", target: "$975K", lastMonth: "$920K", ytd: "$890K", insight: "Hybrid work model reducing travel while maintaining client relationships." } },
+      { name: "Corporate Cost", value: "$1.8M", trend: "up", variance: 2.8, description: "Corporate overheads", details: { current: "$1.8M", target: "$1.75M", lastMonth: "$1.75M", ytd: "$1.76M", insight: "New regional office setup complete. Efficiency gains expected from Q2." } },
+      { name: "Indirect Cost", value: "$1.1M", trend: "down", variance: -3.5, description: "Indirect operational expenses", details: { current: "$1.1M", target: "$1.14M", lastMonth: "$1.12M", ytd: "$1.12M", insight: "RPA implementation reducing manual processing. 15% efficiency gain achieved." } },
+      { name: "Resource Cost", value: "$12.8M", trend: "up", variance: 4.2, description: "Personnel costs", details: { current: "$12.8M", target: "$12.3M", lastMonth: "$12.3M", ytd: "$12.5M", insight: "Annual increments and 45 new hires. Attrition reduced to 8% from 12%." } },
     ],
   },
   {
@@ -66,9 +66,9 @@ const mainKPIs: MainKPI[] = [
     icon: "⚡",
     color: "accent",
     subKPIs: [
-      { name: "Billing Utilization", value: "85%", trend: "up", variance: 4.2, description: "Percentage of billable capacity utilized", details: { current: "85%", target: "90%", lastMonth: "81.6%", ytd: "83%", insight: "Utilization improving with new project ramp-ups. Target 90% by quarter end." } },
-      { name: "Billed Capacity", value: "1,250", trend: "up", variance: 3.8, description: "Total resources currently billing", details: { current: "1,250", target: "1,400", lastMonth: "1,204", ytd: "1,220", insight: "Billed capacity growing with new client wins. Focus on faster onboarding." } },
-      { name: "Available Capacity", value: "220", trend: "down", variance: -12.5, description: "Resources available for new projects", details: { current: "220", target: "150", lastMonth: "251", ytd: "235", insight: "Bench reducing as projects ramp up. Maintain 10% buffer for new opportunities." } },
+      { name: "Billing Utilization", value: "87%", trend: "up", variance: 3.5, description: "Percentage of billable capacity utilized", details: { current: "87%", target: "90%", lastMonth: "84%", ytd: "85%", insight: "Utilization improving steadily. On track to reach 90% target by month-end." } },
+      { name: "Billed Capacity", value: "1,325", trend: "up", variance: 4.2, description: "Total resources currently billing", details: { current: "1,325", target: "1,400", lastMonth: "1,272", ytd: "1,295", insight: "Strong hiring and faster onboarding adding 53 billed resources this month." } },
+      { name: "Available Capacity", value: "195", trend: "down", variance: -8.5, description: "Resources available for new projects", details: { current: "195", target: "175", lastMonth: "213", ytd: "205", insight: "Bench optimization progressing. Strategic buffer maintained for opportunities." } },
     ],
   },
   {
@@ -76,13 +76,13 @@ const mainKPIs: MainKPI[] = [
     icon: "💸",
     color: "success",
     subKPIs: [
-      { name: "Cash Inflow", value: "$11.0M", trend: "up", variance: 7.3, description: "Total cash received", details: { current: "$11.0M", target: "$12.0M", lastMonth: "$10.3M", ytd: "$10.6M", insight: "Improved collections driving inflow. BFSI sector contributing 40% of collections." } },
-      { name: "Cash Outflow", value: "$5.6M", trend: "up", variance: 12.1, description: "Total cash paid out", details: { current: "$5.6M", target: "$5.4M", lastMonth: "$5.0M", ytd: "$5.3M", insight: "Vendor payments and salary disbursements driving outflow. Optimize payment terms." } },
-      { name: "Net Cash", value: "$5.4M", trend: "down", variance: -18.2, description: "Net cash position", details: { current: "$5.4M", target: "$6.6M", lastMonth: "$6.6M", ytd: "$6.0M", insight: "Net cash below target due to capex investments. Expected recovery in Q1." } },
-      { name: "Working Capital", value: "$3.4M", trend: "down", variance: -5.4, description: "Day-to-day operations capital", details: { current: "$3.4M", target: "$3.6M", lastMonth: "$3.6M", ytd: "$3.5M", insight: "Working capital adequate for operations. Monitor DSO for improvement." } },
-      { name: "Receivables", value: "$2.2M", trend: "up", variance: 5.2, description: "Outstanding amounts to be collected", details: { current: "$2.2M", target: "$1.8M", lastMonth: "$2.1M", ytd: "$2.0M", insight: "Receivables increased due to new enterprise contracts. Collection cycle improved by 3 days." } },
-      { name: "Collections", value: "$11.4M", trend: "up", variance: 8.1, description: "Total cash collected from clients", details: { current: "$11.4M", target: "$12.0M", lastMonth: "$10.5M", ytd: "$11.0M", insight: "Strong collection performance driven by BFSI sector. Focus on Manufacturing sector for Q4." } },
-      { name: "Export Realization", value: "$5.0M", trend: "down", variance: -3.2, description: "Revenue from international clients", details: { current: "$5.0M", target: "$5.4M", lastMonth: "$5.2M", ytd: "$4.9M", insight: "Currency fluctuation impacted realization. Hedge strategy recommended for next quarter." } },
+      { name: "Cash Inflow", value: "$22.8M", trend: "up", variance: 6.8, description: "Total cash received", details: { current: "$22.8M", target: "$23.5M", lastMonth: "$21.3M", ytd: "$21.8M", insight: "Collections strong at 93% of billings. BFSI contributing 42% of inflows." } },
+      { name: "Cash Outflow", value: "$18.2M", trend: "up", variance: 4.5, description: "Total cash paid out", details: { current: "$18.2M", target: "$17.8M", lastMonth: "$17.4M", ytd: "$17.6M", insight: "Outflow increase due to vendor payments. Payment terms optimization in progress." } },
+      { name: "Net Cash", value: "$4.6M", trend: "up", variance: 8.2, description: "Net cash position", details: { current: "$4.6M", target: "$5.0M", lastMonth: "$4.25M", ytd: "$4.4M", insight: "Positive net cash maintained. Surplus invested in short-term instruments." } },
+      { name: "Working Capital", value: "$6.8M", trend: "up", variance: 2.5, description: "Day-to-day operations capital", details: { current: "$6.8M", target: "$7.0M", lastMonth: "$6.63M", ytd: "$6.7M", insight: "Working capital healthy at 1.8x current ratio. DSO improved by 4 days." } },
+      { name: "Receivables", value: "$5.4M", trend: "down", variance: -6.2, description: "Outstanding amounts to be collected", details: { current: "$5.4M", target: "$5.0M", lastMonth: "$5.76M", ytd: "$5.5M", insight: "Receivables reducing with improved collection. Focus on 60+ day aging." } },
+      { name: "Collections", value: "$23.2M", trend: "up", variance: 7.4, description: "Total cash collected from clients", details: { current: "$23.2M", target: "$24.0M", lastMonth: "$21.6M", ytd: "$22.2M", insight: "Record collection month driven by enterprise accounts. Efficiency at 96%." } },
+      { name: "Export Realization", value: "$9.8M", trend: "up", variance: 4.5, description: "Revenue from international clients", details: { current: "$9.8M", target: "$10.2M", lastMonth: "$9.38M", ytd: "$9.5M", insight: "International revenue growing. Currency hedging protecting margins." } },
     ],
   },
   {
@@ -90,8 +90,8 @@ const mainKPIs: MainKPI[] = [
     icon: "📈",
     color: "info",
     subKPIs: [
-      { name: "Gross Margin", value: "22.7%", trend: "down", variance: -3.1, description: "Gross profit percentage", details: { current: "22.7%", target: "25.8%", lastMonth: "23.5%", ytd: "23.1%", insight: "Margin pressure from resource mix. Increase offshore leverage to 75%." } },
-      { name: "EBIT %", value: "18.5%", trend: "down", variance: -2.8, description: "EBIT as percentage of revenue", details: { current: "18.5%", target: "21%", lastMonth: "19.1%", ytd: "19%", insight: "EBIT margin compression due to cost overruns. Focus on operational efficiency." } },
+      { name: "Gross Margin", value: "28.5%", trend: "up", variance: 1.8, description: "Gross profit percentage", details: { current: "28.5%", target: "30.0%", lastMonth: "28.0%", ytd: "28.2%", insight: "Margin improving with offshore leverage at 72%. Target 75% mix next quarter." } },
+      { name: "EBIT %", value: "15.2%", trend: "up", variance: 2.1, description: "EBIT as percentage of revenue", details: { current: "15.2%", target: "16.0%", lastMonth: "14.9%", ytd: "15.0%", insight: "EBIT margin expanding with operational efficiencies. Cost optimization delivering." } },
     ],
   },
 ];
