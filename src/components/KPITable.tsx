@@ -1,4 +1,4 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import { ChevronDown, ChevronRight, TrendingUp, TrendingDown, MessageCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
@@ -57,7 +57,6 @@ export default function KPITable({ kpis, onSubKPIClick, onChatClick }: KPITableP
             <TableHead colSpan={3} className="text-center font-display font-bold text-foreground border-l border-border/30">Plan</TableHead>
             <TableHead colSpan={3} className="text-center font-display font-bold text-foreground border-l border-border/30">Previous Year</TableHead>
             <TableHead rowSpan={2} className="text-right font-display font-bold text-foreground border-l border-border/30 align-middle">Variance</TableHead>
-            <TableHead rowSpan={2} className="w-[50px] align-middle"></TableHead>
           </TableRow>
           {/* Sub-column headers */}
           <TableRow className="border-b border-border/30 hover:bg-transparent">
@@ -78,10 +77,9 @@ export default function KPITable({ kpis, onSubKPIClick, onChatClick }: KPITableP
             const colorClasses = getColorClasses(kpi.color);
 
             return (
-              <>
-                {/* Main KPI Row */}
+              <React.Fragment key={kpi.name}>
+                {/* Main KPI Row - Category Header */}
                 <TableRow
-                  key={kpi.name}
                   className={cn(
                     "cursor-pointer transition-colors border-b border-border/20",
                     isExpanded ? colorClasses.bg : "hover:bg-muted/30"
@@ -99,91 +97,34 @@ export default function KPITable({ kpis, onSubKPIClick, onChatClick }: KPITableP
                     <div className="flex items-center gap-3">
                       <span className="text-2xl">{kpi.icon}</span>
                       <span className="font-display font-bold text-foreground text-lg">{kpi.name}</span>
+                      <Button
+                        variant="ghost"
+                        size="icon"
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          onChatClick(e, kpi.name);
+                        }}
+                        className="w-7 h-7 rounded-full bg-primary/10 hover:bg-primary/20 border border-primary/30 hover:border-primary/50 transition-all hover:scale-110"
+                      >
+                        <MessageCircle className="w-3.5 h-3.5 text-primary" />
+                      </Button>
                     </div>
                   </TableCell>
-                  {/* Actual sub-columns */}
-                  <TableCell className="text-right py-4 border-l border-border/20">
-                    <span className="font-display font-bold text-foreground">
-                      {kpi.subKPIs[0]?.value || "-"}
-                    </span>
-                  </TableCell>
-                  <TableCell className="text-right py-4">
-                    <span className="font-display font-semibold text-foreground">
-                      {kpi.subKPIs[0]?.details.qtd || "-"}
-                    </span>
-                  </TableCell>
-                  <TableCell className="text-right py-4">
-                    <span className="font-display font-semibold text-foreground">
-                      {kpi.subKPIs[0]?.details.ytd || "-"}
-                    </span>
-                  </TableCell>
-                  {/* Plan sub-columns */}
-                  <TableCell className="text-right py-4 border-l border-border/20">
-                    <span className="text-muted-foreground">
-                      {kpi.subKPIs[0]?.details.target || "-"}
-                    </span>
-                  </TableCell>
-                  <TableCell className="text-right py-4">
-                    <span className="text-muted-foreground">
-                      {kpi.subKPIs[0]?.details.planQtd || "-"}
-                    </span>
-                  </TableCell>
-                  <TableCell className="text-right py-4">
-                    <span className="text-muted-foreground">
-                      {kpi.subKPIs[0]?.details.planYtd || "-"}
-                    </span>
-                  </TableCell>
-                  {/* Previous Year sub-columns */}
-                  <TableCell className="text-right py-4 border-l border-border/20">
-                    <span className="text-muted-foreground">
-                      {kpi.subKPIs[0]?.details.lastMonth || "-"}
-                    </span>
-                  </TableCell>
-                  <TableCell className="text-right py-4">
-                    <span className="text-muted-foreground">
-                      {kpi.subKPIs[0]?.details.pyQtd || "-"}
-                    </span>
-                  </TableCell>
-                  <TableCell className="text-right py-4">
-                    <span className="text-muted-foreground">
-                      {kpi.subKPIs[0]?.details.pyYtd || "-"}
-                    </span>
-                  </TableCell>
-                  {/* Variance */}
-                  <TableCell className="text-right py-4 border-l border-border/20">
-                    {kpi.subKPIs[0] && (
-                      <div className={cn(
-                        "inline-flex items-center gap-1 px-2 py-1 rounded-full text-sm font-medium",
-                        kpi.subKPIs[0].variance >= 0 
-                          ? "bg-success/10 text-success" 
-                          : "bg-destructive/10 text-destructive"
-                      )}>
-                        {kpi.subKPIs[0].variance >= 0 ? (
-                          <TrendingUp className="w-3 h-3" />
-                        ) : (
-                          <TrendingDown className="w-3 h-3" />
-                        )}
-                        {Math.abs(kpi.subKPIs[0].variance)}%
-                      </div>
-                    )}
-                  </TableCell>
-                  <TableCell className="py-4">
-                    <Button
-                      variant="ghost"
-                      size="icon"
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        onChatClick(e, kpi.name);
-                      }}
-                      className="w-8 h-8 rounded-full bg-primary/10 hover:bg-primary/20 border border-primary/30 hover:border-primary/50 transition-all hover:scale-110"
-                    >
-                      <MessageCircle className="w-4 h-4 text-primary" />
-                    </Button>
-                  </TableCell>
+                  {/* Empty cells for header row */}
+                  <TableCell className="border-l border-border/20"></TableCell>
+                  <TableCell></TableCell>
+                  <TableCell></TableCell>
+                  <TableCell className="border-l border-border/20"></TableCell>
+                  <TableCell></TableCell>
+                  <TableCell></TableCell>
+                  <TableCell className="border-l border-border/20"></TableCell>
+                  <TableCell></TableCell>
+                  <TableCell></TableCell>
+                  <TableCell className="border-l border-border/20"></TableCell>
                 </TableRow>
 
-                {/* Expanded Sub-KPI Rows */}
-                {isExpanded && kpi.subKPIs.map((subKPI, index) => (
+                {/* Expanded Sub-KPI Rows - only show when expanded */}
+                {isExpanded && kpi.subKPIs.map((subKPI) => (
                   <TableRow
                     key={`${kpi.name}-${subKPI.name}`}
                     className={cn(
@@ -258,10 +199,9 @@ export default function KPITable({ kpis, onSubKPIClick, onChatClick }: KPITableP
                         {Math.abs(subKPI.variance)}%
                       </div>
                     </TableCell>
-                    <TableCell className="py-3"></TableCell>
                   </TableRow>
                 ))}
-              </>
+              </React.Fragment>
             );
           })}
         </TableBody>
