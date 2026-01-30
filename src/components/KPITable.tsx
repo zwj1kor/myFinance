@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, Fragment } from "react";
 import { ChevronDown, ChevronRight, TrendingUp, TrendingDown, MessageCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
@@ -57,7 +57,6 @@ export default function KPITable({ kpis, onSubKPIClick, onChatClick }: KPITableP
             <TableHead colSpan={3} className="text-center font-display font-bold text-foreground border-l border-border/30">Plan</TableHead>
             <TableHead colSpan={3} className="text-center font-display font-bold text-foreground border-l border-border/30">Previous Year</TableHead>
             <TableHead rowSpan={2} className="text-right font-display font-bold text-foreground border-l border-border/30 align-middle">Variance</TableHead>
-            <TableHead rowSpan={2} className="w-[50px] align-middle"></TableHead>
           </TableRow>
           {/* Sub-column headers */}
           <TableRow className="border-b border-border/30 hover:bg-transparent">
@@ -73,15 +72,16 @@ export default function KPITable({ kpis, onSubKPIClick, onChatClick }: KPITableP
           </TableRow>
         </TableHeader>
         <TableBody>
-          {kpis.map((kpi) => {
+        {kpis.map((kpi) => {
             const isExpanded = expandedRows.has(kpi.name);
             const colorClasses = getColorClasses(kpi.color);
+            // Filter out sub-KPIs that have the same name as the main category
+            const filteredSubKPIs = kpi.subKPIs.filter(sub => sub.name !== kpi.name);
 
             return (
-              <>
+              <Fragment key={kpi.name}>
                 {/* Main KPI Row */}
                 <TableRow
-                  key={kpi.name}
                   className={cn(
                     "cursor-pointer transition-colors border-b border-border/20",
                     isExpanded ? colorClasses.bg : "hover:bg-muted/30"
@@ -99,6 +99,17 @@ export default function KPITable({ kpis, onSubKPIClick, onChatClick }: KPITableP
                     <div className="flex items-center gap-3">
                       <span className="text-2xl">{kpi.icon}</span>
                       <span className="font-display font-bold text-foreground text-lg">{kpi.name}</span>
+                      <Button
+                        variant="ghost"
+                        size="icon"
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          onChatClick(e, kpi.name);
+                        }}
+                        className="w-8 h-8 rounded-full bg-primary/10 hover:bg-primary/20 border border-primary/30 hover:border-primary/50 transition-all hover:scale-110"
+                      >
+                        <MessageCircle className="w-4 h-4 text-primary" />
+                      </Button>
                     </div>
                   </TableCell>
                   {/* Actual sub-columns */}
@@ -167,23 +178,10 @@ export default function KPITable({ kpis, onSubKPIClick, onChatClick }: KPITableP
                       </div>
                     )}
                   </TableCell>
-                  <TableCell className="py-4">
-                    <Button
-                      variant="ghost"
-                      size="icon"
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        onChatClick(e, kpi.name);
-                      }}
-                      className="w-8 h-8 rounded-full bg-primary/10 hover:bg-primary/20 border border-primary/30 hover:border-primary/50 transition-all hover:scale-110"
-                    >
-                      <MessageCircle className="w-4 h-4 text-primary" />
-                    </Button>
-                  </TableCell>
                 </TableRow>
 
-                {/* Expanded Sub-KPI Rows */}
-                {isExpanded && kpi.subKPIs.map((subKPI, index) => (
+                {/* Expanded Sub-KPI Rows - only show if there are filtered sub-KPIs */}
+                {isExpanded && filteredSubKPIs.map((subKPI) => (
                   <TableRow
                     key={`${kpi.name}-${subKPI.name}`}
                     className={cn(
@@ -258,10 +256,9 @@ export default function KPITable({ kpis, onSubKPIClick, onChatClick }: KPITableP
                         {Math.abs(subKPI.variance)}%
                       </div>
                     </TableCell>
-                    <TableCell className="py-3"></TableCell>
                   </TableRow>
                 ))}
-              </>
+              </Fragment>
             );
           })}
         </TableBody>
