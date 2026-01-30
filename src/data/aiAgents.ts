@@ -1,4 +1,4 @@
-import { TrendingUp, DollarSign, PieChart, Droplets, Navigation, LucideIcon } from "lucide-react";
+import { TrendingUp, DollarSign, PieChart, Droplets, Navigation, Wallet, Receipt, LucideIcon } from "lucide-react";
 
 export interface AIAgent {
   name: string;
@@ -86,5 +86,35 @@ export const aiAgents: AIAgent[] = [
     ],
     status: "active",
     color: "from-orange-500/20 to-red-500/20 border-orange-500/30",
+  },
+  {
+    name: "Working Capital Optimizer",
+    icon: Wallet,
+    emoji: "💼",
+    description: "Optimizes working capital by analyzing receivables, payables, and inventory turnover to improve cash conversion cycles.",
+    responsibility: "Working Capital & Cash Conversion",
+    capabilities: [
+      "Analyzes Days Sales Outstanding (DSO)",
+      "Monitors Days Payable Outstanding (DPO)",
+      "Tracks inventory turnover ratios",
+      "Recommends working capital improvements",
+    ],
+    status: "active",
+    color: "from-indigo-500/20 to-violet-500/20 border-indigo-500/30",
+  },
+  {
+    name: "Accounts Receivable Sentinel",
+    icon: Receipt,
+    emoji: "📋",
+    description: "Monitors invoice aging, predicts collection risks, and automates follow-up recommendations for overdue accounts.",
+    responsibility: "Receivables & Collections Management",
+    capabilities: [
+      "Tracks invoice aging buckets",
+      "Predicts payment default risks",
+      "Prioritizes collection activities",
+      "Monitors customer credit exposure",
+    ],
+    status: "active",
+    color: "from-teal-500/20 to-emerald-500/20 border-teal-500/30",
   },
 ];
