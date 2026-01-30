@@ -1,4 +1,4 @@
-import { TrendingUp, DollarSign, PieChart, Droplets, Navigation, LucideIcon } from "lucide-react";
+import { TrendingUp, DollarSign, PieChart, Droplets, Navigation, Users, Shield, LucideIcon } from "lucide-react";
 
 export interface AIAgent {
   name: string;
@@ -86,5 +86,35 @@ export const aiAgents: AIAgent[] = [
     ],
     status: "active",
     color: "from-orange-500/20 to-red-500/20 border-orange-500/30",
+  },
+  {
+    name: "Workforce Intelligence Agent",
+    icon: Users,
+    emoji: "👥",
+    description: "Analyzes workforce data, tracks headcount trends, and provides insights on talent management and resource allocation.",
+    responsibility: "Workforce Analytics & Talent Management",
+    capabilities: [
+      "Monitors headcount trends and workforce composition",
+      "Tracks internal vs external resource ratios",
+      "Analyzes workforce productivity metrics",
+      "Recommends optimal staffing strategies",
+    ],
+    status: "active",
+    color: "from-indigo-500/20 to-violet-500/20 border-indigo-500/30",
+  },
+  {
+    name: "Compliance and Governance Sentinel",
+    icon: Shield,
+    emoji: "🛡️",
+    description: "Ensures regulatory compliance, monitors governance policies, and alerts on potential compliance risks.",
+    responsibility: "Compliance Monitoring & Risk Governance",
+    capabilities: [
+      "Monitors regulatory compliance status",
+      "Tracks policy adherence across departments",
+      "Identifies compliance gaps and risks",
+      "Generates audit-ready reports",
+    ],
+    status: "active",
+    color: "from-rose-500/20 to-pink-500/20 border-rose-500/30",
   },
 ];
