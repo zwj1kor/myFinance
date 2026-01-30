@@ -1,11 +1,12 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { Send, Sparkles, ArrowLeft, Minimize2 } from "lucide-react";
+import { Send, Sparkles, ArrowLeft, Minimize2, PanelLeftClose, PanelLeft } from "lucide-react";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { useCopilotChat } from "@/contexts/CopilotChatContext";
+import CopilotSidebar from "@/components/CopilotSidebar";
 
 const suggestedPrompts = [
   "Show me GB-wise target vs actual profitability and OCI trends",
@@ -18,14 +19,27 @@ const suggestedPrompts = [
 
 export default function Copilot() {
   const navigate = useNavigate();
-  const { messages, setMessages, setIsMinimized, setIsActive } = useCopilotChat();
+  const { 
+    messages, 
+    setMessages, 
+    setIsMinimized, 
+    setIsActive,
+    currentSessionId,
+    startNewChat,
+  } = useCopilotChat();
   const [input, setInput] = useState("");
+  const [sidebarOpen, setSidebarOpen] = useState(true);
 
   // Mark chat as active when on this page
   useEffect(() => {
     setIsActive(true);
     setIsMinimized(false);
-  }, [setIsActive, setIsMinimized]);
+    
+    // Start a new session if none exists
+    if (!currentSessionId) {
+      startNewChat();
+    }
+  }, [setIsActive, setIsMinimized, currentSessionId, startNewChat]);
 
   const handleSend = () => {
     if (!input.trim()) return;
@@ -62,102 +76,117 @@ export default function Copilot() {
   };
 
   return (
-    <div className="h-full flex flex-col">
-      {/* Header */}
-      <div className="p-6 border-b border-border bg-card">
-        <div className="flex items-center gap-4">
-          <Button
-            variant="ghost"
-            size="icon"
-            onClick={() => navigate("/dashboard")}
-            className="hover:bg-muted/50"
-          >
-            <ArrowLeft className="w-5 h-5" />
-          </Button>
-          <Button
-            variant="ghost"
-            size="icon"
-            onClick={() => {
-              setIsMinimized(true);
-              navigate("/dashboard");
-            }}
-            className="hover:bg-muted/50"
-            title="Minimize chat"
-          >
-            <Minimize2 className="w-5 h-5" />
-          </Button>
-          <div className="w-10 h-10 bg-primary rounded-lg flex items-center justify-center">
-            <Sparkles className="w-6 h-6 text-primary-foreground" />
+    <div className="h-full flex">
+      {/* Sidebar */}
+      {sidebarOpen && <CopilotSidebar />}
+
+      {/* Main Chat Area */}
+      <div className="flex-1 flex flex-col min-w-0">
+        {/* Header */}
+        <div className="p-4 border-b border-border bg-card">
+          <div className="flex items-center gap-3">
+            <Button
+              variant="ghost"
+              size="icon"
+              onClick={() => setSidebarOpen(!sidebarOpen)}
+              className="hover:bg-muted/50"
+              title={sidebarOpen ? "Close sidebar" : "Open sidebar"}
+            >
+              {sidebarOpen ? <PanelLeftClose className="w-5 h-5" /> : <PanelLeft className="w-5 h-5" />}
+            </Button>
+            <Button
+              variant="ghost"
+              size="icon"
+              onClick={() => navigate("/dashboard")}
+              className="hover:bg-muted/50"
+            >
+              <ArrowLeft className="w-5 h-5" />
+            </Button>
+            <Button
+              variant="ghost"
+              size="icon"
+              onClick={() => {
+                setIsMinimized(true);
+                navigate("/dashboard");
+              }}
+              className="hover:bg-muted/50"
+              title="Minimize chat"
+            >
+              <Minimize2 className="w-5 h-5" />
+            </Button>
+            <div className="w-10 h-10 bg-primary rounded-lg flex items-center justify-center">
+              <Sparkles className="w-6 h-6 text-primary-foreground" />
+            </div>
+            <div>
+              <h1 className="text-xl font-bold text-foreground">AI Copilot</h1>
+              <p className="text-sm text-muted-foreground">
+                Ask anything about your finance data
+              </p>
+            </div>
           </div>
-          <div>
-            <h1 className="text-2xl font-bold text-foreground">AI Copilot</h1>
-            <p className="text-sm text-muted-foreground">
-              Ask anything about your finance data and get intelligent insights
+        </div>
+
+        {/* Messages Area */}
+        <ScrollArea className="flex-1 p-6">
+          <div className="max-w-4xl mx-auto space-y-6">
+            {messages.map((message, index) => (
+              <div
+                key={index}
+                className={`flex ${message.role === "user" ? "justify-end" : "justify-start"}`}
+              >
+                <Card
+                  className={`max-w-2xl p-4 ${
+                    message.role === "user"
+                      ? "bg-primary text-primary-foreground"
+                      : "bg-card"
+                  }`}
+                >
+                  <p className="text-sm whitespace-pre-line">{message.content}</p>
+                </Card>
+              </div>
+            ))}
+
+            {/* Suggested Prompts (show when conversation starts) */}
+            {messages.length === 1 && (
+              <div className="space-y-4">
+                <p className="text-sm text-muted-foreground text-center">
+                  Try asking one of these:
+                </p>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                  {suggestedPrompts.map((prompt, index) => (
+                    <Card
+                      key={index}
+                      className="p-4 cursor-pointer hover:bg-accent hover:text-accent-foreground transition-colors"
+                      onClick={() => handlePromptClick(prompt)}
+                    >
+                      <p className="text-sm">{prompt}</p>
+                    </Card>
+                  ))}
+                </div>
+              </div>
+            )}
+          </div>
+        </ScrollArea>
+
+        {/* Input Area */}
+        <div className="p-4 border-t border-border bg-card">
+          <div className="max-w-4xl mx-auto">
+            <div className="flex gap-3">
+              <Input
+                placeholder="Ask about revenue, cost, OCI, utilization, profitability..."
+                value={input}
+                onChange={(e) => setInput(e.target.value)}
+                onKeyPress={(e) => e.key === "Enter" && handleSend()}
+                className="flex-1"
+              />
+              <Button onClick={handleSend} size="icon" variant="secondary">
+                <Send className="w-4 h-4" />
+              </Button>
+            </div>
+            <p className="text-xs text-muted-foreground mt-2 text-center">
+              AI Copilot can analyze your finance data and help you make better decisions
             </p>
           </div>
-        </div>
-      </div>
-
-      {/* Messages Area */}
-      <ScrollArea className="flex-1 p-6">
-        <div className="max-w-4xl mx-auto space-y-6">
-          {messages.map((message, index) => (
-            <div
-              key={index}
-              className={`flex ${message.role === "user" ? "justify-end" : "justify-start"}`}
-            >
-              <Card
-                className={`max-w-2xl p-4 ${
-                  message.role === "user"
-                    ? "bg-primary text-primary-foreground"
-                    : "bg-card"
-                }`}
-              >
-                <p className="text-sm whitespace-pre-line">{message.content}</p>
-              </Card>
-            </div>
-          ))}
-
-          {/* Suggested Prompts (show when conversation starts) */}
-          {messages.length === 1 && (
-            <div className="space-y-4">
-              <p className="text-sm text-muted-foreground text-center">
-                Try asking one of these:
-              </p>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-                {suggestedPrompts.map((prompt, index) => (
-                  <Card
-                    key={index}
-                    className="p-4 cursor-pointer hover:bg-accent hover:text-accent-foreground transition-colors"
-                    onClick={() => handlePromptClick(prompt)}
-                  >
-                    <p className="text-sm">{prompt}</p>
-                  </Card>
-                ))}
-              </div>
-            </div>
-          )}
-        </div>
-      </ScrollArea>
-
-      {/* Input Area */}
-      <div className="p-6 border-t border-border bg-card">
-        <div className="max-w-4xl mx-auto">
-          <div className="flex gap-3">
-            <Input
-              placeholder="Ask about revenue, cost, OCI, utilization, profitability..."
-              value={input}
-              onChange={(e) => setInput(e.target.value)}
-              onKeyPress={(e) => e.key === "Enter" && handleSend()}
-              className="flex-1"
-            />
-            <Button onClick={handleSend} size="icon" variant="secondary">
-              <Send className="w-4 h-4" />
-            </Button>
-          </div>
-          <p className="text-xs text-muted-foreground mt-2 text-center">
-            AI Copilot can analyze your finance data, suggest actions, and help you make better decisions
-          </p>
         </div>
       </div>
     </div>
