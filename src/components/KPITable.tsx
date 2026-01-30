@@ -49,26 +49,26 @@ export default function KPITable({ kpis, onSubKPIClick, onChatClick }: KPITableP
     <Card className="glass-card border border-border/40 rounded-xl overflow-hidden">
       <Table>
         <TableHeader>
-          {/* Main column headers - highlighted with gradient background */}
-          <TableRow className="border-b border-primary/30 hover:bg-transparent bg-primary/10">
-            <TableHead rowSpan={2} className="w-[40px] align-middle bg-primary/10"></TableHead>
-            <TableHead rowSpan={2} className="font-display font-bold text-primary align-middle bg-primary/10">KPI</TableHead>
-            <TableHead colSpan={3} className="text-center font-display font-bold text-primary border-l border-primary/30 bg-primary/15">Actual</TableHead>
-            <TableHead colSpan={3} className="text-center font-display font-bold text-accent border-l border-accent/30 bg-accent/10">Plan</TableHead>
-            <TableHead colSpan={3} className="text-center font-display font-bold text-warning border-l border-warning/30 bg-warning/10">Previous Year</TableHead>
-            <TableHead rowSpan={2} className="text-right font-display font-bold text-primary border-l border-primary/30 align-middle bg-primary/10">Variance</TableHead>
+          {/* Main column headers - uniform muted background */}
+          <TableRow className="border-b border-border/30 hover:bg-transparent bg-muted/50">
+            <TableHead rowSpan={2} className="w-[40px] align-middle bg-muted/50"></TableHead>
+            <TableHead rowSpan={2} className="font-display font-bold text-foreground align-middle bg-muted/50">KPI</TableHead>
+            <TableHead colSpan={3} className="text-center font-display font-bold text-foreground border-l border-border/30 bg-muted/50">Actual</TableHead>
+            <TableHead colSpan={3} className="text-center font-display font-bold text-foreground border-l border-border/30 bg-muted/50">Plan</TableHead>
+            <TableHead colSpan={3} className="text-center font-display font-bold text-foreground border-l border-border/30 bg-muted/50">Previous Year</TableHead>
+            <TableHead rowSpan={2} className="text-right font-display font-bold text-foreground border-l border-border/30 align-middle bg-muted/50">Variance</TableHead>
           </TableRow>
-          {/* Sub-column headers - with matching highlight colors */}
-          <TableRow className="border-b border-primary/20 hover:bg-transparent">
-            <TableHead className="text-right text-xs font-semibold text-primary/80 border-l border-primary/30 bg-primary/10">Actual</TableHead>
-            <TableHead className="text-right text-xs font-semibold text-primary/80 bg-primary/10">QTD</TableHead>
-            <TableHead className="text-right text-xs font-semibold text-primary/80 bg-primary/10">YTD</TableHead>
-            <TableHead className="text-right text-xs font-semibold text-accent/80 border-l border-accent/30 bg-accent/5">Actual</TableHead>
-            <TableHead className="text-right text-xs font-semibold text-accent/80 bg-accent/5">QTD</TableHead>
-            <TableHead className="text-right text-xs font-semibold text-accent/80 bg-accent/5">YTD</TableHead>
-            <TableHead className="text-right text-xs font-semibold text-warning/80 border-l border-warning/30 bg-warning/5">Actual</TableHead>
-            <TableHead className="text-right text-xs font-semibold text-warning/80 bg-warning/5">QTD</TableHead>
-            <TableHead className="text-right text-xs font-semibold text-warning/80 bg-warning/5">YTD</TableHead>
+          {/* Sub-column headers - uniform muted background */}
+          <TableRow className="border-b border-border/20 hover:bg-transparent">
+            <TableHead className="text-right text-xs font-semibold text-muted-foreground border-l border-border/30 bg-muted/40">Actual</TableHead>
+            <TableHead className="text-right text-xs font-semibold text-muted-foreground bg-muted/40">QTD</TableHead>
+            <TableHead className="text-right text-xs font-semibold text-muted-foreground bg-muted/40">YTD</TableHead>
+            <TableHead className="text-right text-xs font-semibold text-muted-foreground border-l border-border/30 bg-muted/40">Actual</TableHead>
+            <TableHead className="text-right text-xs font-semibold text-muted-foreground bg-muted/40">QTD</TableHead>
+            <TableHead className="text-right text-xs font-semibold text-muted-foreground bg-muted/40">YTD</TableHead>
+            <TableHead className="text-right text-xs font-semibold text-muted-foreground border-l border-border/30 bg-muted/40">Actual</TableHead>
+            <TableHead className="text-right text-xs font-semibold text-muted-foreground bg-muted/40">QTD</TableHead>
+            <TableHead className="text-right text-xs font-semibold text-muted-foreground bg-muted/40">YTD</TableHead>
           </TableRow>
         </TableHeader>
         <TableBody>
@@ -80,27 +80,26 @@ export default function KPITable({ kpis, onSubKPIClick, onChatClick }: KPITableP
 
             return (
               <Fragment key={kpi.name}>
-                {/* Main KPI Row - Highlighted with gradient and glow */}
+                {/* Main KPI Row - Highlight only on hover */}
                 <TableRow
                   className={cn(
-                    "cursor-pointer transition-all duration-300 border-b-2",
-                    colorClasses.border,
+                    "cursor-pointer transition-all duration-300 border-b border-border/20",
                     isExpanded 
-                      ? `${colorClasses.bg} shadow-lg` 
-                      : `bg-gradient-to-r from-${kpi.color}/10 via-${kpi.color}/5 to-transparent hover:from-${kpi.color}/20 hover:via-${kpi.color}/10`
+                      ? "bg-muted/30" 
+                      : "bg-transparent hover:bg-muted/40"
                   )}
                   onClick={() => toggleRow(kpi.name)}
                 >
-                  <TableCell className={cn("py-4", colorClasses.bg, "bg-opacity-20")}>
+                  <TableCell className="py-4">
                     {isExpanded ? (
-                      <ChevronDown className={cn("w-5 h-5", colorClasses.text)} />
+                      <ChevronDown className="w-5 h-5 text-foreground" />
                     ) : (
-                      <ChevronRight className={cn("w-5 h-5", colorClasses.text, "opacity-70")} />
+                      <ChevronRight className="w-5 h-5 text-muted-foreground" />
                     )}
                   </TableCell>
-                  <TableCell className={cn("py-4", colorClasses.bg, "bg-opacity-20")}>
+                  <TableCell className="py-4">
                     <div className="flex items-center gap-3">
-                      <span className="text-2xl drop-shadow-lg">{kpi.icon}</span>
+                      <span className="text-2xl">{kpi.icon}</span>
                       <span className="font-display font-bold text-foreground text-lg">{kpi.name}</span>
                       <Button
                         variant="ghost"
@@ -187,12 +186,7 @@ export default function KPITable({ kpis, onSubKPIClick, onChatClick }: KPITableP
                 {isExpanded && filteredSubKPIs.map((subKPI) => (
                   <TableRow
                     key={`${kpi.name}-${subKPI.name}`}
-                    className={cn(
-                      "cursor-pointer transition-colors border-b border-border/10",
-                      "hover:bg-muted/20",
-                      colorClasses.bg,
-                      "opacity-90"
-                    )}
+                    className="cursor-pointer transition-colors border-b border-border/10 bg-transparent hover:bg-muted/30"
                     onClick={() => onSubKPIClick(kpi.name, subKPI)}
                   >
                     <TableCell className="py-3"></TableCell>
