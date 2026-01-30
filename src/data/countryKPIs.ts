@@ -87,18 +87,6 @@ const indiaKPIs: MainKPI[] = [
       { name: "Available Capacity", value: "195", trend: "down", variance: -8.5, description: "Resources available for new projects", details: { current: "195", target: "175", lastMonth: "213", ytd: "205", qtd: "200", planQtd: "180", planYtd: "178", pyQtd: "220", pyYtd: "225", insight: "Bench optimization progressing. Strategic buffer maintained for opportunities." } },
     ],
   },
-  {
-    name: "Headcount",
-    icon: "👥",
-    color: "success",
-    subKPIs: [
-      { name: "Total Headcount", value: "1,520", trend: "up", variance: 4.2, description: "Total number of employees", details: { current: "1,520", target: "1,580", lastMonth: "1,480", ytd: "1,500", qtd: "1,510", planQtd: "1,560", planYtd: "1,575", pyQtd: "1,420", pyYtd: "1,400", insight: "Headcount growing with business expansion. Hiring on track." } },
-      { name: "Billable Headcount", value: "1,325", trend: "up", variance: 4.8, description: "Employees on billable projects", details: { current: "1,325", target: "1,400", lastMonth: "1,272", ytd: "1,295", qtd: "1,310", planQtd: "1,380", planYtd: "1,390", pyQtd: "1,250", pyYtd: "1,240", insight: "Billable resources increasing with new project wins." } },
-      { name: "Non-Billable Headcount", value: "195", trend: "down", variance: -2.5, description: "Support and admin employees", details: { current: "195", target: "180", lastMonth: "208", ytd: "205", qtd: "200", planQtd: "180", planYtd: "185", pyQtd: "170", pyYtd: "160", insight: "Non-billable optimized through automation and shared services." } },
-      { name: "New Hires", value: "45", trend: "up", variance: 12.5, description: "New employees this month", details: { current: "45", target: "50", lastMonth: "38", ytd: "135", qtd: "42", planQtd: "48", planYtd: "145", pyQtd: "35", pyYtd: "105", insight: "Strong hiring pipeline. Campus recruitment driving numbers." } },
-      { name: "Attrition Rate", value: "8.2%", trend: "down", variance: -15.5, description: "Monthly attrition percentage", details: { current: "8.2%", target: "7.5%", lastMonth: "9.1%", ytd: "8.8%", qtd: "8.5%", planQtd: "7.8%", planYtd: "7.6%", pyQtd: "12.0%", pyYtd: "11.5%", insight: "Attrition significantly reduced with retention initiatives." } },
-    ],
-  },
 ];
 
 // Mexico KPI Data
@@ -149,18 +137,6 @@ const mexicoKPIs: MainKPI[] = [
       { name: "Available Capacity", value: "42", trend: "down", variance: -15.2, description: "Resources available for new projects", details: { current: "42", target: "50", lastMonth: "52", ytd: "48", qtd: "45", planQtd: "48", planYtd: "50", pyQtd: "55", pyYtd: "58", insight: "Low bench indicating strong demand. Proactive hiring in progress." } },
     ],
   },
-  {
-    name: "Headcount",
-    icon: "👥",
-    color: "success",
-    subKPIs: [
-      { name: "Total Headcount", value: "467", trend: "up", variance: 6.5, description: "Total number of employees", details: { current: "467", target: "500", lastMonth: "448", ytd: "458", qtd: "462", planQtd: "490", planYtd: "498", pyQtd: "425", pyYtd: "420", insight: "Rapid expansion to meet nearshore demand." } },
-      { name: "Billable Headcount", value: "425", trend: "up", variance: 5.8, description: "Employees on billable projects", details: { current: "425", target: "450", lastMonth: "405", ytd: "415", qtd: "420", planQtd: "445", planYtd: "448", pyQtd: "400", pyYtd: "395", insight: "High billable ratio due to strong demand." } },
-      { name: "Non-Billable Headcount", value: "42", trend: "down", variance: -5.2, description: "Support and admin employees", details: { current: "42", target: "50", lastMonth: "43", ytd: "43", qtd: "42", planQtd: "45", planYtd: "50", pyQtd: "25", pyYtd: "25", insight: "Lean support structure maintained." } },
-      { name: "New Hires", value: "22", trend: "up", variance: 18.5, description: "New employees this month", details: { current: "22", target: "25", lastMonth: "18", ytd: "65", qtd: "20", planQtd: "24", planYtd: "72", pyQtd: "15", pyYtd: "48", insight: "Strong hiring for US nearshore demand." } },
-      { name: "Attrition Rate", value: "6.8%", trend: "down", variance: -8.2, description: "Monthly attrition percentage", details: { current: "6.8%", target: "6.0%", lastMonth: "7.2%", ytd: "7.0%", qtd: "6.9%", planQtd: "6.2%", planYtd: "6.1%", pyQtd: "8.5%", pyYtd: "8.8%", insight: "Lower attrition than industry average." } },
-    ],
-  },
 ];
 
 // Vietnam KPI Data
@@ -209,18 +185,6 @@ const vietnamKPIs: MainKPI[] = [
       { name: "Billing Utilization", value: "82%", trend: "up", variance: 5.8, description: "Percentage of billable capacity utilized", details: { current: "82%", target: "88%", lastMonth: "78%", ytd: "80%", qtd: "81%", planQtd: "87%", planYtd: "87.5%", pyQtd: "76%", pyYtd: "75%", insight: "Utilization improving rapidly. New projects ramping up." } },
       { name: "Billed Capacity", value: "680", trend: "up", variance: 8.5, description: "Total resources currently billing", details: { current: "680", target: "750", lastMonth: "635", ytd: "655", qtd: "670", planQtd: "740", planYtd: "745", pyQtd: "620", pyYtd: "610", insight: "Aggressive hiring plan on track. 45 new billable resources added." } },
       { name: "Available Capacity", value: "148", trend: "down", variance: -5.2, description: "Resources available for new projects", details: { current: "148", target: "120", lastMonth: "158", ytd: "155", qtd: "152", planQtd: "125", planYtd: "122", pyQtd: "165", pyYtd: "170", insight: "Bench being deployed to new Japan accounts. Training ongoing." } },
-    ],
-  },
-  {
-    name: "Headcount",
-    icon: "👥",
-    color: "success",
-    subKPIs: [
-      { name: "Total Headcount", value: "828", trend: "up", variance: 10.2, description: "Total number of employees", details: { current: "828", target: "870", lastMonth: "785", ytd: "805", qtd: "815", planQtd: "855", planYtd: "868", pyQtd: "720", pyYtd: "705", insight: "Fastest growing region in headcount." } },
-      { name: "Billable Headcount", value: "680", trend: "up", variance: 8.5, description: "Employees on billable projects", details: { current: "680", target: "750", lastMonth: "635", ytd: "655", qtd: "670", planQtd: "740", planYtd: "745", pyQtd: "620", pyYtd: "610", insight: "Strong project pipeline filling positions." } },
-      { name: "Non-Billable Headcount", value: "148", trend: "up", variance: 2.8, description: "Support and admin employees", details: { current: "148", target: "120", lastMonth: "150", ytd: "150", qtd: "145", planQtd: "115", planYtd: "123", pyQtd: "100", pyYtd: "95", insight: "Building support infrastructure for scale." } },
-      { name: "New Hires", value: "52", trend: "up", variance: 22.5, description: "New employees this month", details: { current: "52", target: "60", lastMonth: "42", ytd: "145", qtd: "48", planQtd: "55", planYtd: "165", pyQtd: "35", pyYtd: "105", insight: "Campus and lateral hiring both strong." } },
-      { name: "Attrition Rate", value: "9.5%", trend: "down", variance: -12.8, description: "Monthly attrition percentage", details: { current: "9.5%", target: "8.0%", lastMonth: "10.2%", ytd: "10.0%", qtd: "9.8%", planQtd: "8.5%", planYtd: "8.2%", pyQtd: "14.0%", pyYtd: "13.5%", insight: "Significant improvement in retention." } },
     ],
   },
 ];
