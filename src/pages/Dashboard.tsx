@@ -2,9 +2,10 @@ import { useState, useMemo } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Sparkles, X, TrendingUp, TrendingDown, MessageCircle, Home } from "lucide-react";
+import { Sparkles, X, TrendingUp, TrendingDown, MessageCircle } from "lucide-react";
 import KPIChatWindow from "@/components/KPIChatWindow";
 import CountrySelector, { Entity } from "@/components/CountrySelector";
+import KPITable from "@/components/KPITable";
 import { Country, kpiDataByCountry, SubKPI, MainKPI } from "@/data/countryKPIs";
 
 // Persona type for route state
@@ -206,62 +207,13 @@ export default function Dashboard() {
           </div>
         )}
 
-        {/* Main KPI Grid - 2x2 */}
-        <div className={`grid grid-cols-1 lg:grid-cols-2 gap-4 max-w-7xl mx-auto transition-opacity duration-300 ${expandedKPI ? "opacity-0 pointer-events-none" : "opacity-100"}`}>
-          {currentKPIs.map((kpi, index) => {
-            const colorClasses = getColorClasses(kpi.color);
-
-            return (
-              <Card
-                key={kpi.name}
-                className={`p-4 lg:p-5 glass-card border ${colorClasses.border} rounded-xl relative overflow-hidden animate-fade-up`}
-                style={{ animationDelay: `${index * 0.1}s` }}
-              >
-                {/* Background gradient effect */}
-                <div className={`absolute inset-0 ${colorClasses.bg} opacity-5`} />
-                
-                <div className="relative z-10">
-                  {/* Header with Chat Icon */}
-                  <div className="flex items-center justify-between mb-3 pb-2 border-b border-border/30">
-                    <div className="flex items-center gap-2">
-                      <span className="text-2xl">{kpi.icon}</span>
-                      <h2 className="text-lg font-display font-bold text-gradient-neon">
-                        {kpi.name}
-                      </h2>
-                    </div>
-                    <Button
-                      variant="ghost"
-                      size="icon"
-                      onClick={(e) => handleTileChatClick(e, kpi.name)}
-                      className="w-8 h-8 rounded-full bg-primary/10 hover:bg-primary/20 border border-primary/30 hover:border-primary/50 transition-all hover:scale-110"
-                    >
-                      <MessageCircle className="w-4 h-4 text-primary" />
-                    </Button>
-                  </div>
-
-                  {/* Sub-KPIs Grid */}
-                  <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
-                    {kpi.subKPIs.map((subKPI) => (
-                      <Card
-                        key={subKPI.name}
-                        className={`p-2.5 glass-card border ${colorClasses.subBorder} rounded-lg 
-                          transition-all duration-200 hover:scale-[1.02] cursor-pointer hover:shadow-lg ${colorClasses.shadow}`}
-                        onClick={() => handleSubKPIClick(kpi.name, subKPI)}
-                      >
-                        <p className="text-[10px] text-muted-foreground truncate mb-0.5">{subKPI.name}</p>
-                        <div className="flex items-center justify-between gap-1">
-                          <p className="text-sm font-display font-bold text-foreground truncate">{subKPI.value}</p>
-                          <span className={`text-[10px] flex-shrink-0 ${subKPI.variance >= 0 ? "text-success" : "text-destructive"}`}>
-                            {subKPI.variance >= 0 ? "↑" : "↓"}{Math.abs(subKPI.variance)}%
-                          </span>
-                        </div>
-                      </Card>
-                    ))}
-                  </div>
-                </div>
-              </Card>
-            );
-          })}
+        {/* KPI Table */}
+        <div className={`max-w-7xl mx-auto transition-opacity duration-300 ${expandedKPI ? "opacity-0 pointer-events-none" : "opacity-100"}`}>
+          <KPITable
+            kpis={currentKPIs}
+            onSubKPIClick={handleSubKPIClick}
+            onChatClick={handleTileChatClick}
+          />
         </div>
 
         {/* Central AI Mind */}
