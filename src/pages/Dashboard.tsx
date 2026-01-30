@@ -4,7 +4,7 @@ import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Sparkles, X, TrendingUp, TrendingDown, MessageCircle, Home } from "lucide-react";
 import KPIChatWindow from "@/components/KPIChatWindow";
-import CountrySelector from "@/components/CountrySelector";
+import CountrySelector, { Entity } from "@/components/CountrySelector";
 import { Country, kpiDataByCountry, SubKPI, MainKPI } from "@/data/countryKPIs";
 
 // Persona type for route state
@@ -40,6 +40,7 @@ export default function Dashboard() {
   const [expandedKPI, setExpandedKPI] = useState<{ main: string; sub: SubKPI } | null>(null);
   const [chatOpen, setChatOpen] = useState<{ type: 'tile' | 'detail'; name: string; value?: string } | null>(null);
   const [selectedCountry, setSelectedCountry] = useState<Country>("india");
+  const [selectedEntity, setSelectedEntity] = useState<Entity>("BGSW");
 
   // Get KPI data based on selected country
   const currentKPIs = useMemo(() => {
@@ -100,10 +101,12 @@ export default function Dashboard() {
           </p>
         </div>
 
-        {/* Country Selector */}
+        {/* Entity and Geography Filters */}
         <CountrySelector 
           selectedCountry={selectedCountry} 
-          onCountryChange={setSelectedCountry} 
+          onCountryChange={setSelectedCountry}
+          selectedEntity={selectedEntity}
+          onEntityChange={setSelectedEntity}
         />
 
         {/* Expanded KPI Detail View */}
