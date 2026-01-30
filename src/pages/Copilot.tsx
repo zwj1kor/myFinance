@@ -1,10 +1,11 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { Send, Sparkles, ArrowLeft } from "lucide-react";
+import { Send, Sparkles, ArrowLeft, Minimize2 } from "lucide-react";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { ScrollArea } from "@/components/ui/scroll-area";
+import { useCopilotChat } from "@/contexts/CopilotChatContext";
 
 const suggestedPrompts = [
   "Show me GB-wise target vs actual profitability and OCI trends",
@@ -15,20 +16,16 @@ const suggestedPrompts = [
   "Rank vendors by OCI and SLA performance",
 ];
 
-interface Message {
-  role: "user" | "assistant";
-  content: string;
-}
-
 export default function Copilot() {
   const navigate = useNavigate();
-  const [messages, setMessages] = useState<Message[]>([
-    {
-      role: "assistant",
-      content: "Hello! I'm your Finance AI Copilot. I can help you analyze revenue, costs, profitability, OCI, utilization, and much more. What would you like to explore today?",
-    },
-  ]);
+  const { messages, setMessages, setIsMinimized, setIsActive } = useCopilotChat();
   const [input, setInput] = useState("");
+
+  // Mark chat as active when on this page
+  useEffect(() => {
+    setIsActive(true);
+    setIsMinimized(false);
+  }, [setIsActive, setIsMinimized]);
 
   const handleSend = () => {
     if (!input.trim()) return;
@@ -76,6 +73,18 @@ export default function Copilot() {
             className="hover:bg-muted/50"
           >
             <ArrowLeft className="w-5 h-5" />
+          </Button>
+          <Button
+            variant="ghost"
+            size="icon"
+            onClick={() => {
+              setIsMinimized(true);
+              navigate("/dashboard");
+            }}
+            className="hover:bg-muted/50"
+            title="Minimize chat"
+          >
+            <Minimize2 className="w-5 h-5" />
           </Button>
           <div className="w-10 h-10 bg-primary rounded-lg flex items-center justify-center">
             <Sparkles className="w-6 h-6 text-primary-foreground" />

@@ -14,7 +14,8 @@ import CostEbitDetails from "./pages/CostEbitDetails";
 import CapacityDetails from "./pages/CapacityDetails";
 import UtilizationDetails from "./pages/UtilizationDetails";
 import CashflowDetails from "./pages/CashflowDetails";
-
+import MinimizedCopilotDock from "./components/MinimizedCopilotDock";
+import { CopilotChatProvider } from "./contexts/CopilotChatContext";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -39,6 +40,7 @@ const AppContent = () => {
         
         <Route path="*" element={<NotFound />} />
       </Routes>
+      <MinimizedCopilotDock />
     </>
   );
 };
@@ -47,11 +49,13 @@ const App = () => (
   <QueryClientProvider client={queryClient}>
     <ThemeProvider attribute="class" defaultTheme="dark" enableSystem storageKey="ui-theme">
       <TooltipProvider>
-        <Toaster />
-        <Sonner />
-        <BrowserRouter>
-          <AppContent />
-        </BrowserRouter>
+        <CopilotChatProvider>
+          <Toaster />
+          <Sonner />
+          <BrowserRouter>
+            <AppContent />
+          </BrowserRouter>
+        </CopilotChatProvider>
       </TooltipProvider>
     </ThemeProvider>
   </QueryClientProvider>
