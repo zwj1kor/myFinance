@@ -216,6 +216,26 @@ export default function Dashboard() {
           />
         </div>
 
+        {/* Central AI Mind */}
+        <div className={`flex items-center justify-center mt-6 transition-opacity duration-300 ${expandedKPI ? "opacity-0 pointer-events-none" : "opacity-100"}`}>
+          <Card 
+            className="p-4 glass-card border border-neon relative overflow-hidden cursor-pointer hover-scale rounded-xl shadow-lg shadow-primary/20"
+            onClick={() => navigate("/ai-overview")}
+          >
+            <div className="flex items-center gap-3">
+              <div className="relative">
+                <div className="absolute inset-0 animate-ping opacity-20">
+                  <div className="w-10 h-10 rounded-full bg-gradient-neon blur-lg"></div>
+                </div>
+                <Sparkles className="w-8 h-8 text-primary animate-float relative z-10" />
+              </div>
+              <div>
+                <p className="text-sm font-display font-bold text-gradient-neon">myFinance.AI</p>
+                <p className="text-xs text-muted-foreground">Explore AI insights</p>
+              </div>
+            </div>
+          </Card>
+        </div>
       </div>
 
       {/* KPI-specific Chat Window */}
