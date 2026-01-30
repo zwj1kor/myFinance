@@ -3,7 +3,7 @@ import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { ScrollArea } from "@/components/ui/scroll-area";
-import { MessageCircle, X, Send, Minimize2, Maximize2 } from "lucide-react";
+import { MessageCircle, X, Send, Minimize2 } from "lucide-react";
 
 interface Message {
   role: "assistant" | "user";
@@ -215,7 +215,6 @@ export default function KPIChatWindow({
   initialMessage 
 }: KPIChatWindowProps) {
   const [isMinimized, setIsMinimized] = useState(false);
-  const [isMaximized, setIsMaximized] = useState(false);
   
   const kpiContext = useMemo(() => 
     kpiContextMap[kpiName] || getDefaultContext(kpiName), 
@@ -286,11 +285,7 @@ export default function KPIChatWindow({
   }
 
   return (
-    <Card className={`fixed flex flex-col glass-card border-neon shadow-neon animate-scale-in z-[60] overflow-hidden transition-all duration-300 ${
-      isMaximized 
-        ? "inset-4 w-auto h-auto" 
-        : "bottom-6 right-6 w-96 h-[500px]"
-    }`}>
+    <Card className="fixed bottom-6 right-6 w-96 h-[500px] flex flex-col glass-card border-neon shadow-neon animate-scale-in z-[60] overflow-hidden">
       {/* Header */}
       <div className="flex items-center justify-between p-4 border-b border-border/50 bg-gradient-primary text-white rounded-t-lg relative overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-r from-primary/50 to-secondary/50 animate-shimmer" style={{ backgroundSize: '200% 100%' }} />
@@ -304,15 +299,6 @@ export default function KPIChatWindow({
           </div>
         </div>
         <div className="flex gap-1 relative z-10">
-          <Button
-            variant="ghost"
-            size="icon"
-            onClick={() => setIsMaximized(!isMaximized)}
-            className="text-white hover:bg-white/20"
-            title={isMaximized ? "Restore" : "Maximize"}
-          >
-            <Maximize2 className="w-4 h-4" />
-          </Button>
           <Button
             variant="ghost"
             size="icon"
