@@ -49,26 +49,26 @@ export default function KPITable({ kpis, onSubKPIClick, onChatClick }: KPITableP
     <Card className="glass-card border border-border/40 rounded-xl overflow-hidden">
       <Table>
         <TableHeader>
-          {/* Main column headers - uniform muted background */}
+          {/* Top Header Row - Merged Groups */}
           <TableRow className="border-b border-border/30 hover:bg-transparent bg-muted/50">
             <TableHead rowSpan={2} className="w-[40px] align-middle bg-muted/50"></TableHead>
             <TableHead rowSpan={2} className="font-display font-bold text-foreground align-middle bg-muted/50">KPI</TableHead>
             <TableHead colSpan={3} className="text-center font-display font-bold text-foreground border-l border-border/30 bg-muted/50">Actual</TableHead>
-            <TableHead colSpan={3} className="text-center font-display font-bold text-foreground border-l border-border/30 bg-muted/50">Plan</TableHead>
-            <TableHead colSpan={3} className="text-center font-display font-bold text-foreground border-l border-border/30 bg-muted/50">Previous Year</TableHead>
-            <TableHead rowSpan={2} className="text-right font-display font-bold text-foreground border-l border-border/30 align-middle bg-muted/50">Variance</TableHead>
+            <TableHead colSpan={2} className="text-center font-display font-bold text-foreground border-l border-border/30 bg-muted/50">Plan</TableHead>
+            <TableHead colSpan={2} className="text-center font-display font-bold text-foreground border-l border-border/30 bg-muted/50">PY</TableHead>
           </TableRow>
-          {/* Sub-column headers - uniform muted background */}
+          {/* Second Header Row - Sub-columns */}
           <TableRow className="border-b border-border/20 hover:bg-transparent">
-            <TableHead className="text-right text-xs font-semibold text-muted-foreground border-l border-border/30 bg-muted/40">Actual</TableHead>
+            {/* Under Actual */}
+            <TableHead className="text-right text-xs font-semibold text-muted-foreground border-l border-border/30 bg-muted/40">Month</TableHead>
             <TableHead className="text-right text-xs font-semibold text-muted-foreground bg-muted/40">QTD</TableHead>
             <TableHead className="text-right text-xs font-semibold text-muted-foreground bg-muted/40">YTD</TableHead>
-            <TableHead className="text-right text-xs font-semibold text-muted-foreground border-l border-border/30 bg-muted/40">Actual</TableHead>
-            <TableHead className="text-right text-xs font-semibold text-muted-foreground bg-muted/40">QTD</TableHead>
-            <TableHead className="text-right text-xs font-semibold text-muted-foreground bg-muted/40">YTD</TableHead>
-            <TableHead className="text-right text-xs font-semibold text-muted-foreground border-l border-border/30 bg-muted/40">Actual</TableHead>
-            <TableHead className="text-right text-xs font-semibold text-muted-foreground bg-muted/40">QTD</TableHead>
-            <TableHead className="text-right text-xs font-semibold text-muted-foreground bg-muted/40">YTD</TableHead>
+            {/* Under Plan */}
+            <TableHead className="text-right text-xs font-semibold text-muted-foreground border-l border-border/30 bg-muted/40">Var %</TableHead>
+            <TableHead className="text-right text-xs font-semibold text-muted-foreground bg-muted/40">Abs</TableHead>
+            {/* Under PY */}
+            <TableHead className="text-right text-xs font-semibold text-muted-foreground border-l border-border/30 bg-muted/40">YTD</TableHead>
+            <TableHead className="text-right text-xs font-semibold text-muted-foreground bg-muted/40">Var %</TableHead>
           </TableRow>
         </TableHeader>
         <TableBody>
@@ -114,7 +114,7 @@ export default function KPITable({ kpis, onSubKPIClick, onChatClick }: KPITableP
                       </Button>
                     </div>
                   </TableCell>
-                  {/* Actual sub-columns */}
+                  {/* Actual: Month | QTD | YTD */}
                   <TableCell className="text-right py-4 border-l border-border/20">
                     <span className="font-display font-bold text-foreground">
                       {kpi.subKPIs[0]?.value || "-"}
@@ -130,40 +130,29 @@ export default function KPITable({ kpis, onSubKPIClick, onChatClick }: KPITableP
                       {kpi.subKPIs[0]?.details.ytd || "-"}
                     </span>
                   </TableCell>
-                  {/* Plan sub-columns */}
+                  {/* Plan: Var % | Abs */}
                   <TableCell className="text-right py-4 border-l border-border/20">
+                    {kpi.subKPIs[0] && (
+                      <span className={cn(
+                        "font-medium",
+                        kpi.subKPIs[0].variance >= 0 ? "text-success" : "text-destructive"
+                      )}>
+                        {kpi.subKPIs[0].variance >= 0 ? "+" : ""}{kpi.subKPIs[0].variance}%
+                      </span>
+                    )}
+                  </TableCell>
+                  <TableCell className="text-right py-4">
                     <span className="text-muted-foreground">
                       {kpi.subKPIs[0]?.details.target || "-"}
                     </span>
                   </TableCell>
-                  <TableCell className="text-right py-4">
-                    <span className="text-muted-foreground">
-                      {kpi.subKPIs[0]?.details.planQtd || "-"}
-                    </span>
-                  </TableCell>
-                  <TableCell className="text-right py-4">
-                    <span className="text-muted-foreground">
-                      {kpi.subKPIs[0]?.details.planYtd || "-"}
-                    </span>
-                  </TableCell>
-                  {/* Previous Year sub-columns */}
+                  {/* PY: YTD | Var % */}
                   <TableCell className="text-right py-4 border-l border-border/20">
-                    <span className="text-muted-foreground">
-                      {kpi.subKPIs[0]?.details.lastMonth || "-"}
-                    </span>
-                  </TableCell>
-                  <TableCell className="text-right py-4">
-                    <span className="text-muted-foreground">
-                      {kpi.subKPIs[0]?.details.pyQtd || "-"}
-                    </span>
-                  </TableCell>
-                  <TableCell className="text-right py-4">
                     <span className="text-muted-foreground">
                       {kpi.subKPIs[0]?.details.pyYtd || "-"}
                     </span>
                   </TableCell>
-                  {/* Variance */}
-                  <TableCell className="text-right py-4 border-l border-border/20">
+                  <TableCell className="text-right py-4">
                     {kpi.subKPIs[0] && (
                       <div className={cn(
                         "inline-flex items-center gap-1 px-2 py-1 rounded-full text-sm font-medium",
@@ -195,7 +184,7 @@ export default function KPITable({ kpis, onSubKPIClick, onChatClick }: KPITableP
                         {subKPI.name}
                       </span>
                     </TableCell>
-                    {/* Actual sub-columns */}
+                    {/* Actual: Month | QTD | YTD */}
                     <TableCell className="text-right py-3 border-l border-border/10">
                       <span className="font-display font-semibold text-foreground">
                         {subKPI.value}
@@ -211,40 +200,27 @@ export default function KPITable({ kpis, onSubKPIClick, onChatClick }: KPITableP
                         {subKPI.details.ytd || "-"}
                       </span>
                     </TableCell>
-                    {/* Plan sub-columns */}
+                    {/* Plan: Var % | Abs */}
                     <TableCell className="text-right py-3 border-l border-border/10">
+                      <span className={cn(
+                        "text-sm font-medium",
+                        subKPI.variance >= 0 ? "text-success" : "text-destructive"
+                      )}>
+                        {subKPI.variance >= 0 ? "+" : ""}{subKPI.variance}%
+                      </span>
+                    </TableCell>
+                    <TableCell className="text-right py-3">
                       <span className="text-sm text-muted-foreground">
                         {subKPI.details.target}
                       </span>
                     </TableCell>
-                    <TableCell className="text-right py-3">
-                      <span className="text-sm text-muted-foreground">
-                        {subKPI.details.planQtd || "-"}
-                      </span>
-                    </TableCell>
-                    <TableCell className="text-right py-3">
-                      <span className="text-sm text-muted-foreground">
-                        {subKPI.details.planYtd || "-"}
-                      </span>
-                    </TableCell>
-                    {/* Previous Year sub-columns */}
+                    {/* PY: YTD | Var % */}
                     <TableCell className="text-right py-3 border-l border-border/10">
-                      <span className="text-sm text-muted-foreground">
-                        {subKPI.details.lastMonth}
-                      </span>
-                    </TableCell>
-                    <TableCell className="text-right py-3">
-                      <span className="text-sm text-muted-foreground">
-                        {subKPI.details.pyQtd || "-"}
-                      </span>
-                    </TableCell>
-                    <TableCell className="text-right py-3">
                       <span className="text-sm text-muted-foreground">
                         {subKPI.details.pyYtd || "-"}
                       </span>
                     </TableCell>
-                    {/* Variance */}
-                    <TableCell className="text-right py-3 border-l border-border/10">
+                    <TableCell className="text-right py-3">
                       <div className={cn(
                         "inline-flex items-center gap-1 text-xs",
                         subKPI.variance >= 0 ? "text-success" : "text-destructive"
